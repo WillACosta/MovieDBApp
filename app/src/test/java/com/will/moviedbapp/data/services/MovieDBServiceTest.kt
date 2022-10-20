@@ -3,11 +3,11 @@ package com.will.moviedbapp.data.services
 import com.will.moviedbapp.data.model.PaginatedResponse
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.utils.enqueueResponse
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -41,20 +41,18 @@ class MovieDBServiceTest {
 
     @Test
     fun `should call getTrendingMovies and match correct endpoint`() {
+        mockWebServer.enqueue(MockResponse().setBody("{}"))
+
         runBlocking {
-
-            mockWebServer.enqueue(MockResponse().setBody("{}"))
-
-            val response = service.getTrendingMovies()
+            service.getTrendingMovies()
             val request = mockWebServer.takeRequest()
 
-            assertEquals(request.path, "/trending/movie/week")
-
+            Assert.assertEquals(request.path, "/trending/movie/week")
         }
     }
 
     @Test
-    fun `should fetch trending movies correctly given status code 200`() {
+    fun `should fetch trending movies correctly with status code 200`() {
         mockWebServer.enqueueResponse(MockMovie.trendingMovieJson, 200)
 
         runBlocking {
@@ -66,7 +64,31 @@ class MovieDBServiceTest {
                 20
             )
 
-            assertEquals(expected, response)
+            Assert.assertEquals(expected, response)
+        }
+    }
+
+    @Test
+    fun `should call getMovieById and match correct endpoint with given id`() {
+        mockWebServer.enqueue(MockResponse().setBody("{}"))
+
+        runBlocking {
+            service.getMovieById(555)
+            val request = mockWebServer.takeRequest()
+
+            Assert.assertEquals(request.path, "/movie/555")
+        }
+    }
+
+    @Test
+    fun `should fetch movie correctly with status code 200`() {
+        mockWebServer.enqueueResponse(MockMovie.movieJson, 200)
+
+        runBlocking {
+            val response = service.getMovieById(555)
+            val expected = MockMovie.movie
+
+            Assert.assertEquals(expected, response)
         }
     }
 
