@@ -92,4 +92,33 @@ class MovieDBServiceTest {
         }
     }
 
+    @Test
+    fun `should call searchMovie and match correct endpoint with given search query`() {
+        mockWebServer.enqueue(MockResponse().setBody("{}"))
+
+        runBlocking {
+            service.searchMovie("dune")
+            val request = mockWebServer.takeRequest()
+
+            Assert.assertEquals(request.path, "/search/movie?query=dune")
+        }
+    }
+
+    @Test
+    fun `should fetch a List of Movie correctly with status code 200`() {
+        mockWebServer.enqueueResponse(MockMovie.trendingMovieJson, 200)
+
+        runBlocking {
+            val response = service.searchMovie("dune")
+            val expected = PaginatedResponse(
+                1,
+                listOf(MockMovie.movie),
+                2,
+                20
+            )
+
+            Assert.assertEquals(expected, response)
+        }
+    }
+
 }

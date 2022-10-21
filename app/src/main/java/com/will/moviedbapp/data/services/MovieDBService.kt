@@ -4,6 +4,7 @@ import com.will.moviedbapp.data.model.Movie
 import com.will.moviedbapp.data.model.PaginatedResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieDBService {
 
@@ -12,4 +13,7 @@ interface MovieDBService {
 
     @GET("movie/{movie_id}")
     suspend fun getMovieById(@Path("movie_id") id: Int): Movie
+
+    @GET("search/movie")
+    suspend fun searchMovie(@Query("query") query: String): PaginatedResponse<List<Movie>>
 }
