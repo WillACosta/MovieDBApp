@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -47,7 +47,7 @@ class MovieDBServiceTest {
             service.getTrendingMovies()
             val request = mockWebServer.takeRequest()
 
-            Assert.assertEquals(request.path, "/trending/movie/week")
+            assertEquals(request.path, "/trending/movie/week")
         }
     }
 
@@ -64,7 +64,7 @@ class MovieDBServiceTest {
                 20
             )
 
-            Assert.assertEquals(expected, response)
+            assertEquals(expected, response)
         }
     }
 
@@ -76,7 +76,7 @@ class MovieDBServiceTest {
             service.getMovieById(555)
             val request = mockWebServer.takeRequest()
 
-            Assert.assertEquals(request.path, "/movie/555")
+            assertEquals(request.path, "/movie/555")
         }
     }
 
@@ -88,7 +88,7 @@ class MovieDBServiceTest {
             val response = service.getMovieById(555)
             val expected = MockMovie.movie
 
-            Assert.assertEquals(expected, response)
+            assertEquals(expected, response)
         }
     }
 
@@ -100,7 +100,7 @@ class MovieDBServiceTest {
             service.searchMovie("dune")
             val request = mockWebServer.takeRequest()
 
-            Assert.assertEquals(request.path, "/search/movie?query=dune")
+            assertEquals(request.path, "/search/movie?query=dune")
         }
     }
 
@@ -117,7 +117,7 @@ class MovieDBServiceTest {
                 20
             )
 
-            Assert.assertEquals(expected, response)
+            assertEquals(expected, response)
         }
     }
 

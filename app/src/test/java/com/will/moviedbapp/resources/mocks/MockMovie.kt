@@ -1,8 +1,12 @@
 package com.will.moviedbapp.resources.mocks
 
 import com.will.moviedbapp.data.model.Movie
+import com.will.moviedbapp.data.model.PaginatedResponse
 
 object MockMovie {
+    const val movieID = 438631
+    val searchQuery = "dune"
+
     val movie = Movie(
         adult = false,
         backdropPath = "/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg",
@@ -18,6 +22,15 @@ object MockMovie {
         video = false,
         voteAverage = 7.856,
         voteCount = 7826
+    )
+
+    val listMovie = listOf(movie)
+
+    val paginatedResponse = PaginatedResponse(
+        page = 1,
+        results = listMovie,
+        totalPages = 2,
+        totalResults = 20
     )
 
     const val movieJson = """
