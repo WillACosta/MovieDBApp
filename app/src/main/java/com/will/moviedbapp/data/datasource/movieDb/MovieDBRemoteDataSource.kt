@@ -1,6 +1,6 @@
 package com.will.moviedbapp.data.datasource.movieDb
 
-import com.will.moviedbapp.data.model.Movie
+import com.will.moviedbapp.domain.model.Movie
 
 interface MovieDBRemoteDataSource {
     suspend fun getTrendingMovies(): List<Movie>

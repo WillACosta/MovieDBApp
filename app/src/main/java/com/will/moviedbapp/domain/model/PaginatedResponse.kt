@@ -1,4 +1,4 @@
-package com.will.moviedbapp.data.model
+package com.will.moviedbapp.domain.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -3,7 +3,7 @@ package com.will.moviedbapp.data.repository
 import com.will.moviedbapp.core.errors.RemoteDataSourceException
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.data.datasource.movieDb.MovieDBRemoteDataSource
-import com.will.moviedbapp.data.model.Movie
+import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.resources.mocks.MockMovie
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
