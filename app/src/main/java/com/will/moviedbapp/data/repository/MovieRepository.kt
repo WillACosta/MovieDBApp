@@ -1,7 +1,7 @@
 package com.will.moviedbapp.data.repository
 
 import com.will.moviedbapp.core.state.StateResult
-import com.will.moviedbapp.data.model.Movie
+import com.will.moviedbapp.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {

@@ -2,7 +2,7 @@ package com.will.moviedbapp.data.repository
 
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.data.datasource.movieDb.MovieDBRemoteDataSource
-import com.will.moviedbapp.data.model.Movie
+import com.will.moviedbapp.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

@@ -1,7 +1,7 @@
 package com.will.moviedbapp.data.datasource.movieDb
 
 import com.will.moviedbapp.core.errors.RemoteDataSourceException
-import com.will.moviedbapp.data.model.Movie
+import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.data.services.MovieDBService
 
 class CMovieDBRemoteDataSource(private val service: MovieDBService) : MovieDBRemoteDataSource {

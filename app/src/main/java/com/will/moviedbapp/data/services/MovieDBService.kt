@@ -1,7 +1,7 @@
 package com.will.moviedbapp.data.services
 
-import com.will.moviedbapp.data.model.Movie
-import com.will.moviedbapp.data.model.PaginatedResponse
+import com.will.moviedbapp.domain.model.Movie
+import com.will.moviedbapp.domain.model.PaginatedResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

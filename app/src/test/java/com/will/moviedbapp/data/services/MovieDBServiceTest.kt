@@ -1,6 +1,6 @@
 package com.will.moviedbapp.data.services
 
-import com.will.moviedbapp.data.model.PaginatedResponse
+import com.will.moviedbapp.domain.model.PaginatedResponse
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.utils.enqueueResponse
 import kotlinx.coroutines.runBlocking
