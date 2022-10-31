@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="empty_margin">0dp</dimen>
+    <dimen name="base_screen_padding">20dp</dimen>
+
+    <dimen name="spacing_giant">80dp</dimen>
+    <dimen name="spacing_xxl">40dp</dimen>
+    <dimen name="spacing_xl">35dp</dimen>
+    <dimen name="spacing_lg">25dp</dimen>
+    <dimen name="spacing_md">20dp</dimen>
+    <dimen name="spacing_xs">15dp</dimen>
+    <dimen name="spacing_xxs">10dp</dimen>
+    <dimen name="spacing_nano">5dp</dimen>
+
+    <dimen name="font_headline">40sp</dimen>
+    <dimen name="font_head">24sp</dimen>
+    <dimen name="font_body">16sp</dimen>
+    <dimen name="font_small">10sp</dimen>
+    <dimen name="font_smallest">7sp</dimen>
+</resources>

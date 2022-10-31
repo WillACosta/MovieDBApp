@@ -1,9 +1,8 @@
 package com.will.moviedbapp.domain.usecase
 
-import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.data.repository.MovieRepository
-import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.resources.mocks.MockMovie
+import com.will.moviedbapp.resources.mocks.MockStateResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -30,11 +29,7 @@ class SearchUseCaseTest {
     @Test
     fun `should invoke useCase and returns normally`() {
         val searchQuery = MockMovie.searchQuery
-        val listMovie = MockMovie.listMovie
-        val expectedState = listOf(
-            StateResult.Loading,
-            StateResult.Success<List<Movie>>(listMovie),
-        )
+        val expectedState = MockStateResult.expectedSuccessListMovie
 
         coEvery { repository.search(any()) } returns expectedState.asFlow()
 

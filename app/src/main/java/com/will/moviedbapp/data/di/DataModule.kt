@@ -3,11 +3,16 @@ package com.will.moviedbapp.data.di
 import com.will.moviedbapp.data.datasource.movieDb.CMovieDBRemoteDataSource
 import com.will.moviedbapp.data.datasource.movieDb.MovieDBRemoteDataSource
 import com.will.moviedbapp.data.services.MovieDBService
+import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.converter.gson.GsonConverterFactory
 
 object DataModule {
+
+    fun load() {
+        return loadKoinModules(listOf(networkModule(), servicesModule(), dataSourcesModule()))
+    }
 
     private fun networkModule(): Module {
         return module {
