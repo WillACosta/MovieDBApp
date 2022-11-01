@@ -1,9 +1,6 @@
 package com.will.moviedbapp.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.domain.usecase.GetTrendingMoviesUseCase
@@ -22,6 +19,9 @@ class HomeViewModel(
     val trendingMovies: StateFlow<StateResult<List<Movie>>> = _trendingMovies
 
     private val _searchQuery = MutableStateFlow("")
+
+    private val _navigateEvent = MutableLiveData<Movie>()
+    val navigateEvent: LiveData<Movie> = _navigateEvent
 
     val movies: LiveData<StateResult<List<Movie>>> = _searchQuery
         .debounce(300)
@@ -44,7 +44,7 @@ class HomeViewModel(
     }
 
     private fun onViewMovieDetails(item: Movie) {
-        TODO("Not yet implemented")
+        _navigateEvent.postValue(item)
     }
 
     private fun getTrendingMovies() {

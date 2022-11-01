@@ -89,5 +89,17 @@ class HomeViewModelTest {
             assertEquals(expected, actual)
         }
     }
+
+    @Test
+    fun `should push navigate event with movie when action is ViewMovieDetails`() {
+        val expected = MockMovie.movie
+
+        viewModel.handle(HomeAction.ViewMovieDetails(expected))
+
+        val liveData = viewModel.navigateEvent
+        val actual = liveData.getOrAwaitValue()
+
+        assertEquals(expected, actual)
+    }
 }
 
