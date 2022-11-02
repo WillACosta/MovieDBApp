@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">MovieDBApp</string>
     <string name="welcome_text">Find your next favorite movie</string>
-    <string name="welcome_description">Get a new experieince watching interesting movies and series of principals stream players</string>
-    <string name="get_started">GET STARTED</string>
+    <string name="welcome_description">Get a new experience watching interesting movies and series of principals stream players</string>
+    <string name="get_started">Get Started</string>
     <string name="movie_bg_description">Image that represents dune movie poster</string>
+    <string name="next">Next</string>
+    <string name="name_input">Name</string>
+    <string name="subtitle_name">It\'ll help us to improve your experience</string>
+    <string name="title_name">What`s your name</string>
 </resources>
