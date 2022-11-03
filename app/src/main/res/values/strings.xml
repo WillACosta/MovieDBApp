@@ -8,4 +8,7 @@
     <string name="name_input">Name</string>
     <string name="subtitle_name">It\'ll help us to improve your experience</string>
     <string name="title_name">What`s your name</string>
+    <string name="greeting_subtitle">Book your favorite movies</string>
+    <string name="search">Search</string>
+    <string name="featured_movies">Featured Movies</string>
 </resources>
