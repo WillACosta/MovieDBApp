@@ -2,6 +2,7 @@ package com.will.moviedbapp.data.di
 
 import android.util.Log
 import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.utils.interceptors.ApiInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,15 +23,21 @@ object NetworkHelper {
     }
 
     fun createHttpClient(): OkHttpClient {
+        val loggingInterceptor = createLoggingInterceptor()
+
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(ApiInterceptor())
+            .build()
+    }
+
+    private fun createLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor {
             Log.i(AppConstants.NETWORK.LOG_RESPONSE_TAG, it)
         }
 
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        return OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
+        return loggingInterceptor
     }
 
 }

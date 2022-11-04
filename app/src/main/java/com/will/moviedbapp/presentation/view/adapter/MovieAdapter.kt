@@ -3,7 +3,8 @@ package com.will.moviedbapp.presentation.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.will.moviedbapp.core.extensions.load
+import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.utils.extensions.load
 import com.will.moviedbapp.databinding.MovieListTileBinding
 import com.will.moviedbapp.domain.model.Movie
 
@@ -26,8 +27,7 @@ class MovieAdapter(
         private val bind: MovieListTileBinding
     ) : RecyclerView.ViewHolder(bind.root) {
         fun bind(movie: Movie) {
-            TODO("Add base image poster URL")
-            bind.moviePoster.load("" + movie.posterPath)
+            bind.moviePoster.load(AppConstants.NETWORK.BASE_POSTER_URL + movie.posterPath)
         }
     }
 }

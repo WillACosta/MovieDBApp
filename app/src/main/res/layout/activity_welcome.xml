@@ -49,6 +49,7 @@
             android:textSize="@dimen/font_body" />
 
         <Button
+            android:id="@+id/button_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_giant"

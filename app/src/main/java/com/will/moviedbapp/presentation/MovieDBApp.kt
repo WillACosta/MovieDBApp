@@ -3,6 +3,7 @@ package com.will.moviedbapp.presentation
 import android.app.Application
 import com.will.moviedbapp.data.di.DataModule
 import com.will.moviedbapp.domain.di.DomainModule
+import com.will.moviedbapp.presentation.di.PresentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
@@ -19,5 +20,6 @@ class MovieDBApp : Application() {
 
         DataModule.load()
         DomainModule.load()
+        PresentationModule.load()
     }
 }
