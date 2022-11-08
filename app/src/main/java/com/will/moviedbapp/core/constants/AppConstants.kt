@@ -25,4 +25,9 @@ abstract class AppConstants {
         const val PREFERENCES_DATA_STORE = "Error reading preferences."
     }
 
+    object ValidationMessages {
+        const val INVALID_NAME = "Oops! Your name is invalid"
+        const val LESS_THAN_THREE_CHARACTERS = "Oops! Your name should not be less than 3 characters"
+    }
+
 }

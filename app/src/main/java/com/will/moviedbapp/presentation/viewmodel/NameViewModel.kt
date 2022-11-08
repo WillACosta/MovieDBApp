@@ -1,14 +1,17 @@
 package com.will.moviedbapp.presentation.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.data.repository.userPreferences.UserPreferencesRepository
 import kotlinx.coroutines.launch
 
 class NameViewModel(private val repository: UserPreferencesRepository) : ViewModel() {
 
+    @VisibleForTesting
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
@@ -32,11 +35,11 @@ class NameViewModel(private val repository: UserPreferencesRepository) : ViewMod
         val value = _name.value
 
         if (value != null && value.isEmpty() || value == null) {
-            return "Oops! Your name is invalid"
+            return AppConstants.ValidationMessages.INVALID_NAME
         }
 
         if (value.length < 4) {
-            return "Oops! Your name should not be less than 3 characters"
+            return AppConstants.ValidationMessages.LESS_THAN_THREE_CHARACTERS
         }
 
         return null
