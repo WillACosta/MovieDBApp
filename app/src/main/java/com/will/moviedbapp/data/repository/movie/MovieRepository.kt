@@ -1,4 +1,4 @@
-package com.will.moviedbapp.data.repository
+package com.will.moviedbapp.data.repository.movie
 
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.domain.model.Movie

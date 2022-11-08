@@ -3,12 +3,12 @@ package com.will.moviedbapp.presentation.view.home
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.databinding.ActivityHomeBinding
 import com.will.moviedbapp.presentation.model.HomeAction
 import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.viewmodel.HomeViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,13 +28,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        lifecycleScope.launch(Dispatchers.Default) {
+        lifecycleScope.launch {
             viewModel.trendingMovies.collect { state ->
                 when (state) {
                     StateResult.Loading -> {}
                     StateResult.Empty -> {}
 
                     is StateResult.Success -> {
+                        binding.recyclerFeaturedMovies.setHasFixedSize(true)
+                        binding.recyclerFeaturedMovies.layoutManager =
+                            LinearLayoutManager(applicationContext)
                         binding.recyclerFeaturedMovies.adapter = MovieAdapter(state.data)
                     }
 

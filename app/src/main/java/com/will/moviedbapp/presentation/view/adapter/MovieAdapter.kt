@@ -27,7 +27,8 @@ class MovieAdapter(
         private val bind: MovieListTileBinding
     ) : RecyclerView.ViewHolder(bind.root) {
         fun bind(movie: Movie) {
-            bind.moviePoster.load(AppConstants.NETWORK.BASE_POSTER_URL + movie.posterPath)
+//            bind.moviePoster.load(AppConstants.Network.BASE_POSTER_URL + movie.posterPath)
+            bind.movieTitle.text = movie.title
         }
     }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.will.moviedbapp.core.utils.HelperFunctions
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
 import com.will.moviedbapp.presentation.view.home.HomeActivity
+import com.will.moviedbapp.presentation.view.name.NameActivity
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -34,7 +35,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.buttonStart.setOnClickListener {
-            HelperFunctions.startActivity(this, HomeActivity::class.java)
+            HelperFunctions.startActivity(this, NameActivity::class.java)
         }
     }
 }

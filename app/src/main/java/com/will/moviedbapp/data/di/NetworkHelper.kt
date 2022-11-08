@@ -15,7 +15,7 @@ object NetworkHelper {
         client: OkHttpClient
     ): T {
         return Retrofit.Builder()
-            .baseUrl(AppConstants.NETWORK.BASE_URL)
+            .baseUrl(AppConstants.Network.BASE_URL)
             .addConverterFactory(factory)
             .client(client)
             .build()
@@ -33,7 +33,7 @@ object NetworkHelper {
 
     private fun createLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor {
-            Log.i(AppConstants.NETWORK.LOG_RESPONSE_TAG, it)
+            Log.i(AppConstants.Network.LOG_RESPONSE_TAG, it)
         }
 
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

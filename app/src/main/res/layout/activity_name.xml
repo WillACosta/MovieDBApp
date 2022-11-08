@@ -52,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_input_border"
-            android:backgroundTint="@color/surface" />
+            android:backgroundTint="@color/surface"
+            android:textColor="@color/text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,11 +62,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_giant"
-        android:background="@drawable/rounded_border"
+        android:backgroundTint="@color/button_state_color"
+        android:enabled="false"
         android:fontFamily="@font/inter"
-        android:padding="@dimen/spacing_xs"
+        android:padding="@dimen/spacing_md"
         android:text="@string/next"
         android:textSize="@dimen/font_body"
+        app:cornerRadius="@dimen/border_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
