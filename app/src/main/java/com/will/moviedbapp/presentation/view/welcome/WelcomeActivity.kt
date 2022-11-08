@@ -8,10 +8,13 @@ import com.will.moviedbapp.core.utils.HelperFunctions
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
 import com.will.moviedbapp.presentation.view.home.HomeActivity
 import com.will.moviedbapp.presentation.view.name.NameActivity
+import com.will.moviedbapp.presentation.viewmodel.WelcomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityWelcomeBinding
+    private lateinit var binding: ActivityWelcomeBinding
+    private val viewModel: WelcomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,28 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.buttonStart.setOnClickListener {
-            HelperFunctions.startActivity(this, NameActivity::class.java)
+            viewModel.handleFirstAccess()
         }
+
+        viewModel.userPreferences.observe(this) { prefs ->
+
+            if (prefs.isNotFirsAccess && prefs.name.isEmpty()) {
+                goToNameActivity()
+            }
+
+            if (prefs.isNotFirsAccess && prefs.name.isNotEmpty()) {
+                gotoHomeActivity()
+            }
+
+        }
+
+    }
+
+    private fun goToNameActivity() {
+        HelperFunctions.startActivity(this, NameActivity::class.java)
+    }
+
+    private fun gotoHomeActivity() {
+        HelperFunctions.startActivity(this, HomeActivity::class.java)
     }
 }

@@ -3,6 +3,7 @@ package com.will.moviedbapp.presentation.di
 import com.will.moviedbapp.presentation.viewmodel.HomeViewModel
 import com.will.moviedbapp.presentation.viewmodel.NameViewModel
 import com.will.moviedbapp.presentation.viewmodel.PreferencesViewModel
+import com.will.moviedbapp.presentation.viewmodel.WelcomeViewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -17,6 +18,7 @@ object PresentationModule {
         return module {
             factory { HomeViewModel(get(), get()) }
             factory { NameViewModel(get()) }
+            factory { WelcomeViewModel(get()) }
 
             single { PreferencesViewModel(get()) }
         }
