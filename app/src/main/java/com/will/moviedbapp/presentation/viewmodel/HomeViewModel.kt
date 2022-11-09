@@ -19,12 +19,13 @@ class HomeViewModel(
     val trendingMovies: StateFlow<StateResult<List<Movie>>> = _trendingMovies
 
     private val _searchQuery = MutableStateFlow("")
+    val searchQuery: LiveData<String> = _searchQuery.asLiveData()
 
     private val _navigateEvent = MutableLiveData<Movie>()
     val navigateEvent: LiveData<Movie> = _navigateEvent
 
     val movies: LiveData<StateResult<List<Movie>>> = _searchQuery
-        .debounce(300)
+        .debounce(800)
         .filter { text ->
             text.isNotEmpty()
         }

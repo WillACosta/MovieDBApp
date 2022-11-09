@@ -52,9 +52,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_input_border"
-            android:backgroundTint="@color/surface" />
+            android:backgroundTint="@color/surface"
+            android:textColor="@color/text" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/empty_content_component"
+        layout="@layout/empty_state_view"
+        android:layout_width="372dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_xxl"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_container" />
 
     <FrameLayout
         android:id="@+id/trending_movies_frame_container"
