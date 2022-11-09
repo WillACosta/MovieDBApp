@@ -5,15 +5,15 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/spacing_md">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/movie_poster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border"
         android:scaleType="centerInside"
         android:src="@drawable/movie_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
