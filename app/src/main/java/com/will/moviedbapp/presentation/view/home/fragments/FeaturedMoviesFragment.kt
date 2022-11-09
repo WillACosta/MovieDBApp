@@ -43,8 +43,13 @@ class FeaturedMoviesFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.trendingMovies.collect { state ->
                 when (state) {
-                    StateResult.Loading -> {}
-                    StateResult.Empty -> {}
+                    StateResult.Loading -> {
+                        handleShimmerLayout(true)
+                    }
+
+                    StateResult.Empty -> {
+                        handleShimmerLayout()
+                    }
 
                     is StateResult.Success -> {
                         binding.recyclerFeaturedMovies.layoutManager =
@@ -53,11 +58,30 @@ class FeaturedMoviesFragment : Fragment() {
                             }
 
                         binding.recyclerFeaturedMovies.adapter = MovieAdapter(state.data)
+                        handleShimmerLayout()
                     }
 
-                    is StateResult.Error -> {}
+                    is StateResult.Error -> {
+                        handleShimmerLayout()
+                    }
                 }
             }
+        }
+    }
+
+    private fun handleShimmerLayout(isVisible: Boolean = false) {
+        if (isVisible) {
+            binding.shimmerLayout.apply {
+                startShimmer()
+                visibility = View.VISIBLE
+            }
+
+            return
+        }
+
+        binding.shimmerLayout.apply {
+            stopShimmer()
+            visibility = View.GONE
         }
     }
 
