@@ -16,4 +16,9 @@
     <string name="empty_search_vector_content_description">Vector that represents an empty search</string>
     <string name="we_re_sorry">We\'re sorry</string>
     <string name="empty_content_message">There are no results that matched your search term</string>
+    <string name="vector_error_content_description">Vector image that represents an error</string>
+    <string name="no_connection_error_message">Internet connection is bad, but no worries, we got it! Try reload the app.</string>
+    <string name="no_connection_error_title">Oops! Something was wrong</string>
+    <string name="reload">Reload</string>
+    <string name="shimmer_layout">shimmer layout</string>
 </resources>

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
+import androidx.recyclerview.widget.GridLayoutManager
 import com.will.moviedbapp.R
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.databinding.ActivityHomeBinding
 import com.will.moviedbapp.presentation.model.HomeAction
+import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.fragments.FeaturedMoviesFragment
 import com.will.moviedbapp.presentation.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,15 +39,21 @@ class HomeActivity : AppCompatActivity() {
     private fun setListeners() {
         viewModel.movies.observe(this) { state ->
             when (state) {
-                StateResult.Loading -> {}
+                StateResult.Loading -> handleIsLoading(true)
 
-                StateResult.Empty -> {
-                    binding.emptyContentComponent.root.visibility = View.VISIBLE
-                }
+                StateResult.Empty -> binding.emptyContentComponent.root.visibility = View.VISIBLE
 
                 is StateResult.Error -> {}
 
-                is StateResult.Success -> {}
+                is StateResult.Success -> {
+                    handleIsLoading()
+                    binding.recyclerSearchedMovies.visibility = View.VISIBLE
+
+                    binding.recyclerSearchedMovies.apply {
+                        adapter = MovieAdapter(state.data)
+                        layoutManager = GridLayoutManager(this@HomeActivity, 2)
+                    }
+                }
             }
         }
 
@@ -74,8 +82,24 @@ class HomeActivity : AppCompatActivity() {
             return
         }
 
-        binding.emptyContentComponent.root.visibility = View.GONE
         binding.trendingMoviesFrameContainer.visibility = View.VISIBLE
+        binding.emptyContentComponent.root.visibility = View.GONE
+        binding.recyclerSearchedMovies.visibility = View.GONE
     }
 
+    private fun handleIsLoading(isLoading: Boolean = false) {
+        if (isLoading) {
+            binding.searchingShimmerLayout.apply {
+                visibility = View.VISIBLE
+                startShimmer()
+            }
+
+            return
+        }
+
+        binding.searchingShimmerLayout.apply {
+            visibility = View.GONE
+            stopShimmer()
+        }
+    }
 }
