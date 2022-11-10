@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:paddingHorizontal="@dimen/base_screen_padding"
+    android:paddingTop="@dimen/spacing_xxl"
+    android:paddingBottom="@dimen/base_screen_padding"
+    tools:context=".presentation.view.home.HomeActivity">
+
+    <TextView
+        android:id="@+id/greeting_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hello"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/greeting_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/greeting_subtitle"
+        android:textColor="@color/text"
+        android:textSize="@dimen/font_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greeting_user" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:backgroundTint="@color/surface"
+        android:hint="@string/search"
+        android:textColorHint="@color/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greeting_subtitle"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_input_border"
+            android:backgroundTint="@color/surface"
+            android:textColor="@color/text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/searching_shimmer_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_xl"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_container">
+
+        <include
+            layout="@layout/searching_movies_shimmer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_searched_movies"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_xl"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_container" />
+
+    <include
+        android:id="@+id/empty_content_component"
+        layout="@layout/empty_state_view"
+        android:layout_width="372dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_xxl"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_container" />
+
+    <FrameLayout
+        android:id="@+id/trending_movies_frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        app:layout_constraintTop_toBottomOf="@+id/edt_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

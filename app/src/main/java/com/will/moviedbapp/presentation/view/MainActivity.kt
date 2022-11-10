@@ -1,7 +1,8 @@
-package com.will.moviedbapp
+package com.will.moviedbapp.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.will.moviedbapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
