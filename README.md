@@ -10,12 +10,14 @@ tech-stack. In this project you'll find:
 - Unit Testing
 - Dependency Injection
 
-- [Retrofit]() - for perform network requests
-- [Koin] - dependency injection
-- [Mockk] - mocking library
-- [Junit] - as a test runner
-- [Kotlin Coroutines] - for managing background threads
-- [Flow] - for asynchronous operations
+- [Retrofit](https://square.github.io/retrofit/) - for perform network requests
+- [Koin](https://insert-koin.io/) - dependency injection
+- [Mockk](https://mockk.io/) - mocking library
+- [Junit](https://junit.org/junit4/) - as a test runner
+- [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) - for managing background
+  threads
+- [Flow](https://kotlinlang.org/docs/flow.html) - for asynchronous operations
+- [Glide](https://bumptech.github.io/glide/) - for handle download images from URL
 
 ## Getting Stated
 
@@ -35,6 +37,12 @@ There are a few ways to open this project.
 ```
 
 2. Open Android Studio -> File -> Open -> Choose the cloned folder
+
+### Screenshots
+
+<div style="margin: 0 auto">
+    <img src="./docs/screen_shot.png" />
+</div>
 
 ---
 Made with 🖤 by Will
