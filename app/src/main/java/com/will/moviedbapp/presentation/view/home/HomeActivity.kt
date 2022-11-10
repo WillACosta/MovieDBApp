@@ -12,6 +12,7 @@ import com.will.moviedbapp.presentation.model.HomeAction
 import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.fragments.FeaturedMoviesFragment
 import com.will.moviedbapp.presentation.viewmodel.HomeViewModel
+import com.will.moviedbapp.presentation.viewmodel.PreferencesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
     private val viewModel: HomeViewModel by viewModel()
+    private val preferencesViewModel: PreferencesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,11 +70,17 @@ class HomeActivity : AppCompatActivity() {
         binding.edtSearch.doOnTextChanged { text, _, _, _ ->
             viewModel.handle(HomeAction.SearchMovies(text.toString()))
         }
+
+        preferencesViewModel.userPreferences.observe(this) { prefs ->
+            binding.greetingUser.text = "Hello, ${prefs.name}!"
+        }
     }
 
     private fun initView() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
+
         supportActionBar?.hide()
+        preferencesViewModel.getPreferences()
     }
 
     private fun handleUiWhenIsSearchingMovie(isSearching: Boolean = false) {

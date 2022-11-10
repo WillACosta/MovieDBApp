@@ -12,10 +12,10 @@
     tools:context=".presentation.view.home.HomeActivity">
 
     <TextView
-        android:id="@+id/greeting"
+        android:id="@+id/greeting_user"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello, Will!"
+        android:text="@string/hello"
         android:textColor="@color/white"
         android:textSize="@dimen/font_body"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
         android:textSize="@dimen/font_body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greeting" />
+        app:layout_constraintTop_toBottomOf="@+id/greeting_user" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edt_container"
