@@ -8,10 +8,8 @@ tech-stack. In this project you'll find:
 - Android Jetpack Components
 - Reactive UI
 - Unit Testing
-- Dependency Injection
-
 - [Retrofit](https://square.github.io/retrofit/) - for perform network requests
-- [Koin](https://insert-koin.io/) - dependency injection
+- [Koin](https://insert-koin.io/) - for dependency injection
 - [Mockk](https://mockk.io/) - mocking library
 - [Junit](https://junit.org/junit4/) - as a test runner
 - [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) - for managing background
