@@ -8,6 +8,7 @@ tech-stack. In this project you'll find:
 - Android Jetpack Components
 - Reactive UI
 - Unit Testing
+- Usage of [The Movie DB API](https://www.themoviedb.org/)
 - [Retrofit](https://square.github.io/retrofit/) - for perform network requests
 - [Koin](https://insert-koin.io/) - for dependency injection
 - [Mockk](https://mockk.io/) - mocking library
