@@ -30,4 +30,8 @@ abstract class AppConstants {
         const val LESS_THAN_THREE_CHARACTERS = "Oops! Your name should not be less than 3 characters"
     }
 
+    object AppRoutes {
+        const val MOVIE_DETAIL = "MovieDetailActivity"
+    }
+
 }

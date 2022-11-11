@@ -8,7 +8,6 @@ import com.will.moviedbapp.core.utils.HelperFunctions
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
 import com.will.moviedbapp.presentation.view.home.HomeActivity
 import com.will.moviedbapp.presentation.view.name.NameActivity
-import com.will.moviedbapp.presentation.viewmodel.WelcomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {

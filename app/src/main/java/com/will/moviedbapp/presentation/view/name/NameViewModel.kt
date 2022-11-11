@@ -1,4 +1,4 @@
-package com.will.moviedbapp.presentation.viewmodel
+package com.will.moviedbapp.presentation.view.name
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

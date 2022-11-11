@@ -1,4 +1,4 @@
-package com.will.moviedbapp.presentation.viewmodel
+package com.will.moviedbapp.presentation.view.home
 
 import androidx.lifecycle.*
 import com.will.moviedbapp.core.state.StateResult

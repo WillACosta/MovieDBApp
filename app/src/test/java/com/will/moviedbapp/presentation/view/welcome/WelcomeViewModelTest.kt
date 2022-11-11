@@ -1,8 +1,9 @@
-package com.will.moviedbapp.presentation.viewmodel
+package com.will.moviedbapp.presentation.view.welcome
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.data.repository.userPreferences.UserPreferencesRepository
 import com.will.moviedbapp.domain.model.UserPreferences
+import com.will.moviedbapp.presentation.view.welcome.WelcomeViewModel
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue
 import io.mockk.MockKAnnotations

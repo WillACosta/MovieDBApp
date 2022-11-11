@@ -2,17 +2,17 @@ package com.will.moviedbapp.presentation.view.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.GridLayoutManager
 import com.will.moviedbapp.R
+import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityHomeBinding
 import com.will.moviedbapp.presentation.model.HomeAction
 import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.fragments.FeaturedMoviesFragment
-import com.will.moviedbapp.presentation.viewmodel.HomeViewModel
 import com.will.moviedbapp.presentation.viewmodel.PreferencesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -74,6 +74,11 @@ class HomeActivity : AppCompatActivity() {
 
         preferencesViewModel.userPreferences.observe(this) { prefs ->
             binding.greetingUser.text = "Hello, ${prefs.name}!"
+        }
+
+        viewModel.navigateEvent.observe(this) { movie ->
+            val extras = Bundle().apply { putString("id", movie.id.toString()) }
+            navigateTo(AppConstants.AppRoutes.MOVIE_DETAIL, extras)
         }
     }
 

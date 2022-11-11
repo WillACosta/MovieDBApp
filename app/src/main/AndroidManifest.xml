@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MovieDBApp"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.view.movie_detail.MovieDetailActivity"
+            android:name=".presentation.view.movie_details.MovieDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -3,11 +3,9 @@ package com.will.moviedbapp.presentation.view.name
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.will.moviedbapp.R
 import com.will.moviedbapp.core.utils.HelperFunctions
 import com.will.moviedbapp.databinding.ActivityNameBinding
 import com.will.moviedbapp.presentation.view.home.HomeActivity
-import com.will.moviedbapp.presentation.viewmodel.NameViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NameActivity : AppCompatActivity() {
