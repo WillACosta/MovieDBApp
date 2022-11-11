@@ -1,4 +1,4 @@
-package com.will.moviedbapp.presentation.view.adapter
+package com.will.moviedbapp.presentation.view.shared.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -4,7 +4,7 @@ import com.will.moviedbapp.presentation.view.home.HomeViewModel
 import com.will.moviedbapp.presentation.view.movie_details.MovieDetailsViewModel
 import com.will.moviedbapp.presentation.view.name.NameViewModel
 import com.will.moviedbapp.presentation.view.welcome.WelcomeViewModel
-import com.will.moviedbapp.presentation.viewmodel.PreferencesViewModel
+import com.will.moviedbapp.presentation.view.shared.PreferencesViewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module

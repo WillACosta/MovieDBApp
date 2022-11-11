@@ -12,9 +12,9 @@ import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityHomeBinding
 import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
-import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
+import com.will.moviedbapp.presentation.view.shared.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.fragments.FeaturedMoviesFragment
-import com.will.moviedbapp.presentation.viewmodel.PreferencesViewModel
+import com.will.moviedbapp.presentation.view.shared.PreferencesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {

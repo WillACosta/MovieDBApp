@@ -1,4 +1,4 @@
-package com.will.moviedbapp.presentation.viewmodel
+package com.will.moviedbapp.presentation.view.shared
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

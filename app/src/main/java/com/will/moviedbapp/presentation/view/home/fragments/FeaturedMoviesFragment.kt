@@ -12,7 +12,7 @@ import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.databinding.FragmentFeaturedMoviesBinding
 import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
-import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
+import com.will.moviedbapp.presentation.view.shared.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.HomeViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
