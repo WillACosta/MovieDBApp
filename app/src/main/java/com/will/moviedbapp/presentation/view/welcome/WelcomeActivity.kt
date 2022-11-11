@@ -11,7 +11,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityWelcomeBinding
+    private val binding: ActivityWelcomeBinding by lazy {
+        ActivityWelcomeBinding.inflate(layoutInflater)
+    }
+
     private val viewModel: WelcomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,6 @@ class WelcomeActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
-        binding = ActivityWelcomeBinding.inflate(layoutInflater)
         supportActionBar?.hide()
     }
 

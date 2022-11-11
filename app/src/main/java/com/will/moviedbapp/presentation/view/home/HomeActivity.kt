@@ -19,7 +19,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHomeBinding
+    private val binding: ActivityHomeBinding by lazy {
+        ActivityHomeBinding.inflate(layoutInflater)
+    }
 
     private val viewModel: HomeViewModel by viewModel()
     private val preferencesViewModel: PreferencesViewModel by viewModel()
@@ -92,8 +94,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-
         supportActionBar?.hide()
         preferencesViewModel.getPreferences()
     }
