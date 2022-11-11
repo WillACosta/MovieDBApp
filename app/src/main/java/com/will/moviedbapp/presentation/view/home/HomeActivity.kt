@@ -10,6 +10,7 @@ import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityHomeBinding
+import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
 import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.fragments.FeaturedMoviesFragment
@@ -22,6 +23,8 @@ class HomeActivity : AppCompatActivity() {
 
     private val viewModel: HomeViewModel by viewModel()
     private val preferencesViewModel: PreferencesViewModel by viewModel()
+
+    private val movieAdapter = MovieAdapter(this::onItemClicked)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,9 +56,11 @@ class HomeActivity : AppCompatActivity() {
                     binding.recyclerSearchedMovies.visibility = View.VISIBLE
 
                     binding.recyclerSearchedMovies.apply {
-                        adapter = MovieAdapter(state.data)
+                        adapter = movieAdapter
                         layoutManager = GridLayoutManager(this@HomeActivity, 2)
                     }
+
+                    movieAdapter.submitList(state.data)
                 }
             }
         }
@@ -80,6 +85,10 @@ class HomeActivity : AppCompatActivity() {
             val extras = Bundle().apply { putString("id", movie.id.toString()) }
             navigateTo(AppConstants.AppRoutes.MOVIE_DETAIL, extras)
         }
+    }
+
+    private fun onItemClicked(movie: Movie) {
+        viewModel.handle(HomeAction.ViewMovieDetails(movie))
     }
 
     private fun initView() {

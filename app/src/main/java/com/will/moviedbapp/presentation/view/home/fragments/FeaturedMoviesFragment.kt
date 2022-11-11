@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.databinding.FragmentFeaturedMoviesBinding
+import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
 import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.HomeViewModel
@@ -23,6 +24,8 @@ class FeaturedMoviesFragment : Fragment() {
     }
 
     private val viewModel: HomeViewModel by viewModel()
+
+    private val movieAdapter = MovieAdapter(this::onItemClicked)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,12 +55,15 @@ class FeaturedMoviesFragment : Fragment() {
                     }
 
                     is StateResult.Success -> {
-                        binding.recyclerFeaturedMovies.layoutManager =
-                            LinearLayoutManager(context).apply {
+                        binding.recyclerFeaturedMovies.apply {
+                            layoutManager = LinearLayoutManager(context).apply {
                                 orientation = RecyclerView.HORIZONTAL
                             }
 
-                        binding.recyclerFeaturedMovies.adapter = MovieAdapter(state.data)
+                            adapter = movieAdapter
+                        }
+
+                        movieAdapter.submitList(state.data)
                         handleShimmerLayout()
                     }
 
@@ -84,5 +90,7 @@ class FeaturedMoviesFragment : Fragment() {
             visibility = View.GONE
         }
     }
+
+    private fun onItemClicked(movie: Movie) {}
 
 }

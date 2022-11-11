@@ -31,7 +31,7 @@ abstract class AppConstants {
     }
 
     object AppRoutes {
-        const val MOVIE_DETAIL = "MovieDetailActivity"
+        const val MOVIE_DETAIL = "com.will.moviedbapp.presentation.view.movie_details.MovieDetailsActivity"
     }
 
 }
