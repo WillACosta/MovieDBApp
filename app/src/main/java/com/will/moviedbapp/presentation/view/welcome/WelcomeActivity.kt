@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.will.moviedbapp.core.utils.HelperFunctions
+import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
-import com.will.moviedbapp.presentation.view.home.HomeActivity
-import com.will.moviedbapp.presentation.view.name.NameActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {
@@ -44,10 +43,12 @@ class WelcomeActivity : AppCompatActivity() {
 
             if (prefs.isNotFirsAccess && prefs.name.isEmpty()) {
                 goToNameActivity()
+                finish()
             }
 
             if (prefs.isNotFirsAccess && prefs.name.isNotEmpty()) {
                 gotoHomeActivity()
+                finish()
             }
 
         }
@@ -55,10 +56,10 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun goToNameActivity() {
-        HelperFunctions.startActivity(this, NameActivity::class.java)
+        navigateTo(AppConstants.AppRoutes.NAME)
     }
 
     private fun gotoHomeActivity() {
-        HelperFunctions.startActivity(this, HomeActivity::class.java)
+        navigateTo(AppConstants.AppRoutes.HOME)
     }
 }

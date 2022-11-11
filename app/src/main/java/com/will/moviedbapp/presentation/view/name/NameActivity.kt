@@ -3,9 +3,9 @@ package com.will.moviedbapp.presentation.view.name
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.will.moviedbapp.core.utils.HelperFunctions
+import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityNameBinding
-import com.will.moviedbapp.presentation.view.home.HomeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NameActivity : AppCompatActivity() {
@@ -48,11 +48,11 @@ class NameActivity : AppCompatActivity() {
         if (validName) {
             _viewModel.submitName()
             goToMainActivity()
-            finish()
         }
     }
 
     private fun goToMainActivity() {
-        HelperFunctions.startActivity(this, HomeActivity::class.java)
+        navigateTo(AppConstants.AppRoutes.HOME)
+        finish()
     }
 }

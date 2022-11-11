@@ -27,11 +27,15 @@ abstract class AppConstants {
 
     object ValidationMessages {
         const val INVALID_NAME = "Oops! Your name is invalid"
-        const val LESS_THAN_THREE_CHARACTERS = "Oops! Your name should not be less than 3 characters"
+        const val LESS_THAN_THREE_CHARACTERS =
+            "Oops! Your name should not be less than 3 characters"
     }
 
     object AppRoutes {
-        const val MOVIE_DETAIL = "com.will.moviedbapp.presentation.view.movie_details.MovieDetailsActivity"
+        const val NAME = "com.will.moviedbapp..presentation.view.name.NameActivity"
+        const val HOME = "com.will.moviedbapp.presentation.view.home.HomeActivity"
+        const val MOVIE_DETAIL =
+            "com.will.moviedbapp.presentation.view.movie_details.MovieDetailsActivity"
     }
 
 }
