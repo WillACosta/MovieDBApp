@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_head" />
 
         <TextView
@@ -31,30 +32,62 @@
 
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_container"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/name_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_xl"
-        android:backgroundTint="@color/surface"
-        android:hint="@string/name_input"
-        android:textColorHint="@color/text"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_body"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_group" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/name_container"
+        style="@style/RoundedChip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:padding="@dimen/spacing_md"
+        android:text="Will"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_body"
+        app:chipBackgroundColor="@color/surface"
+        app:chipIcon="@drawable/ic_edit"
+        app:chipIconTint="@color/white"
+        app:chipStartPadding="@dimen/spacing_md"
+        app:closeIcon="@drawable/ic_edit"
+        app:ensureMinTouchTargetSize="false"
+        app:iconStartPadding="@dimen/spacing_xxs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_group"
-        app:startIconDrawable="@drawable/ic_user"
-        app:startIconTint="@color/text">
+        app:layout_constraintTop_toBottomOf="@id/name_title" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rounded_input_border"
-            android:backgroundTint="@color/surface"
-            android:text="Jane"
-            android:textColor="@color/text" />
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        android:id="@+id/edt_container"-->
+    <!--        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/spacing_xl"-->
+    <!--        android:backgroundTint="@color/surface"-->
+    <!--        android:hint="@string/name_input"-->
+    <!--        android:textColorHint="@color/text"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/title_group"-->
+    <!--        app:startIconDrawable="@drawable/ic_user"-->
+    <!--        app:startIconTint="@color/text">-->
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <!--        <com.google.android.material.textfield.TextInputEditText-->
+    <!--            android:id="@+id/edt_name"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@drawable/rounded_input_border"-->
+    <!--            android:backgroundTint="@color/surface"-->
+    <!--            android:text="Jane"-->
+    <!--            android:textColor="@color/text" />-->
+
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
