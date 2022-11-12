@@ -38,4 +38,8 @@ abstract class AppConstants {
             "com.will.moviedbapp.presentation.view.movie_details.MovieDetailsActivity"
     }
 
+    object AppMessages {
+        const val NAME_EDIT_SUCCESS = "Your user name update with successful!"
+    }
+
 }
