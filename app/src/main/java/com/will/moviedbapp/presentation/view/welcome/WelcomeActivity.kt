@@ -45,23 +45,22 @@ class WelcomeActivity : AppCompatActivity() {
 
             if (prefs.isNotFirsAccess && prefs.name.isEmpty()) {
                 goToNameActivity()
-                finish()
             }
 
             if (prefs.isNotFirsAccess && prefs.name.isNotEmpty()) {
                 gotoHomeActivity()
-                finish()
             }
-
         }
 
     }
 
     private fun goToNameActivity() {
         navigateTo(AppConstants.AppRoutes.NAME)
+        finish()
     }
 
     private fun gotoHomeActivity() {
         navigateTo(AppConstants.AppRoutes.HOME)
+        finish()
     }
 }

@@ -91,6 +91,10 @@ class FeaturedMoviesFragment : Fragment() {
         }
     }
 
-    private fun onItemClicked(movie: Movie) {}
+    private fun onItemClicked(movie: Movie) {
+
+
+
+    }
 
 }
