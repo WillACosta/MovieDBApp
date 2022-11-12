@@ -53,6 +53,10 @@ class MovieDetailsActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.topAppBar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
 }
