@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.FragmentFeaturedMoviesBinding
 import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
-import com.will.moviedbapp.presentation.view.shared.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.HomeViewModel
+import com.will.moviedbapp.presentation.view.shared.adapter.MovieAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -73,6 +75,11 @@ class FeaturedMoviesFragment : Fragment() {
                 }
             }
         }
+
+        viewModel.navigateEvent.observe(viewLifecycleOwner) {
+            val extras = Bundle().apply { putString("id", it.id.toString()) }
+            activity?.navigateTo(AppConstants.AppRoutes.MOVIE_DETAIL, extras)
+        }
     }
 
     private fun handleShimmerLayout(isVisible: Boolean = false) {
@@ -92,9 +99,7 @@ class FeaturedMoviesFragment : Fragment() {
     }
 
     private fun onItemClicked(movie: Movie) {
-
-
-
+        viewModel.handle(HomeAction.ViewMovieDetails(movie))
     }
 
 }
