@@ -11,7 +11,6 @@
     <string name="greeting_subtitle">Book your favorite movies</string>
     <string name="search">Search</string>
     <string name="featured_movies">Featured Movies</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty_search_vector_content_description">Vector that represents an empty search</string>
     <string name="we_re_sorry">We\'re sorry</string>
@@ -22,6 +21,6 @@
     <string name="reload">Reload</string>
     <string name="shimmer_layout">shimmer layout</string>
     <string name="hello">Hello!</string>
-    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
     <string name="profile_description">Set your preferences here</string>
 </resources>

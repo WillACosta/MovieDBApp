@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.databinding.FragmentSettingsBinding
 import com.will.moviedbapp.presentation.view.name.NameViewModel
@@ -58,7 +57,11 @@ class SettingsFragment : Fragment() {
 
         if (validName) {
             nameViewModel.submitName()
-            Toast.makeText(context, AppConstants.AppMessages.NAME_EDIT_SUCCESS, Toast.LENGTH_SHORT)
+            Toast.makeText(
+                context,
+                AppConstants.AppMessages.NAME_EDIT_SUCCESS,
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -54,9 +55,18 @@ class HomeFragment : Fragment() {
             when (state) {
                 StateResult.Loading -> handleIsLoading(true)
 
-                StateResult.Empty -> binding.emptyContentComponent.root.visibility = View.VISIBLE
+                StateResult.Empty -> {
+                    handleIsLoading()
+                    binding.emptyContentComponent.root.visibility = View.VISIBLE
+                }
 
-                is StateResult.Error -> {}
+                is StateResult.Error -> {
+                    Toast.makeText(
+                        context,
+                        AppConstants.AppMessages.GENERIC_ERROR,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
                 is StateResult.Success -> {
                     handleIsLoading()
