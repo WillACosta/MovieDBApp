@@ -65,12 +65,10 @@
                 android:id="@+id/movie_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_md"
+                android:layout_marginTop="-20dp"
                 android:text="Dune"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_head"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:textSize="@dimen/font_head" />
 
             <TextView
                 android:id="@+id/movie_date"
@@ -78,19 +76,13 @@
                 android:layout_height="wrap_content"
                 android:text="10/02/2012"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/font_small"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_title" />
+                android:textSize="@dimen/font_small" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/movie_information"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_date"
                 app:singleLine="true">
 
                 <com.google.android.material.chip.Chip
