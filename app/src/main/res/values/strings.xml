@@ -22,4 +22,6 @@
     <string name="reload">Reload</string>
     <string name="shimmer_layout">shimmer layout</string>
     <string name="hello">Hello!</string>
+    <string name="profile">Profile</string>
+    <string name="profile_description">Set your preferences here</string>
 </resources>

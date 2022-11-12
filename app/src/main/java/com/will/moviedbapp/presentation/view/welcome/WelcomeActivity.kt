@@ -60,7 +60,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun gotoHomeActivity() {
-        navigateTo(AppConstants.AppRoutes.HOME)
+        navigateTo(AppConstants.AppRoutes.MAIN)
         finish()
     }
 }

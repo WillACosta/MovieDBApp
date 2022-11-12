@@ -33,7 +33,7 @@ abstract class AppConstants {
 
     object AppRoutes {
         const val NAME = "com.will.moviedbapp.presentation.view.name.NameActivity"
-        const val HOME = "com.will.moviedbapp.presentation.view.home.HomeActivity"
+        const val MAIN = "com.will.moviedbapp.presentation.view.MainActivity"
         const val MOVIE_DETAIL =
             "com.will.moviedbapp.presentation.view.movie_details.MovieDetailsActivity"
     }

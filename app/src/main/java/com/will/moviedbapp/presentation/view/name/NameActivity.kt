@@ -54,7 +54,7 @@ class NameActivity : AppCompatActivity() {
     }
 
     private fun goToMainActivity() {
-        navigateTo(AppConstants.AppRoutes.HOME)
+        navigateTo(AppConstants.AppRoutes.MAIN)
         finish()
     }
 }
