@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.will.moviedbapp.R
 import com.will.moviedbapp.databinding.ActivityMainBinding
 import com.will.moviedbapp.presentation.view.home.HomeFragment
-
 import com.will.moviedbapp.presentation.view.settings.SettingsFragment
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 

@@ -31,9 +31,10 @@ class SettingsFragment : Fragment() {
 
     private fun setListeners() {
         binding.nameContainer.setOnClickListener {
-            UpdateNameFragment().show(
-                childFragmentManager, UpdateNameFragment.TAG
-            )
+            UpdateNameFragment()
+                .show(
+                    childFragmentManager, UpdateNameFragment.TAG
+                )
         }
 
         preferencesViewModel.userPreferences.observe(viewLifecycleOwner) {

@@ -26,20 +26,6 @@ class UpdateNameFragment : DialogFragment() {
         preferencesViewModel.getPreferences()
     }
 
-    private fun setListeners() {
-        binding.edtName.doOnTextChanged { value, _, _, _ ->
-            nameViewModel.onNameChanged(value.toString())
-        }
-
-        nameViewModel.error.observe(this) { error ->
-            binding.edtContainer.error = error
-        }
-
-        preferencesViewModel.userPreferences.observe(this) {
-            binding.edtName.setText(it.name)
-        }
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         setListeners()
 
@@ -57,8 +43,27 @@ class UpdateNameFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        preferencesViewModel.getPreferences()
+    }
+
     companion object {
         const val TAG = "UpdateNameFragmentDialog"
+    }
+
+    private fun setListeners() {
+        binding.edtName.doOnTextChanged { value, _, _, _ ->
+            nameViewModel.onNameChanged(value.toString())
+        }
+
+        nameViewModel.error.observe(this) { error ->
+            binding.edtContainer.error = error
+        }
+
+        preferencesViewModel.userPreferences.observe(this) {
+            binding.edtName.setText(it.name)
+        }
     }
 
     private fun submitUserName() {
