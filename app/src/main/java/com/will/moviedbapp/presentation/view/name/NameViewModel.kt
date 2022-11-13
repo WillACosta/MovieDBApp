@@ -1,6 +1,5 @@
 package com.will.moviedbapp.presentation.view.name
 
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,6 @@ import kotlinx.coroutines.launch
 
 class NameViewModel(private val repository: UserPreferencesRepository) : ViewModel() {
 
-    @VisibleForTesting
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
