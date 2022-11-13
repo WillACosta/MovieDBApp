@@ -1,4 +1,4 @@
-package com.will.moviedbapp.presentation.view.adapter
+package com.will.moviedbapp.presentation.view.shared.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,8 @@ import com.will.moviedbapp.databinding.MovieListTileBinding
 import com.will.moviedbapp.domain.model.Movie
 
 class MovieAdapter(
-    private val movies: List<Movie>
+    private val onItemClicked: (Movie) -> Unit,
+    private val movies: MutableList<Movie> = mutableListOf()
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -18,7 +19,7 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(movies[position])
+        holder.bind(movies[position], onItemClicked)
     }
 
     override fun getItemCount(): Int = movies.count()
@@ -26,8 +27,18 @@ class MovieAdapter(
     inner class MovieViewHolder(
         private val bind: MovieListTileBinding
     ) : RecyclerView.ViewHolder(bind.root) {
-        fun bind(movie: Movie) {
+        fun bind(movie: Movie, onItemClicked: (Movie) -> Unit) {
             bind.moviePoster.load(AppConstants.Network.BASE_POSTER_URL + movie.posterPath)
+            bind.moviePoster.setOnClickListener {
+                onItemClicked(movie)
+            }
         }
+    }
+
+    fun submitList(list: List<Movie>) {
+        this.movies.clear()
+        this.movies.addAll(list)
+
+        notifyDataSetChanged()
     }
 }

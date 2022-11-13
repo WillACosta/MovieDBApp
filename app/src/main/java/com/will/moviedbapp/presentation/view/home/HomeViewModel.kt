@@ -1,4 +1,6 @@
-package com.will.moviedbapp.presentation.viewmodel
+@file:OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
+
+package com.will.moviedbapp.presentation.view.home
 
 import androidx.lifecycle.*
 import com.will.moviedbapp.core.state.StateResult
@@ -7,6 +9,8 @@ import com.will.moviedbapp.domain.usecase.GetTrendingMoviesUseCase
 import com.will.moviedbapp.domain.usecase.SearchUseCase
 import com.will.moviedbapp.presentation.model.HomeAction
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

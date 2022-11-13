@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.will.moviedbapp.core.utils.HelperFunctions
+import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
-import com.will.moviedbapp.presentation.view.home.HomeActivity
-import com.will.moviedbapp.presentation.view.name.NameActivity
-import com.will.moviedbapp.presentation.viewmodel.WelcomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityWelcomeBinding
+    private val binding: ActivityWelcomeBinding by lazy {
+        ActivityWelcomeBinding.inflate(layoutInflater)
+    }
+
     private val viewModel: WelcomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,6 @@ class WelcomeActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
-        binding = ActivityWelcomeBinding.inflate(layoutInflater)
         supportActionBar?.hide()
     }
 
@@ -50,16 +50,17 @@ class WelcomeActivity : AppCompatActivity() {
             if (prefs.isNotFirsAccess && prefs.name.isNotEmpty()) {
                 gotoHomeActivity()
             }
-
         }
 
     }
 
     private fun goToNameActivity() {
-        HelperFunctions.startActivity(this, NameActivity::class.java)
+        navigateTo(AppConstants.AppRoutes.NAME)
+        finish()
     }
 
     private fun gotoHomeActivity() {
-        HelperFunctions.startActivity(this, HomeActivity::class.java)
+        navigateTo(AppConstants.AppRoutes.MAIN)
+        finish()
     }
 }

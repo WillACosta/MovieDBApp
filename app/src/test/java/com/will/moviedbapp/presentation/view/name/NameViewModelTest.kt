@@ -1,8 +1,9 @@
-package com.will.moviedbapp.presentation.viewmodel
+package com.will.moviedbapp.presentation.view.name
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.data.repository.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.presentation.view.name.NameViewModel
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue
 import io.mockk.MockKAnnotations

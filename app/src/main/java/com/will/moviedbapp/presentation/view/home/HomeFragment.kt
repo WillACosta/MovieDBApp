@@ -1,65 +1,88 @@
 package com.will.moviedbapp.presentation.view.home
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.will.moviedbapp.R
+import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.state.StateResult
-import com.will.moviedbapp.databinding.ActivityHomeBinding
+import com.will.moviedbapp.core.utils.extensions.navigateTo
+import com.will.moviedbapp.databinding.FragmentHomeBinding
+
+import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
-import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
 import com.will.moviedbapp.presentation.view.home.fragments.FeaturedMoviesFragment
-import com.will.moviedbapp.presentation.viewmodel.HomeViewModel
-import com.will.moviedbapp.presentation.viewmodel.PreferencesViewModel
+import com.will.moviedbapp.presentation.view.shared.PreferencesViewModel
+import com.will.moviedbapp.presentation.view.shared.adapter.MovieAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeActivity : AppCompatActivity() {
+class HomeFragment : Fragment() {
 
-    private lateinit var binding: ActivityHomeBinding
+    private val binding: FragmentHomeBinding by lazy {
+        FragmentHomeBinding.inflate(layoutInflater)
+    }
 
     private val viewModel: HomeViewModel by viewModel()
     private val preferencesViewModel: PreferencesViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val movieAdapter = MovieAdapter(this::onItemClicked)
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         initView()
         setListeners()
         handleFragments()
 
-        setContentView(binding.root)
+        return binding.root
     }
 
     private fun handleFragments() {
-        supportFragmentManager.beginTransaction()
+        parentFragmentManager.beginTransaction()
             .replace(R.id.trending_movies_frame_container, FeaturedMoviesFragment::class.java, null)
             .commit()
     }
 
     private fun setListeners() {
-        viewModel.movies.observe(this) { state ->
+        viewModel.movies.observe(viewLifecycleOwner) { state ->
             when (state) {
                 StateResult.Loading -> handleIsLoading(true)
 
-                StateResult.Empty -> binding.emptyContentComponent.root.visibility = View.VISIBLE
+                StateResult.Empty -> {
+                    handleIsLoading()
+                    binding.emptyContentComponent.root.visibility = View.VISIBLE
+                }
 
-                is StateResult.Error -> {}
+                is StateResult.Error -> {
+                    Toast.makeText(
+                        context,
+                        AppConstants.AppMessages.GENERIC_ERROR,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
                 is StateResult.Success -> {
                     handleIsLoading()
                     binding.recyclerSearchedMovies.visibility = View.VISIBLE
 
                     binding.recyclerSearchedMovies.apply {
-                        adapter = MovieAdapter(state.data)
-                        layoutManager = GridLayoutManager(this@HomeActivity, 2)
+                        adapter = movieAdapter
+                        layoutManager = GridLayoutManager(context, 2)
                     }
+
+                    movieAdapter.submitList(state.data)
                 }
             }
         }
 
-        viewModel.searchQuery.observe(this) { query ->
+        viewModel.searchQuery.observe(viewLifecycleOwner) { query ->
             if (query.isNotEmpty()) {
                 handleUiWhenIsSearchingMovie(true)
             } else {
@@ -71,15 +94,21 @@ class HomeActivity : AppCompatActivity() {
             viewModel.handle(HomeAction.SearchMovies(text.toString()))
         }
 
-        preferencesViewModel.userPreferences.observe(this) { prefs ->
+        preferencesViewModel.userPreferences.observe(viewLifecycleOwner) { prefs ->
             binding.greetingUser.text = "Hello, ${prefs.name}!"
+        }
+
+        viewModel.navigateEvent.observe(viewLifecycleOwner) { movie ->
+            val extras = Bundle().apply { putString("id", movie.id.toString()) }
+            activity?.navigateTo(AppConstants.AppRoutes.MOVIE_DETAIL, extras)
         }
     }
 
-    private fun initView() {
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+    private fun onItemClicked(movie: Movie) {
+        viewModel.handle(HomeAction.ViewMovieDetails(movie))
+    }
 
-        supportActionBar?.hide()
+    private fun initView() {
         preferencesViewModel.getPreferences()
     }
 
@@ -110,4 +139,6 @@ class HomeActivity : AppCompatActivity() {
             stopShimmer()
         }
     }
+
+
 }

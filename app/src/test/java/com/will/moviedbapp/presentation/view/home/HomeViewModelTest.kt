@@ -1,4 +1,4 @@
-package com.will.moviedbapp.presentation.viewmodel
+package com.will.moviedbapp.presentation.view.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.core.state.StateResult

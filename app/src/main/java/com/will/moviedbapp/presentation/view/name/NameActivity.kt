@@ -3,15 +3,16 @@ package com.will.moviedbapp.presentation.view.name
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.will.moviedbapp.R
-import com.will.moviedbapp.core.utils.HelperFunctions
+import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityNameBinding
-import com.will.moviedbapp.presentation.view.home.HomeActivity
-import com.will.moviedbapp.presentation.viewmodel.NameViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NameActivity : AppCompatActivity() {
-    private lateinit var _binding: ActivityNameBinding
+
+    private val binding: ActivityNameBinding by lazy {
+        ActivityNameBinding.inflate(layoutInflater)
+    }
 
     private val _viewModel: NameViewModel by viewModel()
 
@@ -21,40 +22,39 @@ class NameActivity : AppCompatActivity() {
         initView()
         setListeners()
 
-        setContentView(_binding.root)
+        setContentView(binding.root)
     }
 
     private fun setListeners() {
-        _binding.nextButton.setOnClickListener {
+        binding.nextButton.setOnClickListener {
             submitUserName()
         }
 
-        _binding.edtName.doOnTextChanged { value, _, _, _ ->
+        binding.edtName.doOnTextChanged { value, _, _, _ ->
             _viewModel.onNameChanged(value.toString())
         }
 
         _viewModel.error.observe(this) { error ->
-            _binding.edtContainer.error = error
-            _binding.nextButton.isEnabled = (error == null)
+            binding.edtContainer.error = error
+            binding.nextButton.isEnabled = (error == null)
         }
     }
 
     private fun initView() {
-        _binding = ActivityNameBinding.inflate(layoutInflater)
         supportActionBar?.hide()
     }
 
     private fun submitUserName() {
-        val validName = _binding.edtContainer.error == null
+        val validName = binding.edtContainer.error == null
 
         if (validName) {
             _viewModel.submitName()
             goToMainActivity()
-            finish()
         }
     }
 
     private fun goToMainActivity() {
-        HelperFunctions.startActivity(this, HomeActivity::class.java)
+        navigateTo(AppConstants.AppRoutes.MAIN)
+        finish()
     }
 }

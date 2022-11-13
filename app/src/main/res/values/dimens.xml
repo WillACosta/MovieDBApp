@@ -16,6 +16,6 @@
     <dimen name="font_headline">40sp</dimen>
     <dimen name="font_head">24sp</dimen>
     <dimen name="font_body">16sp</dimen>
-    <dimen name="font_small">10sp</dimen>
-    <dimen name="font_smallest">7sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_smallest">10sp</dimen>
 </resources>

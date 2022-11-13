@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.FragmentFeaturedMoviesBinding
+import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
-import com.will.moviedbapp.presentation.view.adapter.MovieAdapter
-import com.will.moviedbapp.presentation.viewmodel.HomeViewModel
+import com.will.moviedbapp.presentation.view.home.HomeViewModel
+import com.will.moviedbapp.presentation.view.shared.adapter.MovieAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +26,8 @@ class FeaturedMoviesFragment : Fragment() {
     }
 
     private val viewModel: HomeViewModel by viewModel()
+
+    private val movieAdapter = MovieAdapter(this::onItemClicked)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,12 +57,15 @@ class FeaturedMoviesFragment : Fragment() {
                     }
 
                     is StateResult.Success -> {
-                        binding.recyclerFeaturedMovies.layoutManager =
-                            LinearLayoutManager(context).apply {
+                        binding.recyclerFeaturedMovies.apply {
+                            layoutManager = LinearLayoutManager(context).apply {
                                 orientation = RecyclerView.HORIZONTAL
                             }
 
-                        binding.recyclerFeaturedMovies.adapter = MovieAdapter(state.data)
+                            adapter = movieAdapter
+                        }
+
+                        movieAdapter.submitList(state.data)
                         handleShimmerLayout()
                     }
 
@@ -66,6 +74,11 @@ class FeaturedMoviesFragment : Fragment() {
                     }
                 }
             }
+        }
+
+        viewModel.navigateEvent.observe(viewLifecycleOwner) {
+            val extras = Bundle().apply { putString("id", it.id.toString()) }
+            activity?.navigateTo(AppConstants.AppRoutes.MOVIE_DETAIL, extras)
         }
     }
 
@@ -83,6 +96,10 @@ class FeaturedMoviesFragment : Fragment() {
             stopShimmer()
             visibility = View.GONE
         }
+    }
+
+    private fun onItemClicked(movie: Movie) {
+        viewModel.handle(HomeAction.ViewMovieDetails(movie))
     }
 
 }
