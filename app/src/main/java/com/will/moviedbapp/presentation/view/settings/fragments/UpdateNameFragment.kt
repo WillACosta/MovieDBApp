@@ -21,11 +21,6 @@ class UpdateNameFragment : DialogFragment() {
     private val nameViewModel: NameViewModel by viewModel()
     private val preferencesViewModel: PreferencesViewModel by viewModel()
 
-    override fun onResume() {
-        super.onResume()
-        preferencesViewModel.getPreferences()
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         setListeners()
 
@@ -41,11 +36,6 @@ class UpdateNameFragment : DialogFragment() {
             builder.create()
 
         } ?: throw IllegalStateException("Activity cannot be null")
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        preferencesViewModel.getPreferences()
     }
 
     companion object {

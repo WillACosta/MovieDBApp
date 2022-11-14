@@ -22,8 +22,6 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        preferencesViewModel.getPreferences()
         setListeners()
 
         return binding.root

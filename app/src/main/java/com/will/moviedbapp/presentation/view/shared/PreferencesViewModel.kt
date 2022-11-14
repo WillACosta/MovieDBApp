@@ -14,7 +14,11 @@ class PreferencesViewModel(val repository: UserPreferencesRepository) : ViewMode
     private val _userPreferences = MutableLiveData<UserPreferences>()
     val userPreferences: LiveData<UserPreferences> = _userPreferences
 
-    fun getPreferences() {
+    init {
+        getPreferences()
+    }
+
+    private fun getPreferences() {
         viewModelScope.launch {
             repository.getPreferences()
                 .collect {

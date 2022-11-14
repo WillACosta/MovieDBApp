@@ -37,7 +37,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        initView()
         setListeners()
         handleFragments()
 
@@ -106,10 +105,6 @@ class HomeFragment : Fragment() {
 
     private fun onItemClicked(movie: Movie) {
         viewModel.handle(HomeAction.ViewMovieDetails(movie))
-    }
-
-    private fun initView() {
-        preferencesViewModel.getPreferences()
     }
 
     private fun handleUiWhenIsSearchingMovie(isSearching: Boolean = false) {
