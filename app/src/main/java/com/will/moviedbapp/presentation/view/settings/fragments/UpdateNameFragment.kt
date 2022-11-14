@@ -21,25 +21,6 @@ class UpdateNameFragment : DialogFragment() {
     private val nameViewModel: NameViewModel by viewModel()
     private val preferencesViewModel: PreferencesViewModel by viewModel()
 
-    override fun onResume() {
-        super.onResume()
-        preferencesViewModel.getPreferences()
-    }
-
-    private fun setListeners() {
-        binding.edtName.doOnTextChanged { value, _, _, _ ->
-            nameViewModel.onNameChanged(value.toString())
-        }
-
-        nameViewModel.error.observe(this) { error ->
-            binding.edtContainer.error = error
-        }
-
-        preferencesViewModel.userPreferences.observe(this) {
-            binding.edtName.setText(it.name)
-        }
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         setListeners()
 
@@ -59,6 +40,20 @@ class UpdateNameFragment : DialogFragment() {
 
     companion object {
         const val TAG = "UpdateNameFragmentDialog"
+    }
+
+    private fun setListeners() {
+        binding.edtName.doOnTextChanged { value, _, _, _ ->
+            nameViewModel.onNameChanged(value.toString())
+        }
+
+        nameViewModel.error.observe(this) { error ->
+            binding.edtContainer.error = error
+        }
+
+        preferencesViewModel.userPreferences.observe(this) {
+            binding.edtName.setText(it.name)
+        }
     }
 
     private fun submitUserName() {

@@ -22,8 +22,6 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        preferencesViewModel.getPreferences()
         setListeners()
 
         return binding.root
@@ -31,9 +29,10 @@ class SettingsFragment : Fragment() {
 
     private fun setListeners() {
         binding.nameContainer.setOnClickListener {
-            UpdateNameFragment().show(
-                childFragmentManager, UpdateNameFragment.TAG
-            )
+            UpdateNameFragment()
+                .show(
+                    childFragmentManager, UpdateNameFragment.TAG
+                )
         }
 
         preferencesViewModel.userPreferences.observe(viewLifecycleOwner) {

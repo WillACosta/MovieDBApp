@@ -24,7 +24,7 @@ object PresentationModule {
             factory { WelcomeViewModel(get()) }
             factory { MovieDetailsViewModel(get()) }
 
-            single { PreferencesViewModel(get()) }
+            factory { PreferencesViewModel(get()) }
         }
     }
 
