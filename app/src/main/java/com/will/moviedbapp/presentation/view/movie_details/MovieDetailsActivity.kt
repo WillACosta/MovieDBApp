@@ -46,8 +46,8 @@ class MovieDetailsActivity : AppCompatActivity() {
                         movieTitle.text = movie.title
                         movieDate.text = movie.releaseDate
                         movieAge.text = "12"
-                        movieRating.text = movie.voteAverage.toString()
-                        movieTime.text = "1h 20m"
+                        movieRating.text = String.format("%.2f", movie.voteAverage)
+                        movieTime.text = handleRuntimeMovie(movie.runtime)
                         movieDescription.text = movie.overview
                     }
                 }
@@ -57,6 +57,13 @@ class MovieDetailsActivity : AppCompatActivity() {
         binding.topAppBar.setNavigationOnClickListener {
             finish()
         }
+    }
+
+    private fun handleRuntimeMovie(runtime: Int?): String {
+        if (runtime == null) return "-"
+
+        val time = runtime / 60.0
+        return String.format("%.2fhr", time)
     }
 
 }

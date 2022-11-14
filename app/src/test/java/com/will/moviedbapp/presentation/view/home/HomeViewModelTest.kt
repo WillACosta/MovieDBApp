@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package com.will.moviedbapp.presentation.view.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -47,7 +49,6 @@ class HomeViewModelTest {
         viewModel = HomeViewModel(useCase, searchUseCase)
     }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `should load trending movies when viewModel starts`() = runTest {
 

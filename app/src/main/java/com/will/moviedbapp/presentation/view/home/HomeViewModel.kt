@@ -53,7 +53,7 @@ class HomeViewModel(
     }
 
     private fun getTrendingMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             getTrendingMoviesUseCase(Unit)
                 .collect {
                     _trendingMovies.value = it

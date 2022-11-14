@@ -5,10 +5,9 @@ import com.will.moviedbapp.core.state.StateResult
 
 object MockStateResult {
 
-    private val listMovie = MockMovie.listMovie
     val expectedSuccessListMovie = listOf(
         StateResult.Loading,
-        StateResult.Success(listMovie),
+        StateResult.Success(MockMovie.listMovie),
     )
 
     private val movie = MockMovie.movie

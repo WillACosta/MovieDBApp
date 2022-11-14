@@ -78,7 +78,7 @@ class CMovieRepositoryTest {
     @Test
     fun `should call getMovie and returns a list state of StateResult with Success`() {
         val movie = MockMovie.movie
-        val expectedStates = MockStateResult.expectedSuccessListMovie
+        val expectedStates = MockStateResult.expectedSuccessMovie
 
         coEvery { remote.getMovie(any()) } returns movie
 
@@ -110,7 +110,7 @@ class CMovieRepositoryTest {
     fun `should call search and returns a list state of StateResult with Success`() {
         coEvery { remote.search(any()) } returns MockMovie.listMovie
 
-        val expectedStates = MockStateResult.expectedSuccessMovie
+        val expectedStates = MockStateResult.expectedSuccessListMovie
 
         runBlocking {
             val flow = repository.search(MockMovie.searchQuery)
