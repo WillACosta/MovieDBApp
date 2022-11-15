@@ -21,7 +21,8 @@ object MockMovie {
         title = "Dune",
         video = false,
         voteAverage = 7.856,
-        voteCount = 7826
+        voteCount = 7826,
+        runtime = 155
     )
 
     val listMovie = listOf(movie)
@@ -51,7 +52,8 @@ object MockMovie {
           "popularity": 146.856,
           "vote_count": 7826,
           "video": false,
-          "vote_average": 7.856
+          "vote_average": 7.856,
+          "runtime": 155
         }  
        """
 
@@ -76,7 +78,8 @@ object MockMovie {
               "popularity": 146.856,
               "vote_count": 7826,
               "video": false,
-              "vote_average": 7.856
+              "vote_average": 7.856,
+              "runtime": 155
             }
           ],
           "total_results": 20,

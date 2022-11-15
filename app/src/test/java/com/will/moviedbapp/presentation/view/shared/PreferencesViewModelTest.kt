@@ -2,7 +2,7 @@ package com.will.moviedbapp.presentation.view.shared
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.data.repository.userPreferences.UserPreferencesRepository
-import com.will.moviedbapp.domain.model.UserPreferences
+import com.will.moviedbapp.resources.mocks.MockPreferences
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue
 import io.mockk.MockKAnnotations
@@ -27,7 +27,7 @@ class PreferencesViewModelTest {
     private lateinit var repository: UserPreferencesRepository
     private lateinit var viewModel: PreferencesViewModel
 
-    private val expected = UserPreferences("Jane", false)
+    private val expected = MockPreferences.userPreferences
 
     @Before
     fun setUp() {

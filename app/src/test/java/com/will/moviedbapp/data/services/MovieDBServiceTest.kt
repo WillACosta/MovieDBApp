@@ -27,7 +27,6 @@ class MovieDBServiceTest {
 
         mockWebServer = MockWebServer()
 
-        // TODO: Refactor to generic function to accept any service class
         service = Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(converterFactory)

@@ -45,7 +45,12 @@ class CUserPreferencesRepositoryTest {
 
     @Test
     fun `should match initial state of user preferences`() {
-        val expectedUserPreferences = UserPreferences("", false)
+        val expectedUserPreferences = UserPreferences(
+            name = "Jane",
+            isNotFirsAccess = false,
+            isDarkMode = false
+        )
+
         coEvery { testDataStore.data } returns flow {
             emit(testDataStore.data.first().toPreferences())
         }
