@@ -13,7 +13,6 @@ import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.state.StateResult
 import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.FragmentHomeBinding
-
 import com.will.moviedbapp.domain.model.Movie
 import com.will.moviedbapp.presentation.model.HomeAction
 import com.will.moviedbapp.presentation.view.home.fragments.FeaturedMoviesFragment
@@ -74,6 +73,7 @@ class HomeFragment : Fragment() {
                     binding.recyclerSearchedMovies.apply {
                         adapter = movieAdapter
                         layoutManager = GridLayoutManager(context, 2)
+                        setHasFixedSize(true)
                     }
 
                     movieAdapter.submitList(state.data)
