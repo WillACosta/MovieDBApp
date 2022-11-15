@@ -15,6 +15,7 @@ abstract class AppConstants {
         const val NAME = "user_preferences"
         val NAME_KEY = stringPreferencesKey("name")
         val NOT_FIRST_ACCESS_KEY = booleanPreferencesKey("isNotFirstAccess")
+        val IS_DARK_MODE_KEY = booleanPreferencesKey("isDarkMode")
     }
 
     object LogTags {

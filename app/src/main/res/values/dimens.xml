@@ -4,7 +4,7 @@
     <dimen name="base_screen_padding">20dp</dimen>
     <dimen name="border_radius">20dp</dimen>
 
-    <dimen name="spacing_giant">80dp</dimen>
+    <dimen name="spacing_giant">70dp</dimen>
     <dimen name="spacing_xxl">40dp</dimen>
     <dimen name="spacing_xl">35dp</dimen>
     <dimen name="spacing_lg">25dp</dimen>

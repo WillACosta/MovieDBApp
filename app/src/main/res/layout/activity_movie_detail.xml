@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:elevation="0dp"
-            app:navigationIcon="@drawable/ic_left_arrow" />
+            app:navigationIcon="@drawable/ic_left_arrow"
+            app:navigationIconTint="@color/text" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

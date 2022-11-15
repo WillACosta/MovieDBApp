@@ -22,6 +22,12 @@ class CUserPreferencesRepository(
         }
     }
 
+    override suspend fun updateDarkMode(isDarkMode: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[AppConstants.Preferences.IS_DARK_MODE_KEY] = isDarkMode
+        }
+    }
+
     override suspend fun updateUserName(name: String) {
         dataStore.edit { preferences ->
             preferences[AppConstants.Preferences.NAME_KEY] = name
@@ -50,8 +56,9 @@ class CUserPreferencesRepository(
     private fun mapUserPreferences(preferences: Preferences): UserPreferences {
         val userName = preferences[AppConstants.Preferences.NAME_KEY] ?: ""
         val isNotFirstAccess = preferences[AppConstants.Preferences.NOT_FIRST_ACCESS_KEY] ?: false
+        val isDarkMode = preferences[AppConstants.Preferences.IS_DARK_MODE_KEY] ?: false
 
-        return UserPreferences(userName, isNotFirstAccess)
+        return UserPreferences(userName, isNotFirstAccess, isDarkMode)
     }
 
 }

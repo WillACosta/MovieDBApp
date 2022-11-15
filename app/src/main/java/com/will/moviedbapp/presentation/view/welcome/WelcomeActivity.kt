@@ -6,6 +6,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.utils.extensions.navigateTo
+import com.will.moviedbapp.core.utils.extensions.setDarkMode
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,6 +43,8 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         viewModel.userPreferences.observe(this) { prefs ->
+
+            if (prefs.isDarkMode) setDarkMode() else setDarkMode(false)
 
             if (prefs.isNotFirsAccess && prefs.name.isEmpty()) {
                 goToNameActivity()

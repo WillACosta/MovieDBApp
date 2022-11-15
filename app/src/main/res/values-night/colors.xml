@@ -3,9 +3,9 @@
     <color name="primary">#FFF83A44</color>
     <color name="text">#FF5E5E5E</color>
     <color name="gray">#FF828282</color>
-    <color name="surface">#FFEDEDED</color>
-    <color name="background">#FFFFFFFF</color>
-    <color name="white">#FF111111</color>
-    <color name="centerGradient">#aaffffff</color>
+    <color name="surface">#FF1D1D1D</color>
+    <color name="background">#FF111111</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="centerGradient">#aa111111</color>
     <color name="endGradient">#00ffffff</color>
 </resources>
