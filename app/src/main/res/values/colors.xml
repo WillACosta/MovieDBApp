@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#FFF83A44</color>
-    <color name="text">#FF5E5E5E</color>
+    <color name="text">#FF111111</color>
     <color name="gray">#FF828282</color>
     <color name="surface">#FFEDEDED</color>
     <color name="background">#FFFFFFFF</color>
-    <color name="white">#FF111111</color>
-    <color name="centerGradient">#aaffffff</color>
+    <color name="white">#FFFFFFFF</color>
+
     <color name="endGradient">#00ffffff</color>
+    <color name="centerGradient">#aaffffff</color>
+    <color name="startGradient">#aaffffff</color>
 </resources>

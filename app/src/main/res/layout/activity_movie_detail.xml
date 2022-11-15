@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-20dp"
                 android:text="Dune"
-                android:textColor="@color/white"
+                android:textColor="@color/text"
                 android:textSize="@dimen/font_head" />
 
             <TextView
@@ -92,18 +92,18 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/surface"
                     android:text="14"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/text" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/movie_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8.9"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text"
                     app:chipBackgroundColor="@color/surface"
                     app:chipIcon="@drawable/ic_star"
                     app:chipIconSize="@dimen/spacing_xs"
-                    app:chipIconTint="@color/white"
+                    app:chipIconTint="@color/text"
                     app:iconStartPadding="@dimen/spacing_xxs" />
 
                 <com.google.android.material.chip.Chip
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/surface"
                     android:text="2h 35m"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/text" />
 
             </com.google.android.material.chip.ChipGroup>
 
