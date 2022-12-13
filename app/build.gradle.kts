@@ -2,8 +2,8 @@ import com.android.build.api.dsl.ApplicationDefaultConfig
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    kotlin("android")
 }
 
 android {
@@ -22,10 +22,12 @@ android {
     }
 
     buildTypes {
-        release {
-            proguardFiles
-            getDefaultProguardFile("proguard-android-optimize.txt");
-            "proguard-rules.pro"
+        getByName("release") {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -45,39 +47,39 @@ android {
 }
 
 dependencies {
-    val kotlin_version = "1.9.0"
-    val koin_version = "3.2.2"
-    val retrofit_version = "2.9.0"
-    val okhttp_version = "4.10.0"
-    val mockk_version = "1.13.2"
-    val lifecycle_version = "2.5.1"
-    val glide_version = "4.14.2"
-    val data_store_version = "1.0.0"
+    val kotlinVersion = "1.9.0"
+    val koinVersion = "3.2.2"
+    val retrofitVersion = "2.9.0"
+    val okhttpVersion = "4.10.0"
+    val mockkVersion = "1.13.2"
+    val lifecycleVersion = "2.5.1"
+    val glideVersion = "4.14.2"
+    val dataStoreVersion = "1.0.0"
 
     implementation("androidx.annotation:annotation:1.3.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation("androidx.test:core-ktx:1.4.0")
-    implementation("androidx.core:core-ktx:$kotlin_version")
+    implementation("androidx.core:core-ktx:$kotlinVersion")
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.google.android.material:material:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
-    implementation("io.insert-koin:koin-android:$koin_version")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
-    implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    implementation("androidx.datastore:datastore-preferences:$data_store_version")
+    implementation("io.insert-koin:koin-android:$koinVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.datastore:datastore-preferences:$dataStoreVersion")
 
-    implementation("com.github.bumptech.glide:glide:$glide_version")
-    annotationProcessor("com.github.bumptech.glide:compiler:$glide_version")
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
+    annotationProcessor("com.github.bumptech.glide:compiler:$glideVersion")
 
-    testImplementation("io.mockk:mockk:$mockk_version")
-    testImplementation("com.squareup.okhttp3:mockwebserver:$okhttp_version")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("com.squareup.okhttp3:mockwebserver:$okhttpVersion")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("io.insert-koin:koin-test:$koin_version")
-    testImplementation("io.insert-koin:koin-test-junit4:$koin_version")
+    testImplementation("io.insert-koin:koin-test:$koinVersion")
+    testImplementation("io.insert-koin:koin-test-junit4:$koinVersion")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 
