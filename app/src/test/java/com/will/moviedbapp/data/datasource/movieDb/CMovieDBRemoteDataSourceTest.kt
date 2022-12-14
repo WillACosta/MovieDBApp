@@ -53,6 +53,30 @@ class CMovieDBRemoteDataSourceTest {
     }
 
     @Test
+    fun `should call getGenres to service and returns a list of MovieGenre`() {
+        val expected = MockMovie.genresList
+
+        coEvery { service.getGenres() } returns expected
+
+        runBlocking {
+            val actual = dataSource.getGenres()
+
+            assertEquals(actual, expected)
+            coVerify { service.getGenres() }
+        }
+    }
+
+    @Test(expected = RemoteDataSourceException::class)
+    fun `should throws a RemoteDataSourceException if response in getGenres is unsuccessfully`() {
+        coEvery { service.getGenres() } throws RemoteDataSourceException()
+
+        runBlocking {
+            dataSource.getGenres()
+            coVerify { service.getGenres() }
+        }
+    }
+
+    @Test
     fun `should call getMovie to service and returns a Movie`() {
         val expected = MockMovie.movie
         val movieID = MockMovie.movieID
