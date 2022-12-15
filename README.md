@@ -4,6 +4,7 @@ A movie application that presents a modern approach to Android development with 
 tech-stack. In this project you'll find:
 
 - Clean - MVVM Architecture approach
+- Github Actions CI
 - Repository Pattern
 - Android Jetpack Components
 - Reactive UI
@@ -15,8 +16,9 @@ tech-stack. In this project you'll find:
 - [Junit](https://junit.org/junit4/) - as a test runner
 - [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) - for managing background
   threads
-- [Flow](https://kotlinlang.org/docs/flow.html) - for asynchronous operations
+- [Kotlin Flow](https://kotlinlang.org/docs/flow.html) - for asynchronous operations
 - [Glide](https://bumptech.github.io/glide/) - for handle download images from URL
+- Clean and minimal design proposal, you can copy this to [your own account here](https://www.figma.com/file/2sb6S625J1m3cNM0YB3hGw/TheMovieDB-App?node-id=0%3A1&t=zMbVMxDI6CKSH21c-1).
 
 ## Getting Stated
 
