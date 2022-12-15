@@ -48,5 +48,4 @@ class PreferencesViewModelTest {
         assertEquals(expected, actual)
         coVerify { repository.getPreferences() }
     }
-
 }

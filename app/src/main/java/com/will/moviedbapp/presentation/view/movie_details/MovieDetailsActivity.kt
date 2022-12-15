@@ -42,7 +42,9 @@ class MovieDetailsActivity : AppCompatActivity() {
                     val movie = state.data
 
                     binding.apply {
-                        movieDetailPoster.load("${AppConstants.Network.BASE_POSTER_URL}/${movie.posterPath}")
+                        movieDetailPoster.load(
+                            "${AppConstants.Network.BASE_POSTER_URL}/${movie.posterPath}"
+                        )
                         movieTitle.text = movie.title
                         movieDate.text = movie.releaseDate
                         movieAge.text = "12"
@@ -65,5 +67,4 @@ class MovieDetailsActivity : AppCompatActivity() {
         val time = runtime / 60.0
         return String.format("%.2fhr", time)
     }
-
 }

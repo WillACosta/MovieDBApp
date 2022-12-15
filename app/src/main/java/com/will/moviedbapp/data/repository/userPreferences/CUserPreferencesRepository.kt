@@ -7,10 +7,10 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.domain.model.UserPreferences
+import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import java.io.IOException
 
 class CUserPreferencesRepository(
     private val dataStore: DataStore<Preferences>
@@ -60,5 +60,4 @@ class CUserPreferencesRepository(
 
         return UserPreferences(userName, isNotFirstAccess, isDarkMode)
     }
-
 }

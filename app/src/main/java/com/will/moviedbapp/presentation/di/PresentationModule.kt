@@ -34,5 +34,4 @@ object PresentationModule {
             factory { SettingsFragment() }
         }
     }
-
 }

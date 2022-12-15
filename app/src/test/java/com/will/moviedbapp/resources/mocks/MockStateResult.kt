@@ -25,5 +25,4 @@ object MockStateResult {
         StateResult.Loading,
         StateResult.Error(RemoteDataSourceException())
     )
-
 }

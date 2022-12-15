@@ -38,5 +38,3 @@ class CMovieDBRemoteDataSource(private val service: MovieDBService) : MovieDBRem
         }
     }
 }
-
-

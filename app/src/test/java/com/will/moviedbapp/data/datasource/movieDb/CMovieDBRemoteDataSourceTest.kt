@@ -129,5 +129,4 @@ class CMovieDBRemoteDataSourceTest {
             coVerify { service.searchMovie(any()) }
         }
     }
-
 }

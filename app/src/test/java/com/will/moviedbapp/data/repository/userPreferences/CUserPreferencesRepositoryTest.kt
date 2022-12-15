@@ -9,13 +9,13 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.unmockkAll
+import kotlin.test.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.*
-import kotlin.test.assertEquals
 
 @ExperimentalCoroutinesApi
 @Ignore("Not yet implemented")
@@ -63,5 +63,3 @@ class CUserPreferencesRepositoryTest {
         }
     }
 }
-
-

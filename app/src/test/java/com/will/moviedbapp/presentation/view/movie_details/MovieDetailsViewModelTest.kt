@@ -9,12 +9,12 @@ import com.will.moviedbapp.resources.utils.getOrAwaitValue
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import kotlin.test.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class MovieDetailsViewModelTest {
 
@@ -50,5 +50,4 @@ class MovieDetailsViewModelTest {
 
         assertEquals(expected, actual)
     }
-
 }

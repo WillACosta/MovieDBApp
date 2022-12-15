@@ -28,11 +28,11 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun onInitView() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
-        );
+        )
 
         supportActionBar?.hide()
     }
@@ -54,7 +54,6 @@ class WelcomeActivity : AppCompatActivity() {
                 gotoHomeActivity()
             }
         }
-
     }
 
     private fun goToNameActivity() {

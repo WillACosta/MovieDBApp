@@ -53,11 +53,12 @@ android {
     }
 }
 
-tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+// tasks.getByPath("preBuild").dependsOn("ktlintFormat")
 
 ktlint {
     android.set(true)
     ignoreFailures.set(false)
+    disabledRules.set(setOf("no-wildcard-imports"))
 
     reporters {
         reporter(ReporterType.PLAIN)

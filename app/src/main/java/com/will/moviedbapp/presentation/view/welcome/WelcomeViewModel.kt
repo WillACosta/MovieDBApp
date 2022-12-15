@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.will.moviedbapp.data.repository.userPreferences.UserPreferencesRepository
 import com.will.moviedbapp.domain.model.UserPreferences
-import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch
 
 class WelcomeViewModel(val repository: UserPreferencesRepository) : ViewModel() {
@@ -28,5 +27,4 @@ class WelcomeViewModel(val repository: UserPreferencesRepository) : ViewModel() 
             repository.updateNotFirsAccess(true)
         }
     }
-
 }

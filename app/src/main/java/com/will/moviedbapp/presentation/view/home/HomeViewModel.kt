@@ -64,5 +64,4 @@ class HomeViewModel(
     private fun searchMovies(query: String) {
         _searchQuery.value = query
     }
-
 }

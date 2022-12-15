@@ -39,5 +39,4 @@ object NetworkHelper {
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return loggingInterceptor
     }
-
 }

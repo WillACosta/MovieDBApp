@@ -49,7 +49,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call getTrendingMovies and returns last StateResult as a Empty if remote returns an empty list`() {
+    fun `should returns state as Empty if remote returns an empty list for getTrendingMovies`() {
         coEvery { remote.getTrendingMovies() } returns emptyList()
 
         runBlocking {
@@ -62,7 +62,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call getTrendingMovies and returns last StateResult as a Error if repository calls was unsuccessfully`() {
+    fun `should returns state as a Error if remote calls was unsuccessful for getTrendingMovies`() {
         coEvery { remote.getTrendingMovies() } throws RemoteDataSourceException()
 
         runBlocking {
@@ -76,7 +76,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call getMovie and returns a list state of StateResult with Success`() {
+    fun `should returns a list state of StateResult with Success`() {
         val movie = MockMovie.movie
         val expectedStates = MockStateResult.expectedSuccessMovie
 
@@ -93,7 +93,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call getMovie and returns last StateResult as a Error if repository calls was unsuccessfully`() {
+    fun `should returns state as a Error if remote calls was unsuccessfully`() {
         coEvery { remote.getMovie(any()) } throws RemoteDataSourceException()
 
         runBlocking {
@@ -122,7 +122,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call search and returns last StateResult as a Empty if remote returns an empty list`() {
+    fun `should returns last StateResult as a Empty if remote returns an empty list`() {
         coEvery { remote.search(any()) } returns emptyList()
 
         runBlocking {
@@ -135,7 +135,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call search and returns last StateResult as a Error if repository calls was unsuccessfully`() {
+    fun `should returns last StateResult as a Error if repository calls was unsuccessfully`() {
         coEvery { remote.search(any()) } throws RemoteDataSourceException()
 
         runBlocking {
@@ -147,5 +147,4 @@ class CMovieRepositoryTest {
             assert(expectedErrorStateList[1] is StateResult.Error)
         }
     }
-
 }

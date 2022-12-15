@@ -43,5 +43,4 @@ abstract class AppConstants {
         const val NAME_EDIT_SUCCESS = "Your user name update with successful!"
         const val GENERIC_ERROR = "Oops! Something was wrong..."
     }
-
 }

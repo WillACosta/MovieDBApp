@@ -30,7 +30,8 @@ class FeaturedMoviesFragment : Fragment() {
     private val movieAdapter = MovieAdapter(this::onItemClicked)
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
@@ -101,5 +102,4 @@ class FeaturedMoviesFragment : Fragment() {
     private fun onItemClicked(movie: Movie) {
         viewModel.handle(HomeAction.ViewMovieDetails(movie))
     }
-
 }

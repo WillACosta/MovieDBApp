@@ -21,5 +21,4 @@ class MovieDetailsViewModel(private val useCase: GetMovieUseCase) : ViewModel() 
             }
         }
     }
-
 }

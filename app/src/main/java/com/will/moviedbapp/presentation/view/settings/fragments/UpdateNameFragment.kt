@@ -28,13 +28,18 @@ class UpdateNameFragment : DialogFragment() {
             val builder = AlertDialog.Builder(it)
 
             builder.setView(binding.root).setTitle("Update name")
-                .setPositiveButton(R.string.save, DialogInterface.OnClickListener { _, _ ->
-                    submitUserName()
-                }).setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, _ ->
-                    dialog.cancel()
-                })
+                .setPositiveButton(
+                    R.string.save,
+                    DialogInterface.OnClickListener { _, _ ->
+                        submitUserName()
+                    }
+                ).setNegativeButton(
+                    R.string.cancel,
+                    DialogInterface.OnClickListener { dialog, _ ->
+                        dialog.cancel()
+                    }
+                )
             builder.create()
-
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 

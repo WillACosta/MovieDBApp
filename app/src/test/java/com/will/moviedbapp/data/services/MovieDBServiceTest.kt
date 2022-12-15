@@ -119,5 +119,4 @@ class MovieDBServiceTest {
             assertEquals(expected, response)
         }
     }
-
 }

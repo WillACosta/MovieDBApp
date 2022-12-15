@@ -42,5 +42,4 @@ class NameViewModel(private val repository: UserPreferencesRepository) : ViewMod
 
         return null
     }
-
 }

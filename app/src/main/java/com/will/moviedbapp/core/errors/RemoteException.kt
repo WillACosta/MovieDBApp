@@ -1,5 +1,5 @@
 package com.will.moviedbapp.core.errors
 
-class RemoteDataSourceException : Throwable() {}
+class RemoteDataSourceException : Throwable()
 
-class RepositoryFailure : Throwable() {}
+class RepositoryFailure : Throwable()

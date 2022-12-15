@@ -7,12 +7,12 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
+import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class GetMovieUseCaseTest {
 
@@ -40,5 +40,4 @@ class GetMovieUseCaseTest {
             coVerify { repository.getMovie(any()) }
         }
     }
-
 }
