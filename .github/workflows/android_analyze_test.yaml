@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Project
-          run: ./gradlew assemble
+        run: ./gradlew assemble
 
       - name: Run Kotlin Linter
         run: ./gradlew ktlintCheck
