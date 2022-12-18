@@ -33,14 +33,14 @@ abstract class AppConstants {
     }
 
     object AppRoutes {
-        const val NAME = "com.will.moviedbapp.presentation.view.name.NameActivity"
-        const val MAIN = "com.will.moviedbapp.presentation.view.MainActivity"
+        const val NAME = "com.will.moviedbapp.modules.welcome.presentation.view.name.NameActivity"
+        const val MAIN = "com.will.moviedbapp.modules.home.presentation.MainActivity"
         const val MOVIE_DETAIL =
-            "com.will.moviedbapp.presentation.view.movie_details.MovieDetailsActivity"
+            "com.will.moviedbapp.modules.home.presentation.movie_details.MovieDetailsActivity"
     }
 
     object AppMessages {
-        const val NAME_EDIT_SUCCESS = "Your user name update with successful!"
+        const val NAME_EDIT_SUCCESS = "Your user name was update with successful!"
         const val GENERIC_ERROR = "Oops! Something was wrong..."
     }
 }
