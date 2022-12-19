@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.constants.AppRoutes
 import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.core.utils.extensions.setDarkMode
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
@@ -57,12 +57,12 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun goToNameActivity() {
-        navigateTo(AppConstants.AppRoutes.NAME)
+        navigateTo(AppRoutes.NAME)
         finish()
     }
 
     private fun gotoHomeActivity() {
-        navigateTo(AppConstants.AppRoutes.MAIN)
+        navigateTo(AppRoutes.MAIN)
         finish()
     }
 }

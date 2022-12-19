@@ -2,7 +2,7 @@ package com.will.moviedbapp.presentation.view.name
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.core.constants.AppConstants
-import com.will.moviedbapp.modules.shared.data.repository.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.UserPreferencesRepository
 import com.will.moviedbapp.modules.welcome.presentation.name.NameViewModel
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue

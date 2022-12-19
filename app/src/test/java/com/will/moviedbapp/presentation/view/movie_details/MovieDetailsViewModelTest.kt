@@ -2,8 +2,8 @@ package com.will.moviedbapp.presentation.view.movie_details
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.core.state.StateResult
-import com.will.moviedbapp.modules.home.domain.use_case.GetMovieUseCase
-import com.will.moviedbapp.modules.home.presentation.movie_details.MovieDetailsViewModel
+import com.will.moviedbapp.modules.movie.domain.usecase.GetMovieUseCase
+import com.will.moviedbapp.modules.movie.presentation.detail.MovieDetailsViewModel
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue

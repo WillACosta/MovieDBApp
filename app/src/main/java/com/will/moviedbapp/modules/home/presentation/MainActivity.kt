@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.will.moviedbapp.R
 import com.will.moviedbapp.databinding.ActivityMainBinding
-import com.will.moviedbapp.modules.home.presentation.home.HomeFragment
-import com.will.moviedbapp.modules.home.presentation.settings.SettingsFragment
+import com.will.moviedbapp.modules.home.presentation.fragments.HomeFragment
+import com.will.moviedbapp.modules.settings.presentation.SettingsFragment
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 
 class MainActivity : AppCompatActivity() {

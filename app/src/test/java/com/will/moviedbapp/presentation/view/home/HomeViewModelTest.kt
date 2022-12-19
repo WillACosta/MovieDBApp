@@ -4,11 +4,10 @@ package com.will.moviedbapp.presentation.view.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.core.state.StateResult
-import com.will.moviedbapp.modules.home.domain.model.Movie
-import com.will.moviedbapp.modules.home.domain.use_case.GetTrendingMoviesUseCase
-import com.will.moviedbapp.modules.home.domain.use_case.SearchUseCase
-import com.will.moviedbapp.modules.home.presentation.home.HomeViewModel
-import com.will.moviedbapp.modules.home.domain.model.HomeAction
+import com.will.moviedbapp.modules.movie.domain.entity.Movie
+import com.will.moviedbapp.modules.movie.domain.usecase.GetTrendingMoviesUseCase
+import com.will.moviedbapp.modules.home.domain.usecase.SearchUseCase
+import com.will.moviedbapp.modules.home.presentation.fragments.HomeViewModel
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.mocks.MockStateResult
 import com.will.moviedbapp.resources.utils.TestDispatcherRule

@@ -1,7 +1,7 @@
 package com.will.moviedbapp.resources.mocks
 
-import com.will.moviedbapp.modules.home.domain.model.Movie
-import com.will.moviedbapp.modules.home.domain.model.MovieGenre
+import com.will.moviedbapp.modules.movie.domain.entity.Movie
+import com.will.moviedbapp.modules.movie.domain.entity.MovieGenre
 import com.will.moviedbapp.modules.shared.model.PaginatedResponse
 
 object MockMovie {

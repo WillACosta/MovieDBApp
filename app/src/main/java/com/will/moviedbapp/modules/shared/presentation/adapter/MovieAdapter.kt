@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.will.moviedbapp.core.constants.AppConstants
 import com.will.moviedbapp.core.utils.extensions.load
 import com.will.moviedbapp.databinding.MovieListTileBinding
-import com.will.moviedbapp.modules.home.domain.model.Movie
+import com.will.moviedbapp.modules.movie.domain.entity.Movie
 
 class MovieAdapter(
     private val onItemClicked: (Movie) -> Unit,

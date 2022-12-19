@@ -3,7 +3,7 @@ package com.will.moviedbapp.modules.welcome.presentation.name
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.constants.AppRoutes
 import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityNameBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,7 +54,7 @@ class NameActivity : AppCompatActivity() {
     }
 
     private fun goToMainActivity() {
-        navigateTo(AppConstants.AppRoutes.MAIN)
+        navigateTo(AppRoutes.MAIN)
         finish()
     }
 }

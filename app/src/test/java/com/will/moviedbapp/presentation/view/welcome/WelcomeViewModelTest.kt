@@ -1,7 +1,7 @@
 package com.will.moviedbapp.presentation.view.welcome
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.will.moviedbapp.modules.shared.data.repository.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.UserPreferencesRepository
 import com.will.moviedbapp.modules.welcome.presentation.welcome.WelcomeViewModel
 import com.will.moviedbapp.resources.mocks.MockPreferences
 import com.will.moviedbapp.resources.utils.TestDispatcherRule

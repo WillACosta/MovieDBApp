@@ -1,7 +1,7 @@
 package com.will.moviedbapp.modules.shared.data.services
 
-import com.will.moviedbapp.modules.home.domain.model.Movie
-import com.will.moviedbapp.modules.home.domain.model.MovieGenre
+import com.will.moviedbapp.modules.movie.domain.entity.Movie
+import com.will.moviedbapp.modules.movie.domain.entity.MovieGenre
 import com.will.moviedbapp.modules.shared.model.PaginatedResponse
 import retrofit2.http.GET
 import retrofit2.http.Path

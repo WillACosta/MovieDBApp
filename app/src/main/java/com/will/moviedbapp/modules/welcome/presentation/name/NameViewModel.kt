@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.will.moviedbapp.core.constants.AppConstants
-import com.will.moviedbapp.modules.shared.data.repository.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.UserPreferencesRepository
 import kotlinx.coroutines.launch
 
 class NameViewModel(private val repository: UserPreferencesRepository) : ViewModel() {

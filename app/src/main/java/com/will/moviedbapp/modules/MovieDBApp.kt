@@ -1,10 +1,11 @@
 package com.will.moviedbapp.modules
 
 import android.app.Application
-import com.will.moviedbapp.modules.home.di.HomeModule
-import com.will.moviedbapp.modules.shared.data.di.DataModule
-import com.will.moviedbapp.modules.shared.di.SharedModule
-import com.will.moviedbapp.modules.welcome.di.WelcomeModule
+import com.will.moviedbapp.modules.home.HomeModule
+import com.will.moviedbapp.modules.movie.MovieModule
+import com.will.moviedbapp.modules.settings.SettingsModule
+import com.will.moviedbapp.modules.shared.SharedModule
+import com.will.moviedbapp.modules.welcome.WelcomeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
@@ -20,8 +21,9 @@ class MovieDBApp : Application() {
         }
 
         HomeModule.load()
-        DataModule.load()
-        SharedModule.load()
+        MovieModule.load()
+        SettingsModule.load()
         WelcomeModule.load()
+        SharedModule.load()
     }
 }
