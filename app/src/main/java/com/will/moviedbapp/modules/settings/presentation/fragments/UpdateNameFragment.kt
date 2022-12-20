@@ -8,8 +8,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import com.will.moviedbapp.R
 import com.will.moviedbapp.databinding.UserNameUpdateFormBinding
-import com.will.moviedbapp.modules.welcome.presentation.name.NameViewModel
 import com.will.moviedbapp.modules.shared.presentation.PreferencesViewModel
+import com.will.moviedbapp.modules.welcome.presentation.name.NameViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UpdateNameFragment : DialogFragment() {

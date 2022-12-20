@@ -19,7 +19,6 @@ object HomeModule {
         }
     }
 
-
     private fun loadDomain(): Module {
         return module {
             factory { SearchUseCase(get()) }

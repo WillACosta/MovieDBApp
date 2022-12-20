@@ -1,8 +1,8 @@
 package com.will.moviedbapp.modules.shared.data.repository.remote.movie
 
 import com.will.moviedbapp.core.state.StateResult
-import com.will.moviedbapp.modules.shared.data.datasource.remote.movie.MovieDBRemoteDataSource
 import com.will.moviedbapp.modules.movie.domain.entity.Movie
+import com.will.moviedbapp.modules.shared.data.datasource.remote.movie.MovieDBRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

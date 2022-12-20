@@ -15,7 +15,6 @@ import com.will.moviedbapp.modules.settings.presentation.fragments.UpdateNameFra
 import com.will.moviedbapp.modules.shared.presentation.PreferencesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class SettingsFragment : Fragment(), OnDayNightStateChanged {
 
     private val binding: FragmentSettingsBinding by lazy {

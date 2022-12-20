@@ -59,7 +59,6 @@ class FeaturedMoviesFragment : Fragment() {
                     }
 
                     is StateResult.Error -> handleShimmerLayout(false)
-
                 }
             }
         }

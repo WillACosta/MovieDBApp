@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigation.setBackgroundColor(
                 ContextCompat.getColor(this, R.color.background)
             )
-
         } else {
             binding.bottomNavigation.setBackgroundColor(
                 ContextCompat.getColor(this, R.color.backgroundNight)

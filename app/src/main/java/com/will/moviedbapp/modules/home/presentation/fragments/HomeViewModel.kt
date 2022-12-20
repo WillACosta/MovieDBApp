@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.will.moviedbapp.core.state.StateResult
-import com.will.moviedbapp.modules.movie.domain.entity.Movie
 import com.will.moviedbapp.modules.home.domain.usecase.SearchUseCase
+import com.will.moviedbapp.modules.movie.domain.entity.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -27,7 +27,6 @@ class HomeViewModel(private val searchUseCase: SearchUseCase) : ViewModel() {
             searchUseCase(text)
         }
         .flowOn(Dispatchers.Default)
-
         .asLiveData()
 
     fun searchMovies(query: String) {

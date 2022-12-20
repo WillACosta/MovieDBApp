@@ -1,9 +1,9 @@
 package com.will.moviedbapp.modules.shared.data.datasource.remote.movie
 
 import com.will.moviedbapp.core.errors.RemoteDataSourceException
-import com.will.moviedbapp.modules.shared.data.services.MovieDBService
 import com.will.moviedbapp.modules.movie.domain.entity.Movie
 import com.will.moviedbapp.modules.movie.domain.entity.MovieGenre
+import com.will.moviedbapp.modules.shared.data.services.MovieDBService
 
 class CMovieDBRemoteDataSource(private val service: MovieDBService) : MovieDBRemoteDataSource {
     override suspend fun getTrendingMovies(): List<Movie> {

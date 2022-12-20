@@ -25,11 +25,11 @@ jobs:
       - name: Build Project
         run: ./gradlew assemble
 
+      - name: Run Format Code
+        run: ./gradlew ktlintFormat
+
       - name: Run Kotlin Linter
         run: ./gradlew ktlintCheck
 
       - name: Run Unit Tests
         run: ./gradlew test
-
-      - name: Run Format Code
-        run: ./gradlew ktlintFormat
