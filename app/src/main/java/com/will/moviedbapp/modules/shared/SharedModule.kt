@@ -14,7 +14,7 @@ object SharedModule {
 
     private fun loadViewModels(): Module {
         return module {
-            single { PreferencesViewModel(get()) }
+            factory { PreferencesViewModel(get()) }
         }
     }
 }

@@ -1,8 +1,11 @@
 package com.will.moviedbapp.modules.home.presentation
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.will.moviedbapp.R
+import com.will.moviedbapp.core.theme.OnDayNightStateChanged
 import com.will.moviedbapp.databinding.ActivityMainBinding
 import com.will.moviedbapp.modules.home.presentation.fragments.HomeFragment
 import com.will.moviedbapp.modules.settings.presentation.SettingsFragment
@@ -22,6 +25,34 @@ class MainActivity : AppCompatActivity() {
         handleFragments()
 
         setContentView(binding.root)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> applyDayNight(OnDayNightStateChanged.DAY)
+            Configuration.UI_MODE_NIGHT_YES -> applyDayNight(OnDayNightStateChanged.NIGHT)
+        }
+    }
+
+    private fun applyDayNight(state: Int) {
+        if (state == OnDayNightStateChanged.DAY) {
+            binding.bottomNavigation.setBackgroundColor(
+                ContextCompat.getColor(this, R.color.background)
+            )
+
+        } else {
+            binding.bottomNavigation.setBackgroundColor(
+                ContextCompat.getColor(this, R.color.backgroundNight)
+            )
+        }
+
+        supportFragmentManager.fragments.forEach {
+            if (it is OnDayNightStateChanged) {
+                it.onDayNightApplied(state)
+            }
+        }
     }
 
     private fun handleFragments() {
