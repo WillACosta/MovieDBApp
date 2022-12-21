@@ -22,6 +22,7 @@ class SettingsFragment : Fragment(), OnDayNightStateChanged {
     }
 
     private val preferencesViewModel: PreferencesViewModel by viewModel()
+    private val viewModel: SettingsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,10 +44,10 @@ class SettingsFragment : Fragment(), OnDayNightStateChanged {
 
         preferencesViewModel.userPreferences.observe(viewLifecycleOwner) {
             binding.nameContainer.text = it.name
+        }
 
-            if (it.isDarkMode) {
-                binding.themeButton.isChecked = true
-            }
+        viewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->
+            binding.themeButton.isChecked = isDarkMode
         }
 
         binding.themeButton.setOnCheckedChangeListener { _, isChecked ->
@@ -57,10 +58,10 @@ class SettingsFragment : Fragment(), OnDayNightStateChanged {
     private fun handleDarkMode(isChecked: Boolean) {
         if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            preferencesViewModel.updateIsDarkMode(true)
+            viewModel.handleDarkMode(true)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            preferencesViewModel.updateIsDarkMode(false)
+            viewModel.handleDarkMode(false)
         }
     }
 

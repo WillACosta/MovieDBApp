@@ -31,10 +31,4 @@ class PreferencesViewModel(val repository: UserPreferencesRepository) : ViewMode
                 }
         }
     }
-
-    fun updateIsDarkMode(isDarkMode: Boolean) {
-        viewModelScope.launch {
-            repository.updateDarkMode(isDarkMode)
-        }
-    }
 }

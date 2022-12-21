@@ -1,6 +1,7 @@
 package com.will.moviedbapp.modules.settings
 
 import com.will.moviedbapp.modules.settings.presentation.SettingsFragment
+import com.will.moviedbapp.modules.settings.presentation.SettingsViewModel
 import com.will.moviedbapp.modules.settings.presentation.fragments.UpdateNameFragment
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -15,6 +16,7 @@ object SettingsModule {
         return module {
             factory { UpdateNameFragment() }
             factory { SettingsFragment() }
+            single { SettingsViewModel(get()) }
         }
     }
 }
