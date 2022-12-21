@@ -1,5 +1,5 @@
-import com.will.moviedbapp.data.repository.userPreferences.CUserPreferencesRepository
-import com.will.moviedbapp.data.repository.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.CUserPreferencesRepository
+import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.UserPreferencesRepository
 import com.will.moviedbapp.utils.DataStoreTest
 import org.junit.Before
 import org.junit.Test

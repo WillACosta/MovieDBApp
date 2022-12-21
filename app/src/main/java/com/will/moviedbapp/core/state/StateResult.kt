@@ -27,5 +27,4 @@ sealed class StateResult<out T> {
             return if (list.isEmpty()) Empty else Success(list)
         }
     }
-
 }

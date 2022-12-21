@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_xxl"
         android:text="@string/featured_movies"
-        android:textColor="@color/white"
+        android:textColor="@color/text"
         android:textFontWeight="700"
         android:textSize="@dimen/font_body"
         app:layout_constraintEnd_toEndOf="parent"

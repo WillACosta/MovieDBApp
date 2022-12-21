@@ -6,8 +6,17 @@
     <color name="surface">#FFEDEDED</color>
     <color name="background">#FFFFFFFF</color>
     <color name="white">#FFFFFFFF</color>
-
     <color name="endGradient">#00ffffff</color>
     <color name="centerGradient">#aaffffff</color>
     <color name="startGradient">#aaffffff</color>
+
+    <!-- night colors -->
+    <color name="primaryNight">#FFF83A44</color>
+    <color name="textNight">#FFFFFFFF</color>
+    <color name="grayNight">#FF828282</color>
+    <color name="surfaceNight">#FF1D1D1D</color>
+    <color name="backgroundNight">#FF111111</color>
+    <color name="whiteNight">#FFFFFFFF</color>
+    <color name="centerGradientNight">#aa111111</color>
+    <color name="endGradientNight">#00ffffff</color>
 </resources>

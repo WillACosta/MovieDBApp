@@ -1,11 +1,17 @@
 package com.will.moviedbapp.resources.mocks
 
-import com.will.moviedbapp.domain.model.Movie
-import com.will.moviedbapp.domain.model.PaginatedResponse
+import com.will.moviedbapp.modules.movie.domain.entity.Movie
+import com.will.moviedbapp.modules.movie.domain.entity.MovieGenre
+import com.will.moviedbapp.modules.shared.model.PaginatedResponse
 
 object MockMovie {
     const val movieID = 438631
     val searchQuery = "dune"
+
+    val movieGenre = MovieGenre(
+        id = 1,
+        name = "action"
+    )
 
     val movie = Movie(
         adult = false,
@@ -26,6 +32,7 @@ object MockMovie {
     )
 
     val listMovie = listOf(movie)
+    val genresList = listOf(movieGenre)
 
     val paginatedResponse = PaginatedResponse(
         page = 1,

@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".presentation.MovieDBApp"
+        android:name=".modules.MovieDBApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,28 +17,29 @@
         android:theme="@style/Theme.MovieDBApp"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.view.movie_details.MovieDetailsActivity"
+            android:name=".modules.movie.presentation.detail.MovieDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.view.name.NameActivity"
+            android:name=".modules.welcome.presentation.name.NameActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.view.MainActivity"
+            android:name=".modules.home.presentation.MainActivity"
+            android:configChanges="uiMode"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.view.welcome.WelcomeActivity"
+            android:name=".modules.welcome.presentation.welcome.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
