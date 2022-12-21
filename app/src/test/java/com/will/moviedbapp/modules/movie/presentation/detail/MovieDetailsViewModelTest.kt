@@ -1,9 +1,8 @@
 package com.will.moviedbapp.modules.movie.presentation.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.modules.movie.domain.usecase.GetMovieUseCase
-import com.will.moviedbapp.modules.movie.presentation.detail.MovieDetailsViewModel
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue
@@ -40,7 +39,7 @@ class MovieDetailsViewModelTest {
     @ExperimentalCoroutinesApi
     @Test
     fun `should get movie by given id`() {
-        val expected = StateResult.success(MockMovie.movie)
+        val expected = Result.success(MockMovie.movie)
 
         coEvery { useCase(any()) } returns flow { emit(expected) }
 

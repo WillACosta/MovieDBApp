@@ -1,7 +1,7 @@
 package com.will.moviedbapp.modules.home.presentation.fragments
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.modules.home.domain.usecase.SearchUseCase
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
@@ -36,10 +36,10 @@ class HomeViewModelTest {
 
     @Test
     fun `should handle query text and load list of movies`() {
-        val expected = StateResult.Success(MockMovie.listMovie)
+        val expected = Result.Success(MockMovie.listMovie)
 
         coEvery { searchUseCase(any()) } returns flow {
-            emit(StateResult.Success(MockMovie.listMovie))
+            emit(Result.Success(MockMovie.listMovie))
         }
 
         viewModel.searchMovies(MockMovie.searchQuery)

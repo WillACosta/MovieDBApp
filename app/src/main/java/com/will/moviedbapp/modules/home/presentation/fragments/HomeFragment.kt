@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.will.moviedbapp.R
 import com.will.moviedbapp.core.constants.AppConstants
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.databinding.FragmentHomeBinding
 import com.will.moviedbapp.modules.movie.domain.entity.Movie
 import com.will.moviedbapp.modules.movie.presentation.featured.FeaturedMoviesFragment
@@ -50,14 +50,14 @@ class HomeFragment : Fragment() {
     private fun setListeners() {
         homeViewModel.moviesResultList.observe(viewLifecycleOwner) { state ->
             when (state) {
-                StateResult.Loading -> handleShimmerLayout(true)
+                Result.Loading -> handleShimmerLayout(true)
 
-                StateResult.Empty -> {
+                Result.Empty -> {
                     handleShimmerLayout(false)
                     binding.emptyContentComponent.root.visibility = View.VISIBLE
                 }
 
-                is StateResult.Error -> {
+                is Result.Error -> {
                     Toast.makeText(
                         context,
                         AppConstants.AppMessages.GENERIC_ERROR,
@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
                     ).show()
                 }
 
-                is StateResult.Success -> {
+                is Result.Success -> {
                     handleShimmerLayout(false)
 
                     binding.recyclerSearchedMovies.apply {

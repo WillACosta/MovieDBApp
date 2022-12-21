@@ -1,6 +1,6 @@
 package com.will.moviedbapp.modules.movie
 
-import com.will.moviedbapp.modules.movie.domain.usecase.GetGenresList
+import com.will.moviedbapp.modules.movie.domain.usecase.GetGenresListUseCase
 import com.will.moviedbapp.modules.movie.domain.usecase.GetMovieUseCase
 import com.will.moviedbapp.modules.movie.domain.usecase.GetTrendingMoviesUseCase
 import com.will.moviedbapp.modules.movie.presentation.detail.MovieDetailsViewModel
@@ -27,7 +27,7 @@ object MovieModule {
         return module {
             factory { GetTrendingMoviesUseCase(get()) }
             factory { GetMovieUseCase(get()) }
-            factory { GetGenresList() }
+            factory { GetGenresListUseCase(get()) }
         }
     }
 }

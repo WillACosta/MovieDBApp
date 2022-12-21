@@ -1,43 +1,45 @@
 package com.will.moviedbapp.modules.movie.domain.usecase
 
-import com.will.moviedbapp.modules.movie.domain.usecase.GetTrendingMoviesUseCase
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.modules.shared.data.repository.remote.movie.MovieRepository
+import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.mocks.MockResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertEquals
 
-class GetTrendingMoviesUseCaseTest {
+class GetGenresListUseCaseTest {
+    private lateinit var useCase: GetGenresListUseCase
 
     @MockK
     private lateinit var repository: MovieRepository
-    private lateinit var useCase: GetTrendingMoviesUseCase
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        useCase = GetTrendingMoviesUseCase(repository)
+        useCase = GetGenresListUseCase(repository)
     }
 
     @Test
-    fun `should call execute method and returns normally`() {
-        val expectedState = MockResult.expectedSuccessListMovie
-
-        coEvery { repository.getTrendingMovies() } returns expectedState.asFlow()
+    fun `should call repository method and returns a list of genres`() {
+        coEvery { repository.getGenres() } returns MockResult.expectedGenresListResult.asFlow()
 
         runBlocking {
             val flow = useCase(Unit)
-            val results = flow.toList()
+            val result = flow.toList()
 
-            assertEquals(expectedState, results)
-            coVerify { repository.getTrendingMovies() }
+            assertEquals(2, result.count())
+            assertEquals(Result.Loading, result[0])
+            assertEquals(Result.successOrEmpty(MockMovie.genresList), result[1])
+            coVerify { repository.getGenres() }
         }
     }
+
 }

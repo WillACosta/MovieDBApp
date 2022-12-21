@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.databinding.FragmentFeaturedMoviesBinding
 import com.will.moviedbapp.modules.movie.domain.entity.Movie
 import com.will.moviedbapp.modules.movie.utils.MovieFunctionsHelper
@@ -41,11 +41,11 @@ class FeaturedMoviesFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.moviesList.observe(viewLifecycleOwner) { state ->
                 when (state) {
-                    StateResult.Loading -> handleShimmerLayout(true)
+                    Result.Loading -> handleShimmerLayout(true)
 
-                    StateResult.Empty -> handleShimmerLayout(false)
+                    Result.Empty -> handleShimmerLayout(false)
 
-                    is StateResult.Success -> {
+                    is Result.Success -> {
                         binding.recyclerFeaturedMovies.apply {
                             layoutManager = LinearLayoutManager(context).apply {
                                 orientation = RecyclerView.HORIZONTAL
@@ -58,7 +58,7 @@ class FeaturedMoviesFragment : Fragment() {
                         handleShimmerLayout(false)
                     }
 
-                    is StateResult.Error -> handleShimmerLayout(false)
+                    is Result.Error -> handleShimmerLayout(false)
                 }
             }
         }

@@ -1,7 +1,7 @@
 package com.will.moviedbapp.modules.movie.presentation.featured
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.modules.movie.domain.usecase.GetTrendingMoviesUseCase
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
@@ -39,7 +39,7 @@ class FeaturedMoviesViewModelTest {
     @ExperimentalCoroutinesApi
     @Test
     fun `should load trending movies when viewModel starts`() = runTest {
-        val expected = StateResult.successOrEmpty(MockMovie.listMovie)
+        val expected = Result.successOrEmpty(MockMovie.listMovie)
 
         coEvery { useCase(Unit) } returns flow {
             emit(expected)

@@ -3,7 +3,7 @@ package com.will.moviedbapp.modules.home.domain.usecase
 import com.will.moviedbapp.modules.home.domain.usecase.SearchUseCase
 import com.will.moviedbapp.modules.shared.data.repository.remote.movie.MovieRepository
 import com.will.moviedbapp.resources.mocks.MockMovie
-import com.will.moviedbapp.resources.mocks.MockStateResult
+import com.will.moviedbapp.resources.mocks.MockResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -30,7 +30,7 @@ class SearchUseCaseTest {
     @Test
     fun `should invoke useCase and returns normally`() {
         val searchQuery = MockMovie.searchQuery
-        val expectedState = MockStateResult.expectedSuccessListMovie
+        val expectedState = MockResult.expectedSuccessListMovie
 
         coEvery { repository.search(any()) } returns expectedState.asFlow()
 

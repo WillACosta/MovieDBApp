@@ -5,7 +5,7 @@ package com.will.moviedbapp.modules.home.presentation.fragments
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.modules.home.domain.usecase.SearchUseCase
 import com.will.moviedbapp.modules.movie.domain.entity.Movie
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +17,7 @@ class HomeViewModel(private val searchUseCase: SearchUseCase) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: LiveData<String> = _searchQuery.asLiveData()
 
-    val moviesResultList: LiveData<StateResult<List<Movie>>> = _searchQuery
+    val moviesResultList: LiveData<Result<List<Movie>>> = _searchQuery
         .debounce(800)
         .filter { text ->
             text.isNotEmpty()

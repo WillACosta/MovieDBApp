@@ -2,17 +2,17 @@ package com.will.moviedbapp.core.state
 
 import java.io.IOException
 
-sealed class StateResult<out T> {
+sealed class Result<out T> {
 
-    data class Success<T>(val data: T) : StateResult<T>()
+    data class Success<T>(val data: T) : Result<T>()
 
-    data class Error(val exception: Throwable) : StateResult<Nothing>() {
+    data class Error(val exception: Throwable) : Result<Nothing>() {
         val isNetworkError: Boolean get() = exception is IOException
     }
 
-    object Empty : StateResult<Nothing>()
+    object Empty : Result<Nothing>()
 
-    object Loading : StateResult<Nothing>()
+    object Loading : Result<Nothing>()
 
     companion object {
         fun <T> success(data: T) = Success(data)
@@ -23,7 +23,7 @@ sealed class StateResult<out T> {
 
         fun loading() = Loading
 
-        fun <T> successOrEmpty(list: List<T>): StateResult<List<T>> {
+        fun <T> successOrEmpty(list: List<T>): Result<List<T>> {
             return if (list.isEmpty()) Empty else Success(list)
         }
     }

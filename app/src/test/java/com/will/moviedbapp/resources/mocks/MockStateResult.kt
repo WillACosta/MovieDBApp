@@ -1,28 +1,33 @@
 package com.will.moviedbapp.resources.mocks
 
 import com.will.moviedbapp.core.errors.RemoteDataSourceException
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 
-object MockStateResult {
+object MockResult {
 
     val expectedSuccessListMovie = listOf(
-        StateResult.Loading,
-        StateResult.Success(MockMovie.listMovie),
+        Result.Loading,
+        Result.Success(MockMovie.listMovie),
     )
 
     private val movie = MockMovie.movie
     val expectedSuccessMovie = listOf(
-        StateResult.Loading,
-        StateResult.Success(movie),
+        Result.Loading,
+        Result.Success(movie),
     )
 
     val expectedEmptyStateList = listOf(
-        StateResult.Loading,
-        StateResult.Empty
+        Result.Loading,
+        Result.Empty
     )
 
     val expectedErrorStateList = listOf(
-        StateResult.Loading,
-        StateResult.Error(RemoteDataSourceException())
+        Result.Loading,
+        Result.Error(RemoteDataSourceException())
+    )
+
+    val expectedGenresListResult = listOf(
+        Result.loading(),
+        Result.successOrEmpty(MockMovie.genresList)
     )
 }

@@ -2,7 +2,7 @@ package com.will.moviedbapp.modules.movie.domain.usecase
 
 import com.will.moviedbapp.modules.shared.data.repository.remote.movie.MovieRepository
 import com.will.moviedbapp.resources.mocks.MockMovie
-import com.will.moviedbapp.resources.mocks.MockStateResult
+import com.will.moviedbapp.resources.mocks.MockResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class GetMovieUseCaseTest {
 
@@ -27,7 +28,7 @@ class GetMovieUseCaseTest {
 
     @Test
     fun `should call execute method and returns normally`() {
-        val expectedState = MockStateResult.expectedSuccessMovie
+        val expectedState = MockResult.expectedSuccessMovie
 
         coEvery { repository.getMovie(any()) } returns expectedState.asFlow()
 
@@ -35,7 +36,7 @@ class GetMovieUseCaseTest {
             val flow = useCase(MockMovie.movieID)
             val results = flow.toList()
 
-            kotlin.test.assertEquals(expectedState, results)
+            assertEquals(expectedState, results)
             coVerify { repository.getMovie(any()) }
         }
     }

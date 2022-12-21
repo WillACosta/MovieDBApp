@@ -1,10 +1,10 @@
 package com.will.moviedbapp.modules.shared.data.repository.remote.movie
 
 import com.will.moviedbapp.core.errors.RemoteDataSourceException
-import com.will.moviedbapp.core.state.StateResult
+import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.modules.shared.data.datasource.remote.movie.MovieDBRemoteDataSource
 import com.will.moviedbapp.resources.mocks.MockMovie
-import com.will.moviedbapp.resources.mocks.MockStateResult
+import com.will.moviedbapp.resources.mocks.MockResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -21,8 +21,8 @@ class CMovieRepositoryTest {
     lateinit var remote: MovieDBRemoteDataSource
     private lateinit var repository: MovieRepository
 
-    private val expectedErrorStateList = MockStateResult.expectedErrorStateList
-    private val expectedEmptyStateList = MockStateResult.expectedEmptyStateList
+    private val expectedErrorStateList = MockResult.expectedErrorStateList
+    private val expectedEmptyStateList = MockResult.expectedEmptyStateList
 
     @Before
     fun setUp() {
@@ -31,9 +31,9 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call getTrendingMovies and returns a list state of StateResult with Success`() {
+    fun `should call getTrendingMovies and returns a list state of Result with Success`() {
         val listMovie = MockMovie.listMovie
-        val expectedStates = MockStateResult.expectedSuccessListMovie
+        val expectedStates = MockResult.expectedSuccessListMovie
 
         coEvery { remote.getTrendingMovies() } returns listMovie
 
@@ -69,14 +69,14 @@ class CMovieRepositoryTest {
 
             assertEquals(2, results.count())
             assertEquals(expectedErrorStateList[0], results[0])
-            assert(expectedErrorStateList[1] is StateResult.Error)
+            assert(expectedErrorStateList[1] is Result.Error)
         }
     }
 
     @Test
-    fun `should returns a list state of StateResult with Success`() {
+    fun `should returns a list state of Result with Success`() {
         val movie = MockMovie.movie
-        val expectedStates = MockStateResult.expectedSuccessMovie
+        val expectedStates = MockResult.expectedSuccessMovie
 
         coEvery { remote.getMovie(any()) } returns movie
 
@@ -100,15 +100,15 @@ class CMovieRepositoryTest {
 
             assertEquals(2, results.count())
             assertEquals(expectedErrorStateList[0], results[0])
-            assert(expectedErrorStateList[1] is StateResult.Error)
+            assert(expectedErrorStateList[1] is Result.Error)
         }
     }
 
     @Test
-    fun `should call search and returns a list state of StateResult with Success`() {
+    fun `should call search and returns a list state of Result with Success`() {
         coEvery { remote.search(any()) } returns MockMovie.listMovie
 
-        val expectedStates = MockStateResult.expectedSuccessListMovie
+        val expectedStates = MockResult.expectedSuccessListMovie
 
         runBlocking {
             val flow = repository.search(MockMovie.searchQuery)
@@ -120,7 +120,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should returns last StateResult as a Empty if remote returns an empty list`() {
+    fun `should returns last Result as a Empty if remote returns an empty list`() {
         coEvery { remote.search(any()) } returns emptyList()
 
         runBlocking {
@@ -133,7 +133,7 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should returns last StateResult as a Error if repository calls was unsuccessfully`() {
+    fun `should returns last Result as a Error if repository calls was unsuccessfully`() {
         coEvery { remote.search(any()) } throws RemoteDataSourceException()
 
         runBlocking {
@@ -142,7 +142,20 @@ class CMovieRepositoryTest {
 
             assertEquals(2, results.count())
             assertEquals(expectedErrorStateList[0], results[0])
-            assert(expectedErrorStateList[1] is StateResult.Error)
+            assert(expectedErrorStateList[1] is Result.Error)
+        }
+    }
+
+    @Test
+    fun `should call getGenres and returns a list of MovieGenre`() {
+        coEvery { remote.getGenres() } returns MockMovie.genresList
+
+        runBlocking {
+            val flow = repository.getGenres()
+            val results = flow.toList()
+
+            assertEquals(2, results.count())
+            assertEquals(Result.successOrEmpty(MockMovie.genresList), results[1])
         }
     }
 }
