@@ -7,18 +7,17 @@
     android:layout_marginBottom="@dimen/spacing_md"
     android:background="@drawable/rounded_border">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/movie_poster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:scaleType="centerInside"
+        android:layout_width="137dp"
+        android:layout_height="205dp"
+        android:scaleType="center"
         android:src="@drawable/movie_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/roundedImageView" />
+        app:riv_corner_radius="30dip"
+        app:riv_mutate_background="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

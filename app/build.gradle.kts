@@ -53,8 +53,6 @@ android {
     }
 }
 
-// tasks.getByPath("preBuild").dependsOn("ktlintFormat")
-
 ktlint {
     android.set(true)
     ignoreFailures.set(false)
@@ -106,6 +104,8 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     annotationProcessor("com.github.bumptech.glide:compiler:$glideVersion")
+
+    implementation("com.makeramen:roundedimageview:2.3.0")
 
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("com.squareup.okhttp3:mockwebserver:$okhttpVersion")

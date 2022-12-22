@@ -16,7 +16,7 @@ class CMovieDBRemoteDataSource(private val service: MovieDBService) : MovieDBRem
 
     override suspend fun getGenres(): List<MovieGenre> {
         return try {
-            service.getGenres()
+            service.getGenres().genres
         } catch (ex: Exception) {
             throw RemoteDataSourceException()
         }

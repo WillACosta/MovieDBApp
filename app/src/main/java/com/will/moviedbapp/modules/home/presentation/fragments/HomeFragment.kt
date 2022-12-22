@@ -14,6 +14,7 @@ import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.databinding.FragmentHomeBinding
 import com.will.moviedbapp.modules.movie.domain.entity.Movie
 import com.will.moviedbapp.modules.movie.presentation.featured.FeaturedMoviesFragment
+import com.will.moviedbapp.modules.movie.presentation.genres.GenreFragment
 import com.will.moviedbapp.modules.movie.utils.MovieFunctionsHelper
 import com.will.moviedbapp.modules.shared.presentation.PreferencesViewModel
 import com.will.moviedbapp.modules.shared.presentation.adapter.MovieAdapter
@@ -44,6 +45,10 @@ class HomeFragment : Fragment() {
     private fun replaceFrameLayoutToFragments() {
         parentFragmentManager.beginTransaction()
             .replace(R.id.trending_movies_frame_container, FeaturedMoviesFragment::class.java, null)
+            .commit()
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.genresFrameContainer, GenreFragment::class.java, null)
             .commit()
     }
 

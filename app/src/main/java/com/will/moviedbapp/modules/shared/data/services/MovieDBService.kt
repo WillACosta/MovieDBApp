@@ -1,7 +1,7 @@
 package com.will.moviedbapp.modules.shared.data.services
 
 import com.will.moviedbapp.modules.movie.domain.entity.Movie
-import com.will.moviedbapp.modules.movie.domain.entity.MovieGenre
+import com.will.moviedbapp.modules.shared.model.MovieGenresResponse
 import com.will.moviedbapp.modules.shared.model.PaginatedResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,7 +16,7 @@ interface MovieDBService {
     suspend fun getMovieById(@Path("movie_id") id: Int): Movie
 
     @GET("genre/movie/list")
-    suspend fun getGenres(): List<MovieGenre>
+    suspend fun getGenres(): MovieGenresResponse
 
     @GET("search/movie")
     suspend fun searchMovie(@Query("query") query: String): PaginatedResponse<List<Movie>>
