@@ -44,4 +44,13 @@ class CMovieRepository(private val remote: MovieDBRemoteDataSource) : MovieRepos
             emit(Result.error(it))
         }
     }
+
+    override suspend fun discoverMovies(genresId: Array<Int>?): Flow<Result<List<Movie>>> {
+        return flow {
+            emit(Result.loading())
+            emit(Result.successOrEmpty(remote.discoverMovies(genresId)))
+        }.catch {
+            emit(Result.error(it))
+        }
+    }
 }

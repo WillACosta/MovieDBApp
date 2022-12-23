@@ -37,4 +37,13 @@ class CMovieDBRemoteDataSource(private val service: MovieDBService) : MovieDBRem
             throw RemoteDataSourceException()
         }
     }
+
+    override suspend fun discoverMovies(genresId: Array<Int>?): List<Movie> {
+        return try {
+            service.discoverMovies(genresId).results
+        } catch (ex: Exception) {
+            throw RemoteDataSourceException()
+        }
+    }
 }
+

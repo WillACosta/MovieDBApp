@@ -8,4 +8,5 @@ interface MovieDBRemoteDataSource {
     suspend fun getGenres(): List<MovieGenre>
     suspend fun getMovie(id: Int): Movie
     suspend fun search(query: String): List<Movie>
+    suspend fun discoverMovies(genresId: Array<Int>?): List<Movie>
 }

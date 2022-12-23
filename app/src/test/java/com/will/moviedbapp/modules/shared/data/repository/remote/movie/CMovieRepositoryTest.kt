@@ -147,11 +147,24 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call getGenres and returns a list of MovieGenre`() {
+    fun `should call getGenres and returns an Result with list of MovieGenre`() {
         coEvery { remote.getGenres() } returns MockMovie.genresList
 
         runBlocking {
             val flow = repository.getGenres()
+            val results = flow.toList()
+
+            assertEquals(2, results.count())
+            assertEquals(Result.successOrEmpty(MockMovie.genresList), results[1])
+        }
+    }
+
+    @Test
+    fun `should call discoverMovies and returns an Result with list of Movie`() {
+        coEvery { remote.discoverMovies(MockMovie.genresIdList) } returns MockMovie.listMovie
+
+        runBlocking {
+            val flow = repository.discoverMovies(MockMovie.genresIdList)
             val results = flow.toList()
 
             assertEquals(2, results.count())

@@ -20,4 +20,7 @@ interface MovieDBService {
 
     @GET("search/movie")
     suspend fun searchMovie(@Query("query") query: String): PaginatedResponse<List<Movie>>
+
+    @GET("discover/movie")
+    suspend fun discoverMovies(@Query("with_genres") genresId: Array<Int>?): PaginatedResponse<List<Movie>>
 }

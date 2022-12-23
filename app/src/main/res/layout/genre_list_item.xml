@@ -7,7 +7,6 @@
     android:backgroundTint="@color/chip_background_state_color"
     android:checkable="true"
     android:fontFamily="@font/inter"
-    android:text="Adventure"
     android:textColor="@color/chip_text_state_color"
     android:textSize="@dimen/font_small" />
 

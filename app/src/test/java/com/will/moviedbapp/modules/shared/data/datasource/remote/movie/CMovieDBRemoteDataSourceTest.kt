@@ -1,8 +1,6 @@
 package com.will.moviedbapp.modules.shared.data.datasource.remote.movie
 
 import com.will.moviedbapp.core.errors.RemoteDataSourceException
-import com.will.moviedbapp.modules.shared.data.datasource.remote.movie.CMovieDBRemoteDataSource
-import com.will.moviedbapp.modules.shared.data.datasource.remote.movie.MovieDBRemoteDataSource
 import com.will.moviedbapp.modules.shared.data.services.MovieDBService
 import com.will.moviedbapp.resources.mocks.MockMovie
 import io.mockk.MockKAnnotations
@@ -56,7 +54,7 @@ class CMovieDBRemoteDataSourceTest {
 
     @Test
     fun `should call getGenres to service and returns a list of MovieGenre`() {
-        val expected = MockMovie.genresList
+        val expected = MockMovie.genresResponse
 
         coEvery { service.getGenres() } returns expected
 
@@ -129,6 +127,30 @@ class CMovieDBRemoteDataSourceTest {
         runBlocking {
             dataSource.search(query)
             coVerify { service.searchMovie(any()) }
+        }
+    }
+
+    @Test
+    fun `should call discoverMovies to service and returns a list of MovieGenre`() {
+        val expected = MockMovie.paginatedResponse
+
+        coEvery { service.discoverMovies(MockMovie.genresIdList) } returns expected
+
+        runBlocking {
+            val actual = dataSource.discoverMovies(MockMovie.genresIdList)
+
+            assertEquals(actual, expected.results)
+            coVerify { service.discoverMovies(MockMovie.genresIdList) }
+        }
+    }
+
+    @Test(expected = RemoteDataSourceException::class)
+    fun `should throws a RemoteDataSourceException if response in discoverMovies is unsuccessfully`() {
+        coEvery { service.discoverMovies(MockMovie.genresIdList) } throws RemoteDataSourceException()
+
+        runBlocking {
+            dataSource.discoverMovies(MockMovie.genresIdList)
+            coVerify { service.discoverMovies(MockMovie.genresIdList) }
         }
     }
 }
