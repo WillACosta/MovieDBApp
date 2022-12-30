@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.will.moviedbapp.data.repository.local.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.data.repository.user_preferences.UserPreferencesRepository
 import com.will.moviedbapp.network.model.UserPreferences
 import kotlinx.coroutines.launch
 

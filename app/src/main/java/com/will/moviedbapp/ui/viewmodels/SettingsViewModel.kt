@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.will.moviedbapp.data.repository.local.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.data.repository.user_preferences.UserPreferencesRepository
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(private val preferencesRepository: UserPreferencesRepository) :
