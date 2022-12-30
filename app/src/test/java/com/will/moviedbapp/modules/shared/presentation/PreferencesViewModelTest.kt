@@ -1,8 +1,8 @@
 package com.will.moviedbapp.modules.shared.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.UserPreferencesRepository
-import com.will.moviedbapp.modules.shared.presentation.PreferencesViewModel
+import com.will.moviedbapp.data.repository.local.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.ui.viewmodels.PreferencesViewModel
 import com.will.moviedbapp.resources.mocks.MockPreferences
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue

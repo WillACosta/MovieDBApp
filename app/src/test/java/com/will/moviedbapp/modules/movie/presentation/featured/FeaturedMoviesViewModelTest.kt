@@ -2,10 +2,11 @@ package com.will.moviedbapp.modules.movie.presentation.featured
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.will.moviedbapp.core.state.Result
-import com.will.moviedbapp.modules.movie.domain.usecase.GetTrendingMoviesUseCase
+import com.will.moviedbapp.domain.usecases.GetTrendingMoviesUseCase
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import com.will.moviedbapp.resources.utils.getOrAwaitValue
+import com.will.moviedbapp.ui.viewmodels.FeaturedMoviesViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK

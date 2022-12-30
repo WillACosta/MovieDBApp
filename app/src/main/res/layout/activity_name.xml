@@ -8,7 +8,7 @@
     android:paddingHorizontal="@dimen/base_screen_padding"
     android:paddingTop="@dimen/spacing_xxl"
     android:paddingBottom="@dimen/base_screen_padding"
-    tools:context=".modules.welcome.presentation.name.NameActivity">
+    tools:context=".ui.activities.NameActivity">
 
     <TextView
         android:id="@+id/name_text"

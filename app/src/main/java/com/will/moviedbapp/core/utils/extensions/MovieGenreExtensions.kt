@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.google.android.material.chip.Chip
 import com.will.moviedbapp.R
-import com.will.moviedbapp.modules.movie.domain.entity.MovieGenre
+import com.will.moviedbapp.domain.entities.MovieGenre
 
 fun MovieGenre.toChipComponent(context: Context, onTouchedGenre: (Int) -> Unit): Chip {
     val chipItem = LayoutInflater.from(context).inflate(

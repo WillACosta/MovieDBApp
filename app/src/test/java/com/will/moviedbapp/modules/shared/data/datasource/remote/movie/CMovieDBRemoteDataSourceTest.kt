@@ -1,7 +1,9 @@
 package com.will.moviedbapp.modules.shared.data.datasource.remote.movie
 
 import com.will.moviedbapp.core.errors.RemoteDataSourceException
-import com.will.moviedbapp.modules.shared.data.services.MovieDBService
+import com.will.moviedbapp.data.datasource.movie.CMovieDBRemoteDataSource
+import com.will.moviedbapp.data.datasource.movie.MovieDBRemoteDataSource
+import com.will.moviedbapp.network.services.MovieDBService
 import com.will.moviedbapp.resources.mocks.MockMovie
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery

@@ -3,9 +3,9 @@ package com.will.moviedbapp.modules.shared.data.repository.local.userPreferences
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.CUserPreferencesRepository
-import com.will.moviedbapp.modules.shared.data.repository.local.userPreferences.UserPreferencesRepository
-import com.will.moviedbapp.modules.shared.model.UserPreferences
+import com.will.moviedbapp.data.repository.local.userPreferences.CUserPreferencesRepository
+import com.will.moviedbapp.data.repository.local.userPreferences.UserPreferencesRepository
+import com.will.moviedbapp.network.model.UserPreferences
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery

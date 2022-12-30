@@ -1,8 +1,8 @@
 package com.will.moviedbapp.core.constants
 
 object AppRoutes {
-    const val NAME = "com.will.moviedbapp.modules.welcome.presentation.name.NameActivity"
-    const val MAIN = "com.will.moviedbapp.modules.home.presentation.MainActivity"
+    const val NAME = "com.will.moviedbapp.ui.activities.NameActivity"
+    const val MAIN = "com.will.moviedbapp.ui.activities.MainActivity"
     const val MOVIE_DETAIL =
-        "com.will.moviedbapp.modules.movie.presentation.detail.MovieDetailsActivity"
+        "com.will.moviedbapp.ui.activities.MovieDetailsActivity"
 }

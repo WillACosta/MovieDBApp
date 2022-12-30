@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:paddingBottom="@dimen/spacing_lg"
-    tools:context=".modules.movie.presentation.detail.MovieDetailsActivity">
+    tools:context=".ui.activities.MovieDetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"

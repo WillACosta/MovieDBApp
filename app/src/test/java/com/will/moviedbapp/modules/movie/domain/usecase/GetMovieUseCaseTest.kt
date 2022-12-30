@@ -1,6 +1,7 @@
 package com.will.moviedbapp.modules.movie.domain.usecase
 
-import com.will.moviedbapp.modules.shared.data.repository.remote.movie.MovieRepository
+import com.will.moviedbapp.data.repository.remote.movie.MovieRepository
+import com.will.moviedbapp.domain.usecases.GetMovieUseCase
 import com.will.moviedbapp.resources.mocks.MockMovie
 import com.will.moviedbapp.resources.mocks.MockResult
 import io.mockk.MockKAnnotations

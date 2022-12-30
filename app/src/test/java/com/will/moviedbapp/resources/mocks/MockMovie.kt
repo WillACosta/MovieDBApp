@@ -1,9 +1,9 @@
 package com.will.moviedbapp.resources.mocks
 
-import com.will.moviedbapp.modules.movie.domain.entity.Movie
-import com.will.moviedbapp.modules.movie.domain.entity.MovieGenre
-import com.will.moviedbapp.modules.shared.model.MovieGenresResponse
-import com.will.moviedbapp.modules.shared.model.PaginatedResponse
+import com.will.moviedbapp.domain.entities.Movie
+import com.will.moviedbapp.domain.entities.MovieGenre
+import com.will.moviedbapp.network.model.MovieGenresResponse
+import com.will.moviedbapp.network.model.PaginatedResponse
 
 object MockMovie {
     const val movieID = 438631
