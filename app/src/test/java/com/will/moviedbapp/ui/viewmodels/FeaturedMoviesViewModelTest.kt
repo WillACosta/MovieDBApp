@@ -1,23 +1,23 @@
 package com.will.moviedbapp.ui.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.will.moviedbapp.core.state.Result
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
+import com.will.moviedbapp.core.state.UiState
 import com.will.moviedbapp.domain.usecases.GetTrendingMoviesUseCase
-import com.will.moviedbapp.resources.mocks.MockMovie
+import com.will.moviedbapp.resources.mocks.MockMovieData
 import com.will.moviedbapp.resources.utils.TestDispatcherRule
-import com.will.moviedbapp.resources.utils.getOrAwaitValue
-import com.will.moviedbapp.ui.viewmodels.FeaturedMoviesViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.test.assertEquals
+import java.io.IOException
+import kotlin.test.assertTrue
 
 class FeaturedMoviesViewModelTest {
     @get:Rule
@@ -39,23 +39,35 @@ class FeaturedMoviesViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `should load trending movies when viewModel starts`() = runTest {
-        val expected = Result.successOrEmpty(MockMovie.listMovie)
+    fun `should call getTrendingMovies and emit values correctly`() = runBlocking {
 
-        coEvery { useCase(Unit) } returns flow {
-            emit(expected)
+        coEvery { useCase() } returns flow {
+            emit(Result.success(MockMovieData.movieList))
         }
 
-        viewModel.getTrendingMovies()
+        viewModel.uiState.test {
+            viewModel.getTrendingMovies()
 
-        val liveData = viewModel.moviesList
-        val actual = liveData.getOrAwaitValue()
+            assertThat(awaitItem()).isEqualTo(UiState.Loading)
+            assertThat(awaitItem()).isEqualTo(UiState.Success(MockMovieData.movieList))
+            assertThat(cancelAndConsumeRemainingEvents().size).isEqualTo(0)
+        }
+    }
 
-        advanceUntilIdle()
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `should call getTrendingMovies and emit an Failure`() {
+        coEvery { useCase() } returns flow {
+            emit(Result.failure(IOException()))
+        }
 
-        assertEquals(
-            expected,
-            actual
-        )
+        runBlocking {
+            viewModel.uiState.test {
+                viewModel.getTrendingMovies()
+
+                assertThat(awaitItem()).isEqualTo(UiState.Loading)
+                assertTrue { awaitItem() is UiState.Failure }
+            }
+        }
     }
 }

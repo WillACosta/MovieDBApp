@@ -1,8 +1,8 @@
-package com.will.moviedbapp.domain.entities
+package com.will.moviedbapp.network.model.genre
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieGenre(
+data class GenreResponse(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String
 )

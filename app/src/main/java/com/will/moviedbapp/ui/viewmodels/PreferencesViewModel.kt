@@ -1,11 +1,11 @@
 package com.will.moviedbapp.ui.viewmodels
 
 import androidx.lifecycle.*
-import com.will.moviedbapp.data.repository.user_preferences.UserPreferencesRepository
+import com.will.moviedbapp.data.storage.AppDataStorage
 import com.will.moviedbapp.network.model.UserPreferences
 import kotlinx.coroutines.launch
 
-class PreferencesViewModel(val repository: UserPreferencesRepository) : ViewModel() {
+class PreferencesViewModel(val repository: AppDataStorage) : ViewModel() {
 
     private val _userPreferences = MutableLiveData<UserPreferences>()
     val userPreferences: LiveData<UserPreferences> = _userPreferences
@@ -25,9 +25,9 @@ class PreferencesViewModel(val repository: UserPreferencesRepository) : ViewMode
 
     private fun getPreferences() {
         viewModelScope.launch {
-            repository.getPreferences()
+            repository.getUserName()
                 .collect {
-                    _userPreferences.postValue(it)
+
                 }
         }
     }

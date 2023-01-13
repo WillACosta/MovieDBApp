@@ -114,6 +114,8 @@ dependencies {
     testImplementation("io.insert-koin:koin-test-junit4:$koinVersion")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation("app.cash.turbine:turbine:0.12.1")
+    testImplementation("com.google.truth:truth:1.1.3")
 
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")

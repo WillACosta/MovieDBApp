@@ -1,7 +1,7 @@
 package com.will.moviedbapp.network.services
 
-import com.will.moviedbapp.network.model.PaginatedResponse
-import com.will.moviedbapp.resources.mocks.MockMovie
+import com.will.moviedbapp.network.model.movie_list.MovieListResponse
+import com.will.moviedbapp.resources.mocks.MockApiData
 import com.will.moviedbapp.resources.utils.enqueueResponse
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
@@ -16,10 +16,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @RunWith(JUnit4::class)
-class MovieDBServiceTest {
+class MovieApiServiceTest {
 
     lateinit var mockWebServer: MockWebServer
-    lateinit var service: MovieDBService
+    lateinit var service: MovieApiService
 
     @Before
     fun createService() {
@@ -30,7 +30,7 @@ class MovieDBServiceTest {
         service = Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(converterFactory)
-            .build().create(MovieDBService::class.java)
+            .build().create(MovieApiService::class.java)
     }
 
     @After
@@ -52,13 +52,13 @@ class MovieDBServiceTest {
 
     @Test
     fun `should fetch trending movies correctly with status code 200`() {
-        mockWebServer.enqueueResponse(MockMovie.trendingMovieJson, 200)
+        mockWebServer.enqueueResponse(MockApiData.trendingMovieJson, 200)
 
         runBlocking {
             val response = service.getTrendingMovies()
-            val expected = PaginatedResponse(
+            val expected = MovieListResponse(
                 1,
-                listOf(MockMovie.movie),
+                listOf(MockApiData.movieResponse),
                 2,
                 20
             )
@@ -80,14 +80,12 @@ class MovieDBServiceTest {
     }
 
     @Test
-    fun `should fetch movie correctly with status code 200`() {
-        mockWebServer.enqueueResponse(MockMovie.movieJson, 200)
+    fun `should fetch movie detail correctly with status code 200`() {
+        mockWebServer.enqueueResponse(MockApiData.movieDetailJSON, 200)
 
         runBlocking {
-            val response = service.getMovieById(555)
-            val expected = MockMovie.movie
-
-            assertEquals(expected, response)
+            val response = service.getMovieById(1)
+            assertEquals(MockApiData.movieDetailResponse, response)
         }
     }
 
@@ -105,13 +103,13 @@ class MovieDBServiceTest {
 
     @Test
     fun `should fetch a List of Movie correctly with status code 200`() {
-        mockWebServer.enqueueResponse(MockMovie.trendingMovieJson, 200)
+        mockWebServer.enqueueResponse(MockApiData.trendingMovieJson, 200)
 
         runBlocking {
             val response = service.searchMovie("dune")
-            val expected = PaginatedResponse(
+            val expected = MovieListResponse(
                 1,
-                listOf(MockMovie.movie),
+                listOf(MockApiData.movieResponse),
                 2,
                 20
             )

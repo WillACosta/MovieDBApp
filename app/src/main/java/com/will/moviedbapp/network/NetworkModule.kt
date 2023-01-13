@@ -1,6 +1,6 @@
 package com.will.moviedbapp.network
 
-import com.will.moviedbapp.network.services.MovieDBService
+import com.will.moviedbapp.network.services.MovieApiService
 import com.will.moviedbapp.network.utils.NetworkHelper
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -18,7 +18,7 @@ object NetworkModule {
     }
 
     private fun servicesModule(): Module = module {
-        single { NetworkHelper.createService<MovieDBService>(get(), get()) }
+        single { NetworkHelper.createService<MovieApiService>(get(), get()) }
     }
 
     private fun networkHelperModule() = module {

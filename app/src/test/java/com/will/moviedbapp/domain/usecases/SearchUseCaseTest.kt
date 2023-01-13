@@ -1,21 +1,19 @@
 package com.will.moviedbapp.domain.usecases
 
 import com.will.moviedbapp.data.repository.movie.MovieRepository
-import com.will.moviedbapp.resources.mocks.MockMovie
-import com.will.moviedbapp.resources.mocks.MockResult
+import com.will.moviedbapp.resources.mocks.MockMovieData
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import kotlin.test.assertEquals
-import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class SearchUseCaseTest {
-
     @MockK
     private lateinit var repository: MovieRepository
     private lateinit var useCase: SearchUseCase
@@ -27,17 +25,19 @@ class SearchUseCaseTest {
     }
 
     @Test
-    fun `should invoke useCase and returns normally`() {
-        val searchQuery = MockMovie.searchQuery
-        val expectedState = MockResult.expectedSuccessListMovie
+    fun `should invoke method and returns normally`() {
+        val successResult = Result.success(MockMovieData.movieList)
+        val expected = listOf(successResult)
 
-        coEvery { repository.search(any()) } returns expectedState.asFlow()
+        coEvery { repository.search(any()) } returns flow {
+            emit(successResult)
+        }
 
         runBlocking {
-            val flow = useCase(searchQuery)
+            val flow = useCase("dune")
             val results = flow.toList()
 
-            assertEquals(expectedState, results)
+            assertEquals(expected, results)
             coVerify { repository.search(any()) }
         }
     }

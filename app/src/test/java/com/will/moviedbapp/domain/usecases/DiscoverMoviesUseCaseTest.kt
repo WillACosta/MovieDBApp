@@ -1,18 +1,16 @@
 package com.will.moviedbapp.domain.usecases
 
 import com.will.moviedbapp.data.repository.movie.MovieRepository
-import com.will.moviedbapp.resources.mocks.MockMovie
-import com.will.moviedbapp.resources.mocks.MockResult
+import com.will.moviedbapp.resources.mocks.MockMovieData
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class DiscoverMoviesUseCaseTest {
     @MockK
@@ -26,16 +24,20 @@ class DiscoverMoviesUseCaseTest {
     }
 
     @Test
-    fun `should call invoke method and returns normally`() {
-        val expectedState = MockResult.expectedSuccessListMovie
+    fun `should invoke method and returns normally`() {
+        val successResult = Result.success(MockMovieData.movieList)
+        val expected = listOf(successResult)
+        val genreIds = arrayOf(1, 2)
 
-        coEvery { repository.discoverMovies(any()) } returns expectedState.asFlow()
+        coEvery { repository.discoverMovies(any()) } returns flow {
+            emit(successResult)
+        }
 
         runBlocking {
-            val flow = useCase(MockMovie.genresIdList)
+            val flow = useCase(genreIds)
             val results = flow.toList()
 
-            assertEquals(expectedState, results)
+            kotlin.test.assertEquals(expected, results)
             coVerify { repository.discoverMovies(any()) }
         }
     }

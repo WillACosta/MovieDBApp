@@ -1,8 +1,5 @@
 package com.will.moviedbapp.core.constants
 
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
-
 abstract class AppConstants {
 
     object Network {
@@ -13,9 +10,6 @@ abstract class AppConstants {
 
     object Preferences {
         const val NAME = "user_preferences"
-        val NAME_KEY = stringPreferencesKey("name")
-        val NOT_FIRST_ACCESS_KEY = booleanPreferencesKey("isNotFirstAccess")
-        val IS_DARK_MODE_KEY = booleanPreferencesKey("isDarkMode")
     }
 
     object LogTags {

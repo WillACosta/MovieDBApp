@@ -5,7 +5,7 @@ import com.will.moviedbapp.network.model.UserPreferences
 object MockPreferences {
     val userPreferences = UserPreferences(
         name = "Jane",
-        isNotFirsAccess = false,
-        isDarkMode = false
+        isUserFirstTime = false,
+        currentTheme = "dark"
     )
 }

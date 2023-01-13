@@ -1,4 +1,4 @@
-package com.will.moviedbapp.network.utils
+package com.will.moviedbapp.data.utils
 
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore

@@ -3,7 +3,7 @@ package com.will.moviedbapp.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.will.moviedbapp.core.constants.AppConstants
-import com.will.moviedbapp.core.state.Result
+import com.will.moviedbapp.data.utils.Resource
 import com.will.moviedbapp.core.utils.extensions.load
 import com.will.moviedbapp.databinding.ActivityMovieDetailBinding
 import com.will.moviedbapp.ui.viewmodels.MovieDetailsViewModel
@@ -33,13 +33,13 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun setListeners() {
         viewModel.movie.observe(this) { state ->
             when (state) {
-                Result.Loading -> {}
+                Resource.Loading -> {}
 
-                Result.Empty -> {}
+                Resource.Empty -> {}
 
-                is Result.Error -> {}
+                is Resource.Error -> {}
 
-                is Result.Success -> {
+                is Resource.Success -> {
                     val movie = state.data
 
                     binding.apply {

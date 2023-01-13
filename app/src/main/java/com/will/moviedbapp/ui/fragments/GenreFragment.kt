@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.core.utils.extensions.toChipComponent
+import com.will.moviedbapp.data.utils.Resource
 import com.will.moviedbapp.databinding.FragmentGenreBinding
+import com.will.moviedbapp.domain.entities.Genre
 import com.will.moviedbapp.domain.entities.Movie
-import com.will.moviedbapp.domain.entities.MovieGenre
 import com.will.moviedbapp.ui.recyclerview.MovieAdapter
 import com.will.moviedbapp.ui.viewmodels.GenreViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,34 +33,34 @@ class GenreFragment : Fragment() {
     }
 
     private fun setListeners() {
-        viewModel.genres.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                Result.Loading -> {}
-                Result.Empty -> {}
+//        viewModel.genres.observe(viewLifecycleOwner) { state ->
+//            when (state) {
+//                Resource.Loading -> {}
+//                Resource.Empty -> {}
+//
+//                is Resource.Success -> {
+//                    setUpChipGroupView(state.data)
+//                }
+//
+//                else -> {}
+//            }
+//        }
 
-                is Result.Success -> {
-                    setUpChipGroupView(state.data)
-                }
-
-                else -> {}
-            }
-        }
-
-        viewModel.moviesByGenres.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                Result.Loading -> {}
-                Result.Empty -> {}
-
-                is Result.Success -> {
-                    setUpMoviesRecyclerView(state.data)
-                }
-
-                else -> {}
-            }
-        }
+//        viewModel.moviesByGenres.observe(viewLifecycleOwner) { state ->
+//            when (state) {
+//                Resource.Loading -> {}
+//                Resource.Empty -> {}
+//
+//                is Resource.Success -> {
+//                    setUpMoviesRecyclerView(state.data)
+//                }
+//
+//                else -> {}
+//            }
+//        }
     }
 
-    private fun setUpChipGroupView(genres: List<MovieGenre>) {
+    private fun setUpChipGroupView(genres: List<Genre>) {
         binding.genresChipGroup.removeAllViews()
 
         genres.forEach { item ->

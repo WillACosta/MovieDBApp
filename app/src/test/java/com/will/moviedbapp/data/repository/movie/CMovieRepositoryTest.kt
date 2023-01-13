@@ -1,9 +1,7 @@
 package com.will.moviedbapp.data.repository.movie
 
-import com.will.moviedbapp.core.errors.RemoteDataSourceException
-import com.will.moviedbapp.core.state.Result
-import com.will.moviedbapp.data.datasource.movie.MovieDBRemoteDataSource
-import com.will.moviedbapp.resources.mocks.MockMovie
+import com.will.moviedbapp.data.datasource.movie.MovieDataSource
+import com.will.moviedbapp.resources.mocks.MockMovieData
 import com.will.moviedbapp.resources.mocks.MockResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -11,18 +9,17 @@ import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import java.io.IOException
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class CMovieRepositoryTest {
 
     @MockK
-    lateinit var remote: MovieDBRemoteDataSource
+    lateinit var remote: MovieDataSource
     private lateinit var repository: MovieRepository
-
-    private val expectedErrorStateList = MockResult.expectedErrorStateList
-    private val expectedEmptyStateList = MockResult.expectedEmptyStateList
 
     @Before
     fun setUp() {
@@ -31,144 +28,163 @@ class CMovieRepositoryTest {
     }
 
     @Test
-    fun `should call getTrendingMovies and returns a list state of Result with Success`() {
-        val listMovie = MockMovie.listMovie
-        val expectedStates = MockResult.expectedSuccessListMovie
+    fun `should call getTrendingMovies and emit mappedValue with Success`() {
+        val emittedValues = listOf(
+            Result.success(MockMovieData.movieList),
+        )
 
-        coEvery { remote.getTrendingMovies() } returns listMovie
-
-        runBlocking {
-            val flow = repository.getTrendingMovies()
-            val results = flow.toList()
-
-            assertEquals(2, results.count())
-            assertEquals(expectedStates, results)
-        }
-    }
-
-    @Test
-    fun `should returns state as Empty if remote returns an empty list for getTrendingMovies`() {
-        coEvery { remote.getTrendingMovies() } returns emptyList()
+        coEvery { remote.getTrendingMovies() } returns MockResult.movieListResponseSuccess
 
         runBlocking {
             val flow = repository.getTrendingMovies()
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(expectedEmptyStateList, results)
+            assertEquals(1, results.count())
+            assertEquals(emittedValues, results)
         }
     }
 
     @Test
-    fun `should returns state as a Error if remote calls was unsuccessful for getTrendingMovies`() {
-        coEvery { remote.getTrendingMovies() } throws RemoteDataSourceException()
+    fun `should call getTrendingMovies and emit an Failure`() {
+        coEvery { remote.getTrendingMovies() } returns Result.failure(IOException())
 
         runBlocking {
             val flow = repository.getTrendingMovies()
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(expectedErrorStateList[0], results[0])
-            assert(expectedErrorStateList[1] is Result.Error)
+            assertEquals(1, results.count())
+            assertTrue(results[0].isFailure)
         }
     }
 
     @Test
-    fun `should returns a list state of Result with Success`() {
-        val movie = MockMovie.movie
-        val expectedStates = MockResult.expectedSuccessMovie
+    fun `should call getMovie and emit mappedValue with Success`() {
+        val emittedValues = listOf(
+            Result.success(MockMovieData.movieDetail)
+        )
 
-        coEvery { remote.getMovie(any()) } returns movie
+        coEvery { remote.getMovie(any()) } returns MockResult.movieDetailResponseSuccess
 
         runBlocking {
-            val flow = repository.getMovie(MockMovie.movieID)
+            val flow = repository.getMovieDetail(1)
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(expectedStates, results)
+            assertEquals(1, results.count())
+            assertEquals(emittedValues, results)
             coVerify { remote.getMovie(any()) }
         }
     }
 
     @Test
-    fun `should returns state as a Error if remote calls was unsuccessfully`() {
-        coEvery { remote.getMovie(any()) } throws RemoteDataSourceException()
+    fun `should call getMovieDetail and emit an Failure`() {
+        coEvery { remote.getMovie(any()) } returns Result.failure(IOException())
 
         runBlocking {
-            val flow = repository.getMovie(MockMovie.movieID)
+            val flow = repository.getMovieDetail(1)
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(expectedErrorStateList[0], results[0])
-            assert(expectedErrorStateList[1] is Result.Error)
+            assertEquals(1, results.count())
+            assertTrue(results[0].isFailure)
         }
     }
 
     @Test
-    fun `should call search and returns a list state of Result with Success`() {
-        coEvery { remote.search(any()) } returns MockMovie.listMovie
+    fun `should call search and emit mappedValue with Success`() {
+        val query = "dune"
+        val emittedValues = listOf(
+            Result.success(MockMovieData.movieList)
+        )
 
-        val expectedStates = MockResult.expectedSuccessListMovie
+        coEvery { remote.search(any()) } returns MockResult.movieListResponseSuccess
 
         runBlocking {
-            val flow = repository.search(MockMovie.searchQuery)
+            val flow = repository.search(query)
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(expectedStates, results)
+            assertEquals(1, results.count())
+            assertEquals(emittedValues, results)
+            coVerify { remote.search(any()) }
         }
     }
 
     @Test
-    fun `should returns last Result as a Empty if remote returns an empty list`() {
-        coEvery { remote.search(any()) } returns emptyList()
+    fun `should call search and emit an Failure`() {
+        val query = "dune"
+
+        coEvery { remote.search(any()) } returns Result.failure(IOException())
 
         runBlocking {
-            val flow = repository.search(MockMovie.searchQuery)
+            val flow = repository.search(query)
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(expectedEmptyStateList, results)
+            assertEquals(1, results.count())
+            assertTrue(results[0].isFailure)
         }
     }
 
     @Test
-    fun `should returns last Result as a Error if repository calls was unsuccessfully`() {
-        coEvery { remote.search(any()) } throws RemoteDataSourceException()
+    fun `should call getGenres and emit mappedValue with Success`() {
+        val emittedValues = listOf(
+            Result.success(MockMovieData.genreList),
+        )
 
-        runBlocking {
-            val flow = repository.search(MockMovie.searchQuery)
-            val results = flow.toList()
-
-            assertEquals(2, results.count())
-            assertEquals(expectedErrorStateList[0], results[0])
-            assert(expectedErrorStateList[1] is Result.Error)
-        }
-    }
-
-    @Test
-    fun `should call getGenres and returns an Result with list of MovieGenre`() {
-        coEvery { remote.getGenres() } returns MockMovie.genresList
+        coEvery { remote.getGenres() } returns MockResult.genreListResponseSuccess
 
         runBlocking {
             val flow = repository.getGenres()
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(Result.successOrEmpty(MockMovie.genresList), results[1])
+            assertEquals(1, results.count())
+            assertEquals(emittedValues, results)
+            coVerify { remote.getGenres() }
         }
     }
 
     @Test
-    fun `should call discoverMovies and returns an Result with list of Movie`() {
-        coEvery { remote.discoverMovies(MockMovie.genresIdList) } returns MockMovie.listMovie
+    fun `should call getGenres and emit an Failure`() {
+        coEvery { remote.getGenres() } returns Result.failure(IOException())
 
         runBlocking {
-            val flow = repository.discoverMovies(MockMovie.genresIdList)
+            val flow = repository.getGenres()
             val results = flow.toList()
 
-            assertEquals(2, results.count())
-            assertEquals(Result.successOrEmpty(MockMovie.genresList), results[1])
+            assertEquals(1, results.count())
+            assertTrue(results[0].isFailure)
         }
     }
+
+    @Test
+    fun `should call discoverMovies and emit mappedValue with Success`() {
+        val fakeIds = arrayOf(1, 2, 3)
+        val emittedValues = listOf(
+            Result.success(MockMovieData.movieList),
+        )
+
+        coEvery { remote.discoverMovies(any()) } returns MockResult.movieListResponseSuccess
+
+        runBlocking {
+            val flow = repository.discoverMovies(fakeIds)
+            val results = flow.toList()
+
+            assertEquals(1, results.count())
+            assertEquals(emittedValues, results)
+            coVerify { remote.discoverMovies(any()) }
+        }
+    }
+
+    @Test
+    fun `should call discoverMovies and emit an Failure`() {
+        val fakeIds = arrayOf(1, 2, 3)
+
+        coEvery { remote.discoverMovies(any()) } returns Result.failure(IOException())
+
+        runBlocking {
+            val flow = repository.discoverMovies(fakeIds)
+            val results = flow.toList()
+
+            assertEquals(1, results.count())
+            assertTrue(results[0].isFailure)
+        }
+    }
+
 }

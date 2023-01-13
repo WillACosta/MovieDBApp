@@ -1,14 +1,14 @@
 package com.will.moviedbapp.domain.usecases
 
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
 import com.will.moviedbapp.data.repository.movie.MovieRepository
-import com.will.moviedbapp.resources.mocks.MockResult
+import com.will.moviedbapp.resources.mocks.MockMovieData
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import kotlin.test.assertEquals
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -26,17 +26,19 @@ class GetTrendingMoviesUseCaseTest {
     }
 
     @Test
-    fun `should call execute method and returns normally`() {
-        val expectedState = MockResult.expectedSuccessListMovie
+    fun `should invoke method and returns normally`() {
+        val expected = Result.success(MockMovieData.movieList)
 
-        coEvery { repository.getTrendingMovies() } returns expectedState.asFlow()
+        coEvery { repository.getTrendingMovies() } returns flow {
+            emit(Result.success(MockMovieData.movieList))
+        }
 
         runBlocking {
-            val flow = useCase(Unit)
-            val results = flow.toList()
-
-            assertEquals(expectedState, results)
-            coVerify { repository.getTrendingMovies() }
+            val flow = useCase()
+            flow.test {
+                assertThat(expectMostRecentItem()).isEqualTo(expected)
+                coVerify { repository.getTrendingMovies() }
+            }
         }
     }
 }

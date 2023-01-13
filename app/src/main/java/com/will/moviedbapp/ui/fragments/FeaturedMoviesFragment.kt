@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.will.moviedbapp.core.state.Result
 import com.will.moviedbapp.databinding.FragmentFeaturedMoviesBinding
 import com.will.moviedbapp.domain.entities.Movie
-import com.will.moviedbapp.ui.utils.MovieFunctionsHelper
 import com.will.moviedbapp.ui.recyclerview.MovieAdapter
+import com.will.moviedbapp.ui.utils.MovieFunctionsHelper
 import com.will.moviedbapp.ui.viewmodels.FeaturedMoviesViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -40,28 +37,28 @@ class FeaturedMoviesFragment : Fragment() {
 
     private fun setListeners() {
         lifecycleScope.launch {
-            viewModel.moviesList.observe(viewLifecycleOwner) { state ->
-                when (state) {
-                    Result.Loading -> handleShimmerLayout(true)
-
-                    Result.Empty -> handleShimmerLayout(false)
-
-                    is Result.Success -> {
-                        binding.recyclerFeaturedMovies.apply {
-                            layoutManager = LinearLayoutManager(context).apply {
-                                orientation = RecyclerView.HORIZONTAL
-                            }
-
-                            adapter = movieAdapter
-                        }
-
-                        movieAdapter.submitList(state.data)
-                        handleShimmerLayout(false)
-                    }
-
-                    is Result.Error -> handleShimmerLayout(false)
-                }
-            }
+//            viewModel.moviesList.observe(viewLifecycleOwner) { state ->
+//                when (state) {
+//                    Resource.Loading -> handleShimmerLayout(true)
+//
+//                    Resource.Empty -> handleShimmerLayout(false)
+//
+//                    is Resource.Success -> {
+//                        binding.recyclerFeaturedMovies.apply {
+//                            layoutManager = LinearLayoutManager(context).apply {
+//                                orientation = RecyclerView.HORIZONTAL
+//                            }
+//
+//                            adapter = movieAdapter
+//                        }
+//
+//                        movieAdapter.submitList(state.data)
+//                        handleShimmerLayout(false)
+//                    }
+//
+//                    is Resource.Error -> handleShimmerLayout(false)
+//                }
+//            }
         }
     }
 

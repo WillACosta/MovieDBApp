@@ -2,24 +2,25 @@
 
 package com.will.moviedbapp.ui.viewmodels
 
-import androidx.lifecycle.*
-import com.will.moviedbapp.core.state.Result
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.will.moviedbapp.domain.entities.Genre
 import com.will.moviedbapp.domain.entities.Movie
-import com.will.moviedbapp.domain.entities.MovieGenre
 import com.will.moviedbapp.domain.usecases.DiscoverMoviesUseCase
 import com.will.moviedbapp.domain.usecases.GetGenresListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 class GenreViewModel(
     private val getGenresListUseCase: GetGenresListUseCase,
     private val discoverMovies: DiscoverMoviesUseCase
 ) : ViewModel() {
-    private val _genres = MutableLiveData<Result<List<MovieGenre>>>()
-    val genres: LiveData<Result<List<MovieGenre>>> = _genres
+    private val _genres = MutableLiveData<Result<List<Genre>>>()
+    val genres: LiveData<Result<List<Genre>>> = _genres
 
     private val _selectedGenres = MutableStateFlow<Array<Int>?>(null)
 
@@ -39,12 +40,12 @@ class GenreViewModel(
     }
 
     private fun getGenres() {
-        viewModelScope.launch {
-            getGenresListUseCase(Unit)
-                .collect {
-                    _genres.postValue(it)
-                }
-        }
+//        viewModelScope.launch {
+//            getGenresListUseCase(Unit)
+//                .collect {
+//                    _genres.postValue(it)
+//                }
+//        }
     }
 
     fun updateSelectedGenres(genresIdList: Array<Int>) {

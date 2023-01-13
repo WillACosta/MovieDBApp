@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.will.moviedbapp.R
 import com.will.moviedbapp.core.constants.AppConstants
-import com.will.moviedbapp.core.state.Result
+import com.will.moviedbapp.data.utils.Resource
 import com.will.moviedbapp.databinding.FragmentHomeBinding
 import com.will.moviedbapp.domain.entities.Movie
 import com.will.moviedbapp.ui.recyclerview.MovieAdapter
@@ -52,35 +52,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun setListeners() {
-        homeViewModel.moviesResultList.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                Result.Loading -> handleShimmerLayout(true)
-
-                Result.Empty -> {
-                    handleShimmerLayout(false)
-                    binding.emptyContentComponent.root.visibility = View.VISIBLE
-                }
-
-                is Result.Error -> {
-                    Toast.makeText(
-                        context,
-                        AppConstants.AppMessages.GENERIC_ERROR,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                is Result.Success -> {
-                    handleShimmerLayout(false)
-
-                    binding.recyclerSearchedMovies.apply {
-                        adapter = movieAdapter
-                        layoutManager = GridLayoutManager(context, 2)
-                        setHasFixedSize(true)
-                    }
-
-                    movieAdapter.submitList(state.data)
-                }
-            }
+        homeViewModel.moviesResourceList.observe(viewLifecycleOwner) {
+//            when (it) {
+//                Resource.Loading -> handleShimmerLayout(true)
+//
+//                Resource.Empty -> {
+//                    handleShimmerLayout(false)
+//                    binding.emptyContentComponent.root.visibility = View.VISIBLE
+//                }
+//
+//                is Resource.Error -> {
+//                    Toast.makeText(
+//                        context,
+//                        AppConstants.AppMessages.GENERIC_ERROR,
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//
+//                is Resource.Success -> {
+//                    handleShimmerLayout(false)
+//
+//                    binding.recyclerSearchedMovies.apply {
+//                        adapter = movieAdapter
+//                        layoutManager = GridLayoutManager(context, 2)
+//                        setHasFixedSize(true)
+//                    }
+//
+//                    movieAdapter.submitList(it.data)
+//                }
+//            }
         }
 
         binding.edtSearch.doOnTextChanged { text, _, _, _ ->
