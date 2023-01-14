@@ -4,8 +4,8 @@ import com.will.moviedbapp.data.datasource.movie.CMovieDataSource
 import com.will.moviedbapp.data.datasource.movie.MovieDataSource
 import com.will.moviedbapp.data.repository.movie.CMovieRepository
 import com.will.moviedbapp.data.repository.movie.MovieRepository
-import com.will.moviedbapp.data.storage.AppDataStorage
-import com.will.moviedbapp.data.storage.CAppDataStorage
+import com.will.moviedbapp.data.repository.UserPreferencesRepository
+import com.will.moviedbapp.data.storage.CUserPreferencesRepository
 import com.will.moviedbapp.data.utils.dataStore
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.context.loadKoinModules
@@ -25,7 +25,7 @@ object DataModule {
     private fun repositoryModule(): Module = module {
         factory<MovieRepository> { CMovieRepository(get()) }
         single { androidApplication().dataStore }
-        single<AppDataStorage> { CAppDataStorage(get()) }
+        single<UserPreferencesRepository> { CUserPreferencesRepository(get()) }
     }
 
     private fun dataSourcesModule(): Module = module {

@@ -1,9 +1,9 @@
 package com.will.moviedbapp.resources.mocks
 
-import com.will.moviedbapp.network.model.UserPreferences
+import com.will.moviedbapp.core.model.UserData
 
 object MockPreferences {
-    val userPreferences = UserPreferences(
+    val userData = UserData(
         name = "Jane",
         isUserFirstTime = false,
         currentTheme = "dark"

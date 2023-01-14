@@ -56,7 +56,7 @@ class UpdateNameFragment : DialogFragment() {
             binding.edtContainer.error = error
         }
 
-        preferencesViewModel.userPreferences.observe(this) {
+        preferencesViewModel.userData.observe(this) {
             binding.edtName.setText(it.name)
         }
     }

@@ -1,10 +1,15 @@
 import com.android.build.api.dsl.ApplicationDefaultConfig
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+import com.google.protobuf.gradle.builtins
+import com.google.protobuf.gradle.generateProtoTasks
+import com.google.protobuf.gradle.protobuf
+import com.google.protobuf.gradle.protoc
 
 plugins {
     id("com.android.application")
     id("kotlin-kapt")
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    id("com.google.protobuf") version "0.8.17"
     kotlin("android")
 }
 
@@ -65,6 +70,27 @@ ktlint {
     }
 }
 
+// Setup protobuf configuration generating Kotlin classes
+protobuf {
+    protoc {
+        if (osdetector.os == "osx") {
+            artifact = "com.google.protobuf:protoc:3.14.0:osx-x86_64"
+        } else {
+            artifact = "com.google.protobuf:protoc:3.14.0"
+        }
+    }
+
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                val java by registering {
+                    option("lite")
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     val kotlinVersion = "1.9.0"
     val koinVersion = "3.2.2"
@@ -74,6 +100,7 @@ dependencies {
     val lifecycleVersion = "2.5.1"
     val glideVersion = "4.14.2"
     val dataStoreVersion = "1.0.0"
+    val nav_version = "2.5.3"
 
     val composeBom = platform("androidx.compose:compose-bom:2022.10.00")
     implementation(composeBom)
@@ -95,18 +122,29 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
+    // network and DI
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.datastore:datastore-preferences:$dataStoreVersion")
 
+    // datastore
+    implementation("androidx.datastore:datastore:1.0.0")
+    implementation("com.google.protobuf:protobuf-javalite:3.18.0")
+
+    // glide (image lib)
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     annotationProcessor("com.github.bumptech.glide:compiler:$glideVersion")
 
     implementation("com.makeramen:roundedimageview:2.3.0")
 
+    // navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // tests
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("com.squareup.okhttp3:mockwebserver:$okhttpVersion")
     testImplementation("junit:junit:4.13.2")

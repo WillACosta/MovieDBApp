@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.will.moviedbapp.core.constants.AppRoutes
 import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityWelcomeBinding
 import com.will.moviedbapp.ui.viewmodels.WelcomeViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {
@@ -29,6 +32,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun onInitView() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -39,20 +43,20 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.buttonStart.setOnClickListener {
-            viewModel.handleFirstAccess()
+            viewModel.setUserFirstTime()
         }
 
-        viewModel.userPreferences.observe(this) { prefs ->
+        lifecycleScope.launch {
+            viewModel.userPreferences
+                .collect {
+                    if (!it.isFirstAccess && it.userName.isEmpty()) {
+                        goToNameActivity()
+                    }
 
-//            if (prefs.isDarkMode) setDarkMode() else setDarkMode(false)
-//
-//            if (prefs.isNotFirsAccess && prefs.name.isEmpty()) {
-//                goToNameActivity()
-//            }
-//
-//            if (prefs.isNotFirsAccess && prefs.name.isNotEmpty()) {
-//                gotoHomeActivity()
-//            }
+                    if (!it.isFirstAccess && it.userName.isNotEmpty()) {
+                        gotoHomeActivity()
+                    }
+                }
         }
     }
 

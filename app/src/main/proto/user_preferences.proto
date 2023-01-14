@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "theme_config_proto.proto";
+
+option java_package = "com.proto";
+option java_multiple_files = true;
+
+message UserPreferences {
+  string name = 1;
+  ThemeConfigProto currentTheme = 2;
+  bool isUserFirstTime = 3;
+}

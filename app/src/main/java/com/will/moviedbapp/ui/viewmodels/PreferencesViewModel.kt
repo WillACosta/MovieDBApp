@@ -1,17 +1,17 @@
 package com.will.moviedbapp.ui.viewmodels
 
 import androidx.lifecycle.*
-import com.will.moviedbapp.data.storage.AppDataStorage
-import com.will.moviedbapp.network.model.UserPreferences
+import com.will.moviedbapp.data.repository.UserPreferencesRepository
+import com.will.moviedbapp.core.model.UserData
 import kotlinx.coroutines.launch
 
-class PreferencesViewModel(val repository: AppDataStorage) : ViewModel() {
+class PreferencesViewModel(val repository: UserPreferencesRepository) : ViewModel() {
 
-    private val _userPreferences = MutableLiveData<UserPreferences>()
-    val userPreferences: LiveData<UserPreferences> = _userPreferences
+    private val _userData = MutableLiveData<UserData>()
+    val userData: LiveData<UserData> = _userData
 
     val greetingUser = Transformations
-        .map(userPreferences) { prefs ->
+        .map(userData) { prefs ->
             buildString {
                 append("Hello, ")
                 append(prefs.name)
@@ -25,10 +25,7 @@ class PreferencesViewModel(val repository: AppDataStorage) : ViewModel() {
 
     private fun getPreferences() {
         viewModelScope.launch {
-            repository.getUserName()
-                .collect {
 
-                }
         }
     }
 }

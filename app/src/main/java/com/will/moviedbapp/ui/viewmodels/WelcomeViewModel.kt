@@ -1,30 +1,28 @@
 package com.will.moviedbapp.ui.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.will.moviedbapp.data.storage.AppDataStorage
-import com.will.moviedbapp.network.model.UserPreferences
+import com.will.moviedbapp.data.repository.UserPreferencesRepository
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class WelcomeViewModel(val repository: AppDataStorage) : ViewModel() {
+class WelcomeViewModel(val repository: UserPreferencesRepository) : ViewModel() {
 
-    private val _userPreferences = MutableLiveData<UserPreferences>()
-    val userPreferences: LiveData<UserPreferences> = _userPreferences
+    val userPreferences = repository.userData.map {
+        WelcomeUiStateData(
+            it.name,
+            it.isUserFirstTime
+        )
+    }
 
-    init {
+    fun setUserFirstTime() {
         viewModelScope.launch {
-//            repository.getPreferences()
-//                .collect {
-//                    _userPreferences.postValue(it)
-//                }
+            repository.setUserFirstTime(false)
         }
     }
-
-    fun handleFirstAccess() {
-//        viewModelScope.launch {
-//            repository.updateNotFirsAccess(true)
-//        }
-    }
 }
+
+data class WelcomeUiStateData(
+    val userName: String,
+    val isFirstAccess: Boolean
+)

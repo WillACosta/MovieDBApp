@@ -42,7 +42,7 @@ class SettingsFragment : Fragment(), OnDayNightStateChanged {
                 )
         }
 
-        preferencesViewModel.userPreferences.observe(viewLifecycleOwner) {
+        preferencesViewModel.userData.observe(viewLifecycleOwner) {
             binding.nameContainer.text = it.name
         }
 

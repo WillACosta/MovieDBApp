@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.will.moviedbapp.core.constants.AppConstants
-import com.will.moviedbapp.data.storage.AppDataStorage
+import com.will.moviedbapp.data.repository.UserPreferencesRepository
 import kotlinx.coroutines.launch
 
-class NameViewModel(private val repository: AppDataStorage) : ViewModel() {
+class NameViewModel(private val repository: UserPreferencesRepository) : ViewModel() {
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
