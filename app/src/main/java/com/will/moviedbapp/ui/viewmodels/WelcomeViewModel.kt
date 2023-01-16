@@ -11,18 +11,18 @@ class WelcomeViewModel(val repository: UserPreferencesRepository) : ViewModel() 
     val userPreferences = repository.userData.map {
         WelcomeUiStateData(
             it.name,
-            it.isUserFirstTime
+            it.shouldHideWelcome
         )
     }
 
-    fun setUserFirstTime() {
+    fun hideWelcome() {
         viewModelScope.launch {
-            repository.setUserFirstTime(false)
+            repository.setShouldHideWelcome(true)
         }
     }
 }
 
 data class WelcomeUiStateData(
     val userName: String,
-    val isFirstAccess: Boolean
+    val shouldHideWelcome: Boolean
 )

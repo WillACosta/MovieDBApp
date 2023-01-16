@@ -28,7 +28,7 @@ class CUserPreferencesRepository(private val dataStore: DataStore<UserPreference
                 ThemeConfigProto.THEME_CONFIG_LIGHT -> ThemeConfig.LIGHT
                 ThemeConfigProto.THEME_CONFIG_DARK -> ThemeConfig.DARK
             },
-            isUserFirstTime = it.isUserFirstTime
+            shouldHideWelcome = it.shouldHideWelcome
         )
     }
 
@@ -58,10 +58,10 @@ class CUserPreferencesRepository(private val dataStore: DataStore<UserPreference
         }
     }
 
-    override suspend fun setUserFirstTime(isFirstTime: Boolean) {
+    override suspend fun setShouldHideWelcome(shouldHideWelcome: Boolean) {
         try {
             dataStore.updateData {
-                it.toBuilder().setIsUserFirstTime(isFirstTime).build()
+                it.toBuilder().setShouldHideWelcome(shouldHideWelcome).build()
             }
         } catch (ioException: IOException) {
             Log.e(Tags.DATA_STORE, "Failed to update user preferences", ioException)

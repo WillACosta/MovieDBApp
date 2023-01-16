@@ -8,5 +8,5 @@ option java_multiple_files = true;
 message UserPreferences {
   string name = 1;
   ThemeConfigProto currentTheme = 2;
-  bool isUserFirstTime = 3;
+  bool shouldHideWelcome = 3;
 }

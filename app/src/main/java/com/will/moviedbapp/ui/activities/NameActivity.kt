@@ -3,10 +3,13 @@ package com.will.moviedbapp.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.lifecycleScope
 import com.will.moviedbapp.core.constants.AppRoutes
 import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.databinding.ActivityNameBinding
 import com.will.moviedbapp.ui.viewmodels.NameViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NameActivity : AppCompatActivity() {
@@ -15,29 +18,28 @@ class NameActivity : AppCompatActivity() {
         ActivityNameBinding.inflate(layoutInflater)
     }
 
-    private val _viewModel: NameViewModel by viewModel()
+    private val viewModel: NameViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
         initView()
         setListeners()
-
-        setContentView(binding.root)
     }
 
     private fun setListeners() {
-        binding.nextButton.setOnClickListener {
-            submitUserName()
-        }
+        binding.nextButton.setOnClickListener { onSubmit() }
 
         binding.edtName.doOnTextChanged { value, _, _, _ ->
-            _viewModel.onNameChanged(value.toString())
+            viewModel.onNameChanged(value.toString())
         }
 
-        _viewModel.error.observe(this) { error ->
-            binding.edtContainer.error = error
-            binding.nextButton.isEnabled = (error == null)
+        lifecycleScope.launch {
+            viewModel.nameError.collect {
+                binding.edtContainer.error = it
+                binding.nextButton.isEnabled = it == null
+            }
         }
     }
 
@@ -45,16 +47,16 @@ class NameActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun submitUserName() {
+    private fun onSubmit() {
         val validName = binding.edtContainer.error == null
 
         if (validName) {
-            _viewModel.submitName()
-            goToMainActivity()
+            viewModel.submitName()
+            navigateToMainActivity()
         }
     }
 
-    private fun goToMainActivity() {
+    private fun navigateToMainActivity() {
         navigateTo(AppRoutes.MAIN)
         finish()
     }

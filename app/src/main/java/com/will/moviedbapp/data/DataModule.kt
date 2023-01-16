@@ -25,7 +25,7 @@ object DataModule {
     private fun repositoryModule(): Module = module {
         factory<MovieRepository> { CMovieRepository(get()) }
         single { androidApplication().dataStore }
-        single<UserPreferencesRepository> { CUserPreferencesRepository(get()) }
+        factory<UserPreferencesRepository> { CUserPreferencesRepository(get()) }
     }
 
     private fun dataSourcesModule(): Module = module {

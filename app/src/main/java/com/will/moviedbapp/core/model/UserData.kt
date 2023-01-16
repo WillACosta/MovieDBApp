@@ -3,5 +3,5 @@ package com.will.moviedbapp.core.model
 data class UserData(
     val name: String,
     val currentTheme: ThemeConfig,
-    val isUserFirstTime: Boolean
+    val shouldHideWelcome: Boolean
 )

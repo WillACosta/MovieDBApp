@@ -52,9 +52,9 @@ class UpdateNameFragment : DialogFragment() {
             nameViewModel.onNameChanged(value.toString())
         }
 
-        nameViewModel.error.observe(this) { error ->
-            binding.edtContainer.error = error
-        }
+//        nameViewModel.error.observe(this) { error ->
+//            binding.edtContainer.error = error
+//        }
 
         preferencesViewModel.userData.observe(this) {
             binding.edtName.setText(it.name)

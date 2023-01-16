@@ -10,5 +10,5 @@ interface UserPreferencesRepository {
 
     suspend fun updateUserName(name: String)
     suspend fun updateCurrentTheme(theme: ThemeConfig)
-    suspend fun setUserFirstTime(isFirstTime: Boolean)
+    suspend fun setShouldHideWelcome(shouldHideWelcome: Boolean)
 }

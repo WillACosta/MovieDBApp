@@ -1,8 +1,8 @@
 package com.will.moviedbapp.data.storage
 
 import androidx.datastore.core.CorruptionException
-import com.google.protobuf.InvalidProtocolBufferException
 import androidx.datastore.core.Serializer
+import com.google.protobuf.InvalidProtocolBufferException
 import com.proto.UserPreferences
 import java.io.InputStream
 import java.io.OutputStream
