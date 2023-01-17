@@ -99,8 +99,7 @@ dependencies {
     val mockkVersion = "1.13.2"
     val lifecycleVersion = "2.5.1"
     val glideVersion = "4.14.2"
-    val dataStoreVersion = "1.0.0"
-    val nav_version = "2.5.3"
+    val navVersion = "2.5.3"
 
     val composeBom = platform("androidx.compose:compose-bom:2022.10.00")
     implementation(composeBom)
@@ -140,9 +139,9 @@ dependencies {
     implementation("com.makeramen:roundedimageview:2.3.0")
 
     // navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 
     // tests
     testImplementation("io.mockk:mockk:$mockkVersion")

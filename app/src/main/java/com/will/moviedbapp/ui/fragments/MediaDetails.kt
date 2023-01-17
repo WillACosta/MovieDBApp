@@ -1,33 +1,34 @@
-package com.will.moviedbapp.ui.activities
+package com.will.moviedbapp.ui.fragments
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.will.moviedbapp.core.constants.AppConstants
-import com.will.moviedbapp.data.utils.Resource
 import com.will.moviedbapp.core.utils.extensions.load
-import com.will.moviedbapp.databinding.ActivityMovieDetailBinding
+import com.will.moviedbapp.data.utils.Resource
+import com.will.moviedbapp.databinding.FragmentMediaDetailsBinding
 import com.will.moviedbapp.ui.viewmodels.MovieDetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieDetailsActivity : AppCompatActivity() {
+class MediaDetails : Fragment() {
 
-    private val binding: ActivityMovieDetailBinding by lazy {
-        ActivityMovieDetailBinding.inflate(layoutInflater)
+    private val binding: FragmentMediaDetailsBinding by lazy {
+        FragmentMediaDetailsBinding.inflate(layoutInflater)
     }
 
-    val id: String by lazy {
-        requireNotNull(intent.extras?.getString("id")) { "movie id is required" }
-    }
+    private val mediaID: Int = 0
 
     private val viewModel: MovieDetailsViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-        setListeners()
-        viewModel.getMovie(id)
-
-        setContentView(binding.root)
+        viewModel.getMovie(mediaID.toString())
+        return binding.root
     }
 
     private fun setListeners() {
@@ -57,9 +58,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             }
         }
 
-        binding.topAppBar.setNavigationOnClickListener {
-            finish()
-        }
+        binding.topAppBar.setNavigationOnClickListener {}
     }
 
     private fun handleRuntimeMovie(runtime: Int?): String {
@@ -68,4 +67,5 @@ class MovieDetailsActivity : AppCompatActivity() {
         val time = runtime / 60.0
         return String.format("%.2fhr", time)
     }
+
 }

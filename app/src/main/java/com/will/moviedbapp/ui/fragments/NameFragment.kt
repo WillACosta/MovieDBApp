@@ -1,31 +1,31 @@
-package com.will.moviedbapp.ui.activities
+package com.will.moviedbapp.ui.fragments
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
-import com.will.moviedbapp.core.constants.AppRoutes
-import com.will.moviedbapp.core.utils.extensions.navigateTo
-import com.will.moviedbapp.databinding.ActivityNameBinding
+import com.will.moviedbapp.databinding.FragmentNameBinding
 import com.will.moviedbapp.ui.viewmodels.NameViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NameActivity : AppCompatActivity() {
+class NameFragment : Fragment() {
 
-    private val binding: ActivityNameBinding by lazy {
-        ActivityNameBinding.inflate(layoutInflater)
+    private val binding: FragmentNameBinding by lazy {
+        FragmentNameBinding.inflate(layoutInflater)
     }
 
     private val viewModel: NameViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-
-        initView()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         setListeners()
+        return binding.root
     }
 
     private fun setListeners() {
@@ -43,10 +43,6 @@ class NameActivity : AppCompatActivity() {
         }
     }
 
-    private fun initView() {
-        supportActionBar?.hide()
-    }
-
     private fun onSubmit() {
         val validName = binding.edtContainer.error == null
 
@@ -56,8 +52,5 @@ class NameActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMainActivity() {
-        navigateTo(AppRoutes.MAIN)
-        finish()
-    }
+    private fun navigateToMainActivity() {}
 }

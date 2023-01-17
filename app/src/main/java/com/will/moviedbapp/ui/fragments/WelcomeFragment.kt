@@ -1,35 +1,40 @@
-package com.will.moviedbapp.ui.activities
+package com.will.moviedbapp.ui.fragments
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import com.will.moviedbapp.R
 import com.will.moviedbapp.core.constants.AppRoutes
 import com.will.moviedbapp.core.utils.extensions.navigateTo
 import com.will.moviedbapp.core.utils.extensions.setFullscreen
-import com.will.moviedbapp.databinding.ActivityWelcomeBinding
+import com.will.moviedbapp.databinding.FragmentWelcomeBinding
 import com.will.moviedbapp.ui.viewmodels.WelcomeViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeFragment : Fragment() {
 
-    private val binding: ActivityWelcomeBinding by lazy {
-        ActivityWelcomeBinding.inflate(layoutInflater)
+    private val binding: FragmentWelcomeBinding by lazy {
+        FragmentWelcomeBinding.inflate(layoutInflater)
     }
 
     private val viewModel: WelcomeViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         onInitView()
         setListeners()
+
+        return binding.root
     }
 
     private fun onInitView() {
-        setFullscreen()
-        supportActionBar?.hide()
+        requireActivity().setFullscreen()
     }
 
     private fun setListeners() {
@@ -52,12 +57,11 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun goToNameActivity() {
-        navigateTo(AppRoutes.NAME)
-        finish()
+
     }
 
     private fun gotoHomeActivity() {
-        navigateTo(AppRoutes.MAIN)
-        finish()
+
     }
+
 }

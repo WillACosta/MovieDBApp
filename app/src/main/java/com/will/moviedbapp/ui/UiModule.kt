@@ -19,8 +19,6 @@ object UiModule {
     private fun fragmentsModule(): Module = module {
         factory { FeaturedMoviesFragment() }
         factory { GenreFragment() }
-        factory { HomeFragment() }
-        factory { SettingsFragment() }
         UpdateNameFragment()
     }
 }
