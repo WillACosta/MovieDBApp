@@ -6,6 +6,7 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.will.moviedbapp.core.constants.AppConstants
+import com.will.moviedbapp.core.utils.extensions.validateUserName
 import com.will.moviedbapp.data.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -29,17 +30,5 @@ class NameViewModel(
         viewModelScope.launch {
             userName.value?.let { userPreferencesRepository.updateUserName(it) }
         }
-    }
-
-    fun String.validateUserName(): String? {
-        if (isEmpty()) {
-            return AppConstants.ValidationMessages.INVALID_NAME
-        }
-
-        if (length < 4) {
-            return AppConstants.ValidationMessages.LESS_THAN_THREE_CHARACTERS
-        }
-
-        return null
     }
 }
