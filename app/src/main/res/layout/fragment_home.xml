@@ -39,6 +39,8 @@
         android:backgroundTint="@color/surface"
         android:hint="@string/search"
         android:textColorHint="@color/gray"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:hintTextColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
