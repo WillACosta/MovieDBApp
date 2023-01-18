@@ -46,22 +46,22 @@ class WelcomeFragment : Fragment() {
             viewModel.userPreferences
                 .collect {
                     if (it.shouldHideWelcome && it.userName.isEmpty()) {
-                        goToNameActivity()
+                        navigateToNameRoute()
                     }
 
                     if (it.shouldHideWelcome && it.userName.isNotEmpty()) {
-                        gotoHomeActivity()
+                        navigateToHomeRoute()
                     }
                 }
         }
     }
 
-    private fun goToNameActivity() {
-
+    private fun navigateToNameRoute() {
+        WelcomeFragmentDirections.actionWelcomeFragmentToNameFragment()
     }
 
-    private fun gotoHomeActivity() {
-
+    private fun navigateToHomeRoute() {
+        WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
     }
 
 }

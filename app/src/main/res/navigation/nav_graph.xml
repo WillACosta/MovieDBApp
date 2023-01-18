@@ -11,13 +11,13 @@
         android:name="com.will.moviedbapp.ui.fragments.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_mediaDetails"
-            app:destination="@id/mediaDetails" />
 
         <argument
             android:name="showBottomNavigationBar"
             android:defaultValue="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_mediaDetails"
+            app:destination="@id/mediaDetails" />
     </fragment>
 
     <fragment

@@ -10,6 +10,7 @@ plugins {
     id("kotlin-kapt")
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     id("com.google.protobuf") version "0.8.17"
+    id("androidx.navigation.safeargs")
     kotlin("android")
 }
 

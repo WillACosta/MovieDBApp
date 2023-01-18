@@ -9,6 +9,8 @@ tech-stack. In this project you'll find:
 - Android Jetpack Components
 - Reactive UI
 - Unit Testing
+- Jetpack Navigation Component
+- Single Activity Pattern
 - Usage of [The Movie DB API](https://www.themoviedb.org/)
 - [Retrofit](https://square.github.io/retrofit/) - for perform network requests
 - [Koin](https://insert-koin.io/) - for dependency injection
@@ -18,7 +20,13 @@ tech-stack. In this project you'll find:
   threads
 - [Kotlin Flow](https://kotlinlang.org/docs/flow.html) - for asynchronous operations
 - [Glide](https://bumptech.github.io/glide/) - for handle download images from URL
-- Clean and minimal design proposal, you can copy this to [your own account here](https://www.figma.com/file/2sb6S625J1m3cNM0YB3hGw/TheMovieDB-App?node-id=0%3A1&t=zMbVMxDI6CKSH21c-1).
+- Clean and minimal design proposal, you can copy this
+  to [your own account here](https://www.figma.com/file/2sb6S625J1m3cNM0YB3hGw/TheMovieDB-App?node-id=0%3A1&t=zMbVMxDI6CKSH21c-1)
+  .
+
+## Screenshots
+
+![Screenshot showing Welcome Screen, Home screen and Movie detail screen](docs/screenshots.png "Screenshot showing Welcome screen, Home screen and Movie detail screen")
 
 ## Getting Stated
 
@@ -38,12 +46,6 @@ There are a few ways to open this project.
 ```
 
 2. Open Android Studio -> File -> Open -> Choose the cloned folder
-
-### Screenshots
-
-<div style="margin: 0 auto">
-    <img src="./docs/screen_shot.png" />
-</div>
 
 ---
 Made with 🖤 by Will

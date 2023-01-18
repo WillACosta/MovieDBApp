@@ -48,9 +48,11 @@ class NameFragment : Fragment() {
 
         if (validName) {
             viewModel.submitName()
-            navigateToMainActivity()
+            navigateToHomeRoute()
         }
     }
 
-    private fun navigateToMainActivity() {}
+    private fun navigateToHomeRoute() {
+        NameFragmentDirections.actionNameFragmentToHomeFragment()
+    }
 }
