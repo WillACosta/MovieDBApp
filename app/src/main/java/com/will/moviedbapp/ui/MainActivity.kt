@@ -18,34 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setUpView()
-        setListeners()
-        setupKoinFragmentFactory()
-
-        setContentView(binding.root)
-    }
-
-    private fun setUpView() {
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
-        val navHost = supportFragmentManager.findFragmentById(NAV_HOST_ID) as NavHostFragment
-
-        navController = navHost.navController
-        binding.bottomNavigationBar.setupWithNavController(navController)
-        supportActionBar?.hide()
-    }
-
-    private fun setListeners() {
-        navController.addOnDestinationChangedListener { _, _, args ->
-            binding.bottomNavigationBar.isVisible =
-                args?.getBoolean(
-                    "showBottomNavigationBar",
-                    false
-                ) == true
+        setContent {
+            MovieDBApplication()
         }
-    }
-
-    companion object {
-        const val NAV_HOST_ID = R.id.nav_host_fragment
     }
 }

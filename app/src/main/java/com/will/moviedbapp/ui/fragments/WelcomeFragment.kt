@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.will.moviedbapp.R
 import com.will.moviedbapp.core.constants.AppRoutes
 import com.will.moviedbapp.core.utils.extensions.navigateTo
@@ -26,7 +27,7 @@ class WelcomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         onInitView()
         setListeners()
 
@@ -57,11 +58,15 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun navigateToNameRoute() {
-        WelcomeFragmentDirections.actionWelcomeFragmentToNameFragment()
+        findNavController().navigate(
+            WelcomeFragmentDirections.actionWelcomeFragmentToNameFragment()
+        )
     }
 
     private fun navigateToHomeRoute() {
-        WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
+        findNavController().navigate(
+            WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
+        )
     }
 
 }

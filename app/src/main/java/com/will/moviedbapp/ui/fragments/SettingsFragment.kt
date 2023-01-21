@@ -70,8 +70,7 @@ class SettingsFragment : Fragment(), OnDayNightStateChanged {
             binding.apply {
                 root.setBackgroundColor(getColorFromResource(R.color.background))
                 settingsTitle.setTextColor(getColorFromResource(R.color.text))
-                nameTitle.setTextColor(getColorFromResource(R.color.text))
-                switchTitle.setTextColor(getColorFromResource(R.color.text))
+
 
                 nameContainer.chipBackgroundColor = ColorStateList.valueOf(
                     getColorFromResource(R.color.surface)
@@ -85,8 +84,7 @@ class SettingsFragment : Fragment(), OnDayNightStateChanged {
             binding.apply {
                 root.setBackgroundColor(getColorFromResource(R.color.backgroundNight))
                 settingsTitle.setTextColor(getColorFromResource(R.color.textNight))
-                nameTitle.setTextColor(getColorFromResource(R.color.textNight))
-                switchTitle.setTextColor(getColorFromResource(R.color.textNight))
+
 
                 nameContainer.chipBackgroundColor = ColorStateList.valueOf(
                     getColorFromResource(R.color.surface)

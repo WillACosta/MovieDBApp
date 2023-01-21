@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.will.moviedbapp.databinding.FragmentNameBinding
 import com.will.moviedbapp.ui.viewmodels.NameViewModel
 import kotlinx.coroutines.launch
@@ -53,6 +54,8 @@ class NameFragment : Fragment() {
     }
 
     private fun navigateToHomeRoute() {
-        NameFragmentDirections.actionNameFragmentToHomeFragment()
+        findNavController().navigate(
+            NameFragmentDirections.actionNameFragmentToHomeFragment()
+        )
     }
 }
