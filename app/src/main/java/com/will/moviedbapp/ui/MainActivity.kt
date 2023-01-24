@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.will.moviedbapp.R
 import com.will.moviedbapp.databinding.ActivityMainBinding
+import com.will.moviedbapp.ui.theme.AppTheme
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MovieDBApplication()
+            AppTheme {
+                MovieDBApplication()
+            }
         }
     }
 }
